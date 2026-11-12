@@ -153,7 +153,7 @@ jobs:
 
   android:
     needs: test
-    if: (startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch') && (vars.PLATFORMS == '' || contains(vars.PLATFORMS, 'android'))
+    if: (startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request') && (vars.PLATFORMS == '' || contains(vars.PLATFORMS, 'android'))
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
