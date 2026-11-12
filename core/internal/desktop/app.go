@@ -12,10 +12,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
-	"github.com/armanlife/arman-vpn-client/core/internal/service"
-	"github.com/armanlife/arman-vpn-client/core/internal/update"
-	"github.com/armanlife/arman-vpn-client/core/internal/version"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/service"
+	"github.com/thisisvista/vista-vpn/core/internal/update"
+	"github.com/thisisvista/vista-vpn/core/internal/version"
 )
 
 // The app mode (-app) is the core process of the desktop app: the app
