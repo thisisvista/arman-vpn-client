@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
-	"github.com/armanlife/arman-vpn-client/core/internal/netcheck"
-	"github.com/armanlife/arman-vpn-client/core/internal/proxy"
-	"github.com/armanlife/arman-vpn-client/core/internal/resolver"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/netcheck"
+	"github.com/thisisvista/vista-vpn/core/internal/proxy"
+	"github.com/thisisvista/vista-vpn/core/internal/resolver"
 )
 
 // A failure that may be the device's own is checked against the internet:
