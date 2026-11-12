@@ -1,11 +1,11 @@
-﻿; The Windows installer of Arman VPN (Inno Setup 6). scripts\build-windows.ps1
+﻿; The Windows installer of Vista VPN (Inno Setup 6). scripts\build-windows.ps1
 ; compiles it with the built app:
 ;
 ;   ISCC /DAppVersion=1.1.9 /DSourceDir=<the app's folder> /DOutputDir=<dir>
-;        /DOutputName=<file name without .exe> arman-vpn.iss
+;        /DOutputName=<file name without .exe> vista-vpn.iss
 ;
 ; It installs for the current user only, without administrator rights, by
-; default into %LOCALAPPDATA%\Programs\Arman VPN (apart from
+; default into %LOCALAPPDATA%\Programs\Vista VPN (apart from
 ; Mozilla's own client). The first install lets the user choose another
 ; folder; it must be one the user can write to, because the app keeps its
 ; data (accounts, settings, logs) in user-data beside it. A new version
@@ -16,13 +16,13 @@
 ; its folder, which the next install offers again.
 ;
 ; The TUN mode's service is the one part that needs administrator rights:
-; Setup always runs core\arman-vpn-tun.exe install, which asks for them
+; Setup always runs core\vista-vpn-tun.exe install, which asks for them
 ; itself and installs the service in Program Files; the uninstall removes it
 ; again.
 
-#define AppName "Arman VPN"
-#define AppExe "arman-vpn.exe"
-#define AppDir "Arman VPN"
+#define AppName "Vista VPN"
+#define AppExe "vista-vpn.exe"
+#define AppDir "Vista VPN"
 #ifndef AppVersion
   #define AppVersion "0.0.0"
 #endif
@@ -33,7 +33,7 @@
   #define OutputDir "."
 #endif
 #ifndef OutputName
-  #define OutputName "Arman-VPN-Setup"
+  #define OutputName "Vista-VPN-Setup"
 #endif
 
 [Setup]
@@ -44,9 +44,9 @@ AppName={#AppName}
 AppVersion={#AppVersion}
 AppVerName={#AppName} {#AppVersion}
 AppPublisher=Arman
-AppPublisherURL=https://github.com/armanlife/arman-vpn-client
-AppSupportURL=https://github.com/armanlife/arman-vpn-client/issues
-AppUpdatesURL=https://github.com/armanlife/arman-vpn-client/releases
+AppPublisherURL=https://github.com/armanlife/vista-vpn-client
+AppSupportURL=https://github.com/armanlife/vista-vpn-client/issues
+AppUpdatesURL=https://github.com/armanlife/vista-vpn-client/releases
 VersionInfoVersion={#AppVersion}
 DefaultDirName={code:DefaultDir}
 ; The folder is asked on the first install only; an update goes where the
@@ -89,71 +89,71 @@ Name: "bn"; MessagesFile: "languages\Bengali.islu"
 ; Uninstalling asks about the data, keeping it unless the user chooses
 ; otherwise.
 DataQuestion=Keep your accounts and settings?
-DataText=They stay in the user-data folder, so installing the app again brings them back. Delete them only if you will not use Arman VPN again.
+DataText=They stay in the user-data folder, so installing the app again brings them back. Delete them only if you will not use Vista VPN again.
 DataKeep=Keep them (recommended)
 DataDelete=Delete them
 fa.DataQuestion=حساب‌ها و تنظیمات شما نگه داشته شوند؟
-fa.DataText=در پوشه user-data می‌مانند و با نصب دوباره برنامه برمی‌گردند. فقط اگر دیگر از Arman VPN استفاده نمی‌کنید پاکشان کنید.
+fa.DataText=در پوشه user-data می‌مانند و با نصب دوباره برنامه برمی‌گردند. فقط اگر دیگر از Vista VPN استفاده نمی‌کنید پاکشان کنید.
 fa.DataKeep=نگه داشته شوند (پیشنهادی)
 fa.DataDelete=پاک شوند
 ar.DataQuestion=هل تريد الاحتفاظ بحساباتك وإعداداتك؟
-ar.DataText=تبقى في مجلد user-data، فتعود عند تثبيت التطبيق مرة أخرى. احذفها فقط إذا كنت لن تستخدم Arman VPN مجددًا.
+ar.DataText=تبقى في مجلد user-data، فتعود عند تثبيت التطبيق مرة أخرى. احذفها فقط إذا كنت لن تستخدم Vista VPN مجددًا.
 ar.DataKeep=احتفظ بها (موصى به)
 ar.DataDelete=احذفها
 ru.DataQuestion=Сохранить ваши аккаунты и настройки?
-ru.DataText=Они останутся в папке user-data, и при повторной установке приложение их вернёт. Удаляйте их, только если больше не будете пользоваться Arman VPN.
+ru.DataText=Они останутся в папке user-data, и при повторной установке приложение их вернёт. Удаляйте их, только если больше не будете пользоваться Vista VPN.
 ru.DataKeep=Сохранить (рекомендуется)
 ru.DataDelete=Удалить
 tr.DataQuestion=Hesaplarınız ve ayarlarınız saklansın mı?
-tr.DataText=user-data klasöründe kalırlar; uygulamayı yeniden kurduğunuzda geri gelirler. Yalnızca Arman VPN'i bir daha kullanmayacaksanız silin.
+tr.DataText=user-data klasöründe kalırlar; uygulamayı yeniden kurduğunuzda geri gelirler. Yalnızca Vista VPN'i bir daha kullanmayacaksanız silin.
 tr.DataKeep=Sakla (önerilen)
 tr.DataDelete=Sil
 az.DataQuestion=Hesablarınız və ayarlarınız saxlanılsın?
-az.DataText=Onlar user-data qovluğunda qalır və tətbiqi yenidən quraşdıranda geri qayıdır. Yalnız Arman VPN-dən bir daha istifadə etməyəcəksinizsə silin.
+az.DataText=Onlar user-data qovluğunda qalır və tətbiqi yenidən quraşdıranda geri qayıdır. Yalnız Vista VPN-dən bir daha istifadə etməyəcəksinizsə silin.
 az.DataKeep=Saxla (tövsiyə olunur)
 az.DataDelete=Sil
 id.DataQuestion=Simpan akun dan pengaturan Anda?
-id.DataText=Semuanya tetap di folder user-data, jadi akan kembali saat aplikasi dipasang lagi. Hapus hanya jika Anda tidak akan memakai Arman VPN lagi.
+id.DataText=Semuanya tetap di folder user-data, jadi akan kembali saat aplikasi dipasang lagi. Hapus hanya jika Anda tidak akan memakai Vista VPN lagi.
 id.DataKeep=Simpan (disarankan)
 id.DataDelete=Hapus
 es.DataQuestion=¿Conservar tus cuentas y ajustes?
-es.DataText=Se quedan en la carpeta user-data, así que vuelven al instalar de nuevo la aplicación. Bórralos solo si no vas a volver a usar Arman VPN.
+es.DataText=Se quedan en la carpeta user-data, así que vuelven al instalar de nuevo la aplicación. Bórralos solo si no vas a volver a usar Vista VPN.
 es.DataKeep=Conservarlos (recomendado)
 es.DataDelete=Borrarlos
 fr.DataQuestion=Conserver vos comptes et paramètres ?
-fr.DataText=Ils restent dans le dossier user-data et reviennent si vous réinstallez l'application. Ne les supprimez que si vous n'utiliserez plus Arman VPN.
+fr.DataText=Ils restent dans le dossier user-data et reviennent si vous réinstallez l'application. Ne les supprimez que si vous n'utiliserez plus Vista VPN.
 fr.DataKeep=Les conserver (recommandé)
 fr.DataDelete=Les supprimer
 hu.DataQuestion=Megtartja a fiókjait és a beállításait?
-hu.DataText=A user-data mappában maradnak, így az alkalmazás újratelepítésekor visszakerülnek. Csak akkor törölje őket, ha többé nem használja az Arman VPN-t.
+hu.DataText=A user-data mappában maradnak, így az alkalmazás újratelepítésekor visszakerülnek. Csak akkor törölje őket, ha többé nem használja az Vista VPN-t.
 hu.DataKeep=Megtartás (ajánlott)
 hu.DataDelete=Törlés
 pt.DataQuestion=Manter suas contas e configurações?
-pt.DataText=Elas ficam na pasta user-data e voltam se você instalar o aplicativo de novo. Apague-as só se não for mais usar o Arman VPN.
+pt.DataText=Elas ficam na pasta user-data e voltam se você instalar o aplicativo de novo. Apague-as só se não for mais usar o Vista VPN.
 pt.DataKeep=Manter (recomendado)
 pt.DataDelete=Apagar
 vi.DataQuestion=Giữ lại tài khoản và cài đặt của bạn?
-vi.DataText=Chúng vẫn nằm trong thư mục user-data, nên sẽ quay lại khi bạn cài lại ứng dụng. Chỉ xóa nếu bạn sẽ không dùng Arman VPN nữa.
+vi.DataText=Chúng vẫn nằm trong thư mục user-data, nên sẽ quay lại khi bạn cài lại ứng dụng. Chỉ xóa nếu bạn sẽ không dùng Vista VPN nữa.
 vi.DataKeep=Giữ lại (khuyên dùng)
 vi.DataDelete=Xóa
 bn.DataQuestion=আপনার অ্যাকাউন্ট ও সেটিংস রেখে দেবেন?
-bn.DataText=এগুলো user-data ফোল্ডারে থেকে যায়, তাই অ্যাপটি আবার ইনস্টল করলে ফিরে আসে। Arman VPN আর ব্যবহার না করলে তবেই মুছুন।
+bn.DataText=এগুলো user-data ফোল্ডারে থেকে যায়, তাই অ্যাপটি আবার ইনস্টল করলে ফিরে আসে। Vista VPN আর ব্যবহার না করলে তবেই মুছুন।
 bn.DataKeep=রেখে দিন (প্রস্তাবিত)
 bn.DataDelete=মুছে ফেলুন
 ; A chosen folder the user cannot write to (such as Program Files).
-DirNotWritable=Arman VPN can't write to this folder. It keeps your accounts and settings beside itself, so it needs a folder you can change without administrator rights (not Program Files). Choose another folder.
-fa.DirNotWritable=Arman VPN نمی‌تواند در این پوشه بنویسد. حساب‌ها و تنظیمات کنار خود برنامه نگه داشته می‌شوند، پس پوشه‌ای لازم است که بدون دسترسی Administrator قابل تغییر باشد (نه Program Files). پوشه دیگری انتخاب کنید.
-ar.DirNotWritable=لا يستطيع Arman VPN الكتابة في هذا المجلد. فهو يحتفظ بحساباتك وإعداداتك بجانبه، لذا يحتاج إلى مجلد يمكنك تعديله دون صلاحيات المسؤول (وليس Program Files). اختر مجلدًا آخر.
-ru.DirNotWritable=Arman VPN не может записывать в эту папку. Аккаунты и настройки хранятся рядом с программой, поэтому нужна папка, которую можно менять без прав администратора (не Program Files). Выберите другую папку.
-tr.DirNotWritable=Arman VPN bu klasöre yazamıyor. Hesaplarınız ve ayarlarınız uygulamanın yanında tutulur; bu yüzden yönetici hakları olmadan değiştirebileceğiniz bir klasör gerekir (Program Files değil). Başka bir klasör seçin.
-az.DirNotWritable=Arman VPN bu qovluğa yaza bilmir. Hesablarınız və ayarlarınız tətbiqin yanında saxlanılır, ona görə də administrator hüquqları olmadan dəyişə biləcəyiniz qovluq lazımdır (Program Files yox). Başqa qovluq seçin.
-id.DirNotWritable=Arman VPN tidak dapat menulis ke folder ini. Akun dan pengaturan Anda disimpan di samping aplikasi, jadi diperlukan folder yang dapat Anda ubah tanpa hak administrator (bukan Program Files). Pilih folder lain.
-es.DirNotWritable=Arman VPN no puede escribir en esta carpeta. Guarda tus cuentas y ajustes junto a sí mismo, así que necesita una carpeta que puedas modificar sin permisos de administrador (no Program Files). Elige otra carpeta.
-fr.DirNotWritable=Arman VPN ne peut pas écrire dans ce dossier. Il garde vos comptes et paramètres à côté de lui ; il lui faut donc un dossier modifiable sans droits d'administrateur (pas Program Files). Choisissez un autre dossier.
-hu.DirNotWritable=Az Arman VPN nem tud írni ebbe a mappába. A fiókjait és a beállításait maga mellett tárolja, ezért olyan mappa kell, amelyet rendszergazdai jogok nélkül módosíthat (nem a Program Files). Válasszon másik mappát.
-pt.DirNotWritable=O Arman VPN não consegue gravar nesta pasta. Ele guarda suas contas e configurações ao lado de si, então precisa de uma pasta que você possa alterar sem direitos de administrador (não a Program Files). Escolha outra pasta.
-vi.DirNotWritable=Arman VPN không thể ghi vào thư mục này. Tài khoản và cài đặt của bạn được lưu ngay cạnh ứng dụng, nên cần một thư mục bạn có thể thay đổi mà không cần quyền quản trị (không phải Program Files). Hãy chọn thư mục khác.
-bn.DirNotWritable=Arman VPN এই ফোল্ডারে লিখতে পারছে না। আপনার অ্যাকাউন্ট ও সেটিংস অ্যাপের পাশেই রাখা হয়, তাই এমন একটি ফোল্ডার দরকার যা অ্যাডমিনিস্ট্রেটর অনুমতি ছাড়াই বদলানো যায় (Program Files নয়)। অন্য একটি ফোল্ডার বেছে নিন।
+DirNotWritable=Vista VPN can't write to this folder. It keeps your accounts and settings beside itself, so it needs a folder you can change without administrator rights (not Program Files). Choose another folder.
+fa.DirNotWritable=Vista VPN نمی‌تواند در این پوشه بنویسد. حساب‌ها و تنظیمات کنار خود برنامه نگه داشته می‌شوند، پس پوشه‌ای لازم است که بدون دسترسی Administrator قابل تغییر باشد (نه Program Files). پوشه دیگری انتخاب کنید.
+ar.DirNotWritable=لا يستطيع Vista VPN الكتابة في هذا المجلد. فهو يحتفظ بحساباتك وإعداداتك بجانبه، لذا يحتاج إلى مجلد يمكنك تعديله دون صلاحيات المسؤول (وليس Program Files). اختر مجلدًا آخر.
+ru.DirNotWritable=Vista VPN не может записывать в эту папку. Аккаунты и настройки хранятся рядом с программой, поэтому нужна папка, которую можно менять без прав администратора (не Program Files). Выберите другую папку.
+tr.DirNotWritable=Vista VPN bu klasöre yazamıyor. Hesaplarınız ve ayarlarınız uygulamanın yanında tutulur; bu yüzden yönetici hakları olmadan değiştirebileceğiniz bir klasör gerekir (Program Files değil). Başka bir klasör seçin.
+az.DirNotWritable=Vista VPN bu qovluğa yaza bilmir. Hesablarınız və ayarlarınız tətbiqin yanında saxlanılır, ona görə də administrator hüquqları olmadan dəyişə biləcəyiniz qovluq lazımdır (Program Files yox). Başqa qovluq seçin.
+id.DirNotWritable=Vista VPN tidak dapat menulis ke folder ini. Akun dan pengaturan Anda disimpan di samping aplikasi, jadi diperlukan folder yang dapat Anda ubah tanpa hak administrator (bukan Program Files). Pilih folder lain.
+es.DirNotWritable=Vista VPN no puede escribir en esta carpeta. Guarda tus cuentas y ajustes junto a sí mismo, así que necesita una carpeta que puedas modificar sin permisos de administrador (no Program Files). Elige otra carpeta.
+fr.DirNotWritable=Vista VPN ne peut pas écrire dans ce dossier. Il garde vos comptes et paramètres à côté de lui ; il lui faut donc un dossier modifiable sans droits d'administrateur (pas Program Files). Choisissez un autre dossier.
+hu.DirNotWritable=Az Vista VPN nem tud írni ebbe a mappába. A fiókjait és a beállításait maga mellett tárolja, ezért olyan mappa kell, amelyet rendszergazdai jogok nélkül módosíthat (nem a Program Files). Válasszon másik mappát.
+pt.DirNotWritable=O Vista VPN não consegue gravar nesta pasta. Ele guarda suas contas e configurações ao lado de si, então precisa de uma pasta que você possa alterar sem direitos de administrador (não a Program Files). Escolha outra pasta.
+vi.DirNotWritable=Vista VPN không thể ghi vào thư mục này. Tài khoản và cài đặt của bạn được lưu ngay cạnh ứng dụng, nên cần một thư mục bạn có thể thay đổi mà không cần quyền quản trị (không phải Program Files). Hãy chọn thư mục khác.
+bn.DirNotWritable=Vista VPN এই ফোল্ডারে লিখতে পারছে না। আপনার অ্যাকাউন্ট ও সেটিংস অ্যাপের পাশেই রাখা হয়, তাই এমন একটি ফোল্ডার দরকার যা অ্যাডমিনিস্ট্রেটর অনুমতি ছাড়াই বদলানো যায় (Program Files নয়)। অন্য একটি ফোল্ডার বেছে নিন।
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
@@ -184,13 +184,13 @@ Name: "{autodesktop}\{#AppName}"; Filename: "{app}\{#AppExe}"; Tasks: desktopico
 ; prompt; declined, the app installs it the first time TUN mode is chosen.
 ; Not in a silent run: no prompt there, and an installed service updates
 ; itself from the app.
-Filename: "{app}\core\arman-vpn-tun.exe"; Parameters: "install"; Flags: waituntilterminated skipifsilent; Check: not TunServiceInstalled
+Filename: "{app}\core\vista-vpn-tun.exe"; Parameters: "install"; Flags: waituntilterminated skipifsilent; Check: not TunServiceInstalled
 Filename: "{app}\{#AppExe}"; Description: "{cm:LaunchProgram,{#AppName}}"; Flags: nowait postinstall skipifsilent
 
 ; The TUN service goes with the app: through its pipe, with no prompt while
 ; it runs; it does nothing when the service is not installed.
 [UninstallRun]
-Filename: "{app}\core\arman-vpn-tun.exe"; Parameters: "uninstall"; Flags: waituntilterminated; RunOnceId: "RemoveTunService"
+Filename: "{app}\core\vista-vpn-tun.exe"; Parameters: "uninstall"; Flags: waituntilterminated; RunOnceId: "RemoveTunService"
 
 ; The app updates itself (core\internal\update) by replacing its files, so
 ; this uninstaller does not know every file a later version brought: the
@@ -227,7 +227,7 @@ begin
 end;
 
 // TunServiceInstalled tells whether the TUN mode's Windows service is
-// installed (core\cmd\arman-vpn-tun).
+// installed (core\cmd\vista-vpn-tun).
 function TunServiceInstalled: Boolean;
 begin
   Result := RegKeyExists(HKLM, 'SYSTEM\CurrentControlSet\Services\ArmanVPNTun');
