@@ -149,7 +149,7 @@ func newRelayPoolFixture(t *testing.T) *relayPoolFixture {
 				status = 200
 			}
 			w.WriteHeader(status)
-			json.NewEncoder(w).Encode(map[string]any{"relay": "arman-vpn", "version": 1, "ready": status == 200})
+			json.NewEncoder(w).Encode(map[string]any{"relay": "vista-vpn", "version": 1, "ready": status == 200})
 			return
 		}
 		if r.URL.Query().Get("url") != "https://vpn.mozilla.org/api/v1/fpn/token" {
@@ -164,7 +164,7 @@ func newRelayPoolFixture(t *testing.T) *relayPoolFixture {
 		}
 		w.Header().Set("X-Quota-Limit", "5000")
 		if !f.bareResponse[r.URL.Path] {
-			w.Header().Set("X-Arman-Relay", "1")
+			w.Header().Set("X-Vista-Relay", "1")
 		}
 		w.Header().Set("X-Quota-Remaining", "4000")
 		w.Header().Set("X-Quota-Reset", "2026-12-01T00:00:00Z")
