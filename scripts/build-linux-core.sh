@@ -18,7 +18,7 @@ for arch in amd64 arm64 armv7; do
   mkdir "$stage/$name"
   (cd "$root/core" && CGO_ENABLED=0 GOOS=linux GOARCH="${arch/armv7/arm}" GOARM=7 go build -trimpath \
     -ldflags "-s -w -X github.com/thisisvista/vista-vpn/core/internal/version.Current=$version" \
-    -o "$stage/$name/vista-vpn-core" ./cmd/arman-vpn-core)
+    -o "$stage/$name/vista-vpn-core" ./cmd/vista-vpn-core)
   install -m 0755 "$root/core/scripts/install-systemd.sh" "$stage/$name/install-systemd.sh"
   install -m 0644 "$root/LICENSE" "$stage/$name/LICENSE"
   tar -czf "$root/dist/$name.tar.gz" -C "$stage" --owner=0 --group=0 "$name"
