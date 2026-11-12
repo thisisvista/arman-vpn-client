@@ -347,7 +347,7 @@ func Default() Config {
 		},
 		Network: Network{
 			APIRelayEnabled:    true,
-			SharedRelayEnabled: true,
+			SharedRelayEnabled: false,
 			APIRelayECH:        RelayECHOn,
 			GuardianEndpoint:   guardian.DefaultEndpoint,
 			HelloSplit:         hellosplit.Off,
