@@ -10,8 +10,8 @@ import (
 
 	"golang.org/x/sys/windows/registry"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
-	"github.com/armanlife/arman-vpn-client/core/internal/service"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/service"
 )
 
 // useTestProxyKeys points the system proxy code at temporary keys under
