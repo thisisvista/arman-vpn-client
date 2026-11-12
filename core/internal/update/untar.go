@@ -14,7 +14,7 @@ import (
 )
 
 // linuxPackage is the Linux app's tar.gz for this processor
-// (scripts/build-linux.sh): an vista-vpn folder with the app, its lib/ and
+// (scripts/build-linux.sh): a vista-vpn folder with the app, its lib/ and
 // data/, and core/.
 var linuxPackage = appPackage{
 	name:   func(v string) string { return "Vista-VPN-" + v + "-Linux-" + runtime.GOARCH + ".tar.gz" },
