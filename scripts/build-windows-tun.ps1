@@ -1,4 +1,4 @@
-# Builds the TUN service (core\cmd\arman-vpn-tun) into -Out as
+# Builds the TUN service (core\cmd\vista-vpn-tun) into -Out as
 # vista-vpn-tun.exe, beside the core, from where the app installs it.
 # scripts\build-windows.ps1 and scripts\update-installed-windows.ps1 run it.
 #
