@@ -10,11 +10,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
-	"github.com/armanlife/arman-vpn-client/core/internal/proxy"
-	"github.com/armanlife/arman-vpn-client/core/internal/service"
-	"github.com/armanlife/arman-vpn-client/core/internal/tunapi"
-	"github.com/armanlife/arman-vpn-client/core/internal/version"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/proxy"
+	"github.com/thisisvista/vista-vpn/core/internal/service"
+	"github.com/thisisvista/vista-vpn/core/internal/tunapi"
+	"github.com/thisisvista/vista-vpn/core/internal/version"
 )
 
 // fakeHost is the daemon as tunSync sees it, recording what it was told.
