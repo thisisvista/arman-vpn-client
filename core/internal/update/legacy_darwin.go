@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
 )
 
 // The macOS tar.gz's bundle holds links under the old names in
