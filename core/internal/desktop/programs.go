@@ -4,8 +4,8 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/service"
-	"github.com/armanlife/arman-vpn-client/core/internal/tunapi"
+	"github.com/thisisvista/vista-vpn/core/internal/service"
+	"github.com/thisisvista/vista-vpn/core/internal/tunapi"
 )
 
 // ownPrograms are this app's own executables, which never skip the VPN by
