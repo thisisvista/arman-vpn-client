@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:arman_vpn/app_info.dart';
-import 'package:arman_vpn/app_settings.dart';
-import 'package:arman_vpn/core/updates.dart';
-import 'package:arman_vpn/core/announcements.dart';
+import 'package:vista_vpn/app_info.dart';
+import 'package:vista_vpn/app_settings.dart';
+import 'package:vista_vpn/core/updates.dart';
+import 'package:vista_vpn/core/announcements.dart';
 
 Map<String, Object?> record(
   String base, {
