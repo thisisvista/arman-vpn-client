@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
-	"github.com/armanlife/arman-vpn-client/core/internal/tunapi"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/tunapi"
 )
 
 // Programs that skip the VPN (tunapi.Program, the core's tun.programs): the
