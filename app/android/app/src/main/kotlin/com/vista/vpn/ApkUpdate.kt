@@ -28,22 +28,27 @@ internal object ApkUpdate {
                 requestMethod = "GET"
                 setRequestProperty("User-Agent", "Vista-VPN-Android")
             }
-            next.connect()
-            val status = next.responseCode
-            if (status in 300..399) {
-                val location = next.getHeaderField("Location")
+            try {
+                next.connect()
+                val status = next.responseCode
+                if (status in 300..399) {
+                    val location = next.getHeaderField("Location")
+                    next.disconnect()
+                    check(!location.isNullOrBlank() && ++redirects <= 5) {
+                        "APK download has too many or invalid redirects"
+                    }
+                    currentUrl = URL(currentUrl, location)
+                    check(currentUrl.protocol == "https") {
+                        "Update redirected away from HTTPS"
+                    }
+                    continue
+                }
+                connection = next
+                break
+            } catch (e: Exception) {
                 next.disconnect()
-                check(!location.isNullOrBlank() && ++redirects <= 5) {
-                    "APK download has too many or invalid redirects"
-                }
-                currentUrl = URL(currentUrl, location)
-                check(currentUrl.protocol == "https") {
-                    "Update redirected away from HTTPS"
-                }
-                continue
+                throw e
             }
-            connection = next
-            break
         }
 
         val activeConnection = connection ?: error("APK connection was not established")
@@ -78,6 +83,7 @@ internal object ApkUpdate {
             activeConnection.disconnect()
         }
 
+        try {
         val flags = if (Build.VERSION.SDK_INT >= 28) {
             PackageManager.GET_SIGNING_CERTIFICATES
         } else {
@@ -114,6 +120,10 @@ internal object ApkUpdate {
             installed.versionCode.toLong()
         }
         check(candidateVersion > installedVersion) { "Downloaded APK is not a newer version" }
-        return apk
+            return apk
+        } catch (e: Exception) {
+            apk.delete()
+            throw e
+        }
     }
 }
