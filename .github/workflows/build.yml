@@ -283,7 +283,7 @@ jobs:
       - name: TUN service with systemd
         working-directory: core
         run: |
-          go build -tags with_gvisor -o "$RUNNER_TEMP/vista-vpn-tun" ./cmd/arman-vpn-tun
+          go build -tags with_gvisor -o "$RUNNER_TEMP/vista-vpn-tun" ./cmd/vista-vpn-tun
           sudo "$RUNNER_TEMP/vista-vpn-tun" install
           systemctl is-active vista-vpn-tun
           "$RUNNER_TEMP/vista-vpn-tun" uninstall
@@ -354,7 +354,7 @@ jobs:
         continue-on-error: true
         working-directory: core
         run: |
-          go build -tags with_gvisor -o "$RUNNER_TEMP/vista-vpn-tun" ./cmd/arman-vpn-tun
+          go build -tags with_gvisor -o "$RUNNER_TEMP/vista-vpn-tun" ./cmd/vista-vpn-tun
           sudo "$RUNNER_TEMP/vista-vpn-tun" install
           sudo launchctl print system/com.vista.vpn.tun | head -20
           "$RUNNER_TEMP/vista-vpn-tun" uninstall
