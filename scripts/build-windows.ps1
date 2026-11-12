@@ -7,7 +7,7 @@
 # - Vista-VPN-<version>-Windows-x64.zip: the portable app, an "Vista VPN"
 #   folder to unpack anywhere (or over an older one);
 # - Vista-VPN-<version>-Windows-Setup-x64.exe: the installer
-#   (app\windows\installer\arman-vpn.iss, Inno Setup 6).
+#   (app\windows\installer\vista-vpn.iss, Inno Setup 6).
 # The app keeps its data (accounts, settings, logs) in user-data beside it.
 # The zip and the installer are made from a clean copy, never with a
 # user-data folder. The version is "major.minor.patch" from app\pubspec.yaml,
@@ -88,7 +88,7 @@ try {
     Compress-Archive -Path $app -DestinationPath $zip -CompressionLevel Optimal -Force
 
     $setupName = "Vista-VPN-$version-Windows-Setup-x64"
-    & $iscc /Q "/DAppVersion=$version" "/DSourceDir=$app" "/DOutputDir=$root\dist" "/DOutputName=$setupName" "$root\app\windows\installer\arman-vpn.iss"
+    & $iscc /Q "/DAppVersion=$version" "/DSourceDir=$app" "/DOutputDir=$root\dist" "/DOutputName=$setupName" "$root\app\windows\installer\vista-vpn.iss"
     if ($LASTEXITCODE -ne 0) { throw 'the installer did not build' }
 } finally { Remove-Item -Recurse -Force $stage -ErrorAction SilentlyContinue }
 
