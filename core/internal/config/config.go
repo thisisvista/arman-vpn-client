@@ -19,11 +19,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/guardian"
-	"github.com/armanlife/arman-vpn-client/core/internal/hellosplit"
-	"github.com/armanlife/arman-vpn-client/core/internal/resolver"
-	"github.com/armanlife/arman-vpn-client/core/internal/routing"
-	"github.com/armanlife/arman-vpn-client/core/internal/securefile"
+	"github.com/thisisvista/vista-vpn/core/internal/guardian"
+	"github.com/thisisvista/vista-vpn/core/internal/hellosplit"
+	"github.com/thisisvista/vista-vpn/core/internal/resolver"
+	"github.com/thisisvista/vista-vpn/core/internal/routing"
+	"github.com/thisisvista/vista-vpn/core/internal/securefile"
 )
 
 // CurrentVersion is the config schema version written by this build.
