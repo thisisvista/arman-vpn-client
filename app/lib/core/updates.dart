@@ -282,6 +282,18 @@ abstract final class Updates {
     final core = _core;
     if (core == null) return;
     failure.value = null;
+    if (Platform.isAndroid) {
+      try {
+        final url = await downloadUrl(release, os: 'android');
+        final started = await AndroidCore.installApk(url);
+        if (!started) {
+          failure.value = 'Android did not open the package installer';
+        }
+      } on Exception catch (e) {
+        failure.value = '$e';
+      }
+      return;
+    }
     final current = core.status?.update;
     if (current != null &&
         current.ready &&
