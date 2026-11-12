@@ -70,26 +70,26 @@ func writeTar(t *testing.T, files ...tarFile) string {
 	return file
 }
 
-// The release's archive: one arman-vpn folder, whose contents go into
+// The release's archive: one vista-vpn folder, whose contents go into
 // the folder, executables staying executable. GNU tar's "./" entry first
 // changes nothing.
 func TestUntarUnpacksTheAppFolder(t *testing.T) {
 	file := writeTar(t,
 		tarFolder("./"),
-		tarFolder("arman-vpn/"),
-		tarExe("arman-vpn/arman-vpn", "app"),
-		tarRegular("arman-vpn/lib/libapp.so", "lib"),
-		tarExe("arman-vpn/core/arman-vpn-core", "core"),
+		tarFolder("vista-vpn/"),
+		tarExe("vista-vpn/vista-vpn", "app"),
+		tarRegular("vista-vpn/lib/libapp.so", "lib"),
+		tarExe("vista-vpn/core/vista-vpn-core", "core"),
 	)
 	out := filepath.Join(t.TempDir(), "out")
 	if err := untar(file, out); err != nil {
 		t.Fatal(err)
 	}
-	if read(t, filepath.Join(out, "arman-vpn")) != "app" || read(t, filepath.Join(out, "core", "arman-vpn-core")) != "core" || read(t, filepath.Join(out, "lib", "libapp.so")) != "lib" {
+	if read(t, filepath.Join(out, "vista-vpn")) != "app" || read(t, filepath.Join(out, "core", "vista-vpn-core")) != "core" || read(t, filepath.Join(out, "lib", "libapp.so")) != "lib" {
 		t.Fatal("wrong layout")
 	}
 	if runtime.GOOS != "windows" {
-		info, _ := os.Stat(filepath.Join(out, "arman-vpn"))
+		info, _ := os.Stat(filepath.Join(out, "vista-vpn"))
 		lib, _ := os.Stat(filepath.Join(out, "lib", "libapp.so"))
 		if info.Mode().Perm()&0o111 == 0 || lib.Mode().Perm()&0o111 != 0 {
 			t.Fatalf("modes %v %v", info.Mode(), lib.Mode())
@@ -105,9 +105,9 @@ func TestUntarKeepsLinksWithinTheApp(t *testing.T) {
 	if runtime.GOOS == "windows" {
 		t.Skip("links need Windows' developer mode")
 	}
-	fw := "Arman VPN.app/Contents/Frameworks/FlutterMacOS.framework/"
+	fw := "Vista VPN.app/Contents/Frameworks/FlutterMacOS.framework/"
 	file := writeTar(t,
-		tarExe("Arman VPN.app/Contents/MacOS/Arman VPN", "app"),
+		tarExe("Vista VPN.app/Contents/MacOS/Vista VPN", "app"),
 		tarSymlink(fw+"FlutterMacOS", "Versions/Current/FlutterMacOS"),
 		tarSymlink(fw+"Versions/Current", "A"),
 		tarExe(fw+"Versions/A/FlutterMacOS", "flutter"),
@@ -128,22 +128,22 @@ func TestUntarKeepsLinksWithinTheApp(t *testing.T) {
 func TestUntarRefusesNamesOutsideTheFolderAndLinks(t *testing.T) {
 	for _, bad := range [][]tarFile{
 		{tarRegular("../evil", "x")},
-		{tarRegular("arman-vpn/../../evil", "x")},
+		{tarRegular("vista-vpn/../../evil", "x")},
 		// Inside the archive, but outside the folder once its top is cut.
-		{tarRegular("arman-vpn/../evil", "x")},
+		{tarRegular("vista-vpn/../evil", "x")},
 		{tarRegular("/abs", "x")},
-		{tarSymlink("arman-vpn/core/passwd", "/etc/passwd")},
-		{tarSymlink("arman-vpn/core/up", "../../etc")},
-		{tarHardlink("arman-vpn/core/hard", "arman-vpn/arman-vpn")},
+		{tarSymlink("vista-vpn/core/passwd", "/etc/passwd")},
+		{tarSymlink("vista-vpn/core/up", "../../etc")},
+		{tarHardlink("vista-vpn/core/hard", "vista-vpn/vista-vpn")},
 		// Each link stays inside on its own; followed, the second leads
 		// out: l is the app's folder, so l/.. is its parent.
-		{tarSymlink("arman-vpn/deep/deeper/l", "../.."), tarSymlink("arman-vpn/out", "deep/deeper/l/..")},
+		{tarSymlink("vista-vpn/deep/deeper/l", "../.."), tarSymlink("vista-vpn/out", "deep/deeper/l/..")},
 		// A link made inside another link that leads to its own folder.
-		{tarSymlink("arman-vpn/here", "."), tarSymlink("arman-vpn/here/up", "..")},
+		{tarSymlink("vista-vpn/here", "."), tarSymlink("vista-vpn/here/up", "..")},
 		// APFS ignores case: "Here" is the link "here".
-		{tarSymlink("arman-vpn/here", "."), tarSymlink("arman-vpn/out", "Here/..")},
+		{tarSymlink("vista-vpn/here", "."), tarSymlink("vista-vpn/out", "Here/..")},
 	} {
-		file := writeTar(t, append([]tarFile{tarExe("arman-vpn/arman-vpn", "app")}, bad...)...)
+		file := writeTar(t, append([]tarFile{tarExe("vista-vpn/vista-vpn", "app")}, bad...)...)
 		if err := untar(file, filepath.Join(t.TempDir(), "out")); err == nil {
 			t.Errorf("%q: unpacked", bad[len(bad)-1].name)
 		}
@@ -157,9 +157,9 @@ func TestALinuxReleaseInstalls(t *testing.T) {
 	t.Cleanup(func() { thePackage = windowsPackage })
 	r := newRelease(t, "1.2.3")
 	r.files[AssetName("1.2.3")] = appTar(t,
-		tarExe("arman-vpn/arman-vpn", "app 1.2.3"),
-		tarExe("arman-vpn/core/arman-vpn-core", "core 1.2.3"),
-		tarExe("arman-vpn/core/arman-vpn-tun", "tun 1.2.3"),
+		tarExe("vista-vpn/vista-vpn", "app 1.2.3"),
+		tarExe("vista-vpn/core/vista-vpn-core", "core 1.2.3"),
+		tarExe("vista-vpn/core/vista-vpn-tun", "tun 1.2.3"),
 	)
 	r.sign()
 	r.serve(t)
@@ -167,9 +167,9 @@ func TestALinuxReleaseInstalls(t *testing.T) {
 		t.Fatalf("asset %s", AssetName("1.2.3"))
 	}
 	appDir, dataDir := appFolder(t, "1.0.0", false)
-	write(t, filepath.Join(appDir, "arman-vpn"), "app 1.0.0")
+	write(t, filepath.Join(appDir, "vista-vpn"), "app 1.0.0")
 	p := installed(t, appDir, dataDir)
-	if read(t, filepath.Join(p.Package, "core", "arman-vpn-core")) != "core 1.2.3" || read(t, filepath.Join(p.Package, "arman-vpn")) != "app 1.2.3" {
+	if read(t, filepath.Join(p.Package, "core", "vista-vpn-core")) != "core 1.2.3" || read(t, filepath.Join(p.Package, "vista-vpn")) != "app 1.2.3" {
 		t.Fatalf("unpacked into %s", p.Package)
 	}
 }
@@ -180,24 +180,24 @@ func TestAMacReleaseInstalls(t *testing.T) {
 	t.Cleanup(func() { thePackage = windowsPackage })
 	r := newRelease(t, "1.2.3")
 	files := []tarFile{
-		tarRegular("Arman VPN.app/Contents/Info.plist", "plist 1.2.3"),
-		tarExe("Arman VPN.app/Contents/MacOS/Arman VPN", "app 1.2.3"),
-		tarExe("Arman VPN.app/Contents/MacOS/arman-vpn-core", "core 1.2.3"),
-		tarExe("Arman VPN.app/Contents/MacOS/arman-vpn-tun", "tun 1.2.3"),
+		tarRegular("Vista VPN.app/Contents/Info.plist", "plist 1.2.3"),
+		tarExe("Vista VPN.app/Contents/MacOS/Vista VPN", "app 1.2.3"),
+		tarExe("Vista VPN.app/Contents/MacOS/vista-vpn-core", "core 1.2.3"),
+		tarExe("Vista VPN.app/Contents/MacOS/vista-vpn-tun", "tun 1.2.3"),
 	}
 	if runtime.GOOS != "windows" {
-		files = append(files, tarSymlink("Arman VPN.app/Contents/Frameworks/App.framework/App", "Versions/Current/App"))
+		files = append(files, tarSymlink("Vista VPN.app/Contents/Frameworks/App.framework/App", "Versions/Current/App"))
 	}
 	r.files[AssetName("1.2.3")] = appTar(t, files...)
 	r.sign()
 	r.serve(t)
-	if AssetName("1.2.3") != "Arman-VPN-1.2.3-macOS.tar.gz" {
+	if AssetName("1.2.3") != "Vista-VPN-1.2.3-macOS.tar.gz" {
 		t.Fatalf("asset %s", AssetName("1.2.3"))
 	}
 	appDir, dataDir := appFolder(t, "1.0.0", false)
 	p := installed(t, appDir, dataDir)
 	contents := filepath.Join(p.Package, "Contents")
-	if read(t, filepath.Join(contents, "MacOS", "arman-vpn-core")) != "core 1.2.3" || read(t, filepath.Join(contents, "MacOS", "Arman VPN")) != "app 1.2.3" {
+	if read(t, filepath.Join(contents, "MacOS", "vista-vpn-core")) != "core 1.2.3" || read(t, filepath.Join(contents, "MacOS", "Vista VPN")) != "app 1.2.3" {
 		t.Fatalf("unpacked into %s", p.Package)
 	}
 	if entries, _ := os.ReadDir(p.Package); len(entries) != 1 {
@@ -213,9 +213,9 @@ func TestAppDirIsTheFolderThatHoldsTheCore(t *testing.T) {
 		pkg       appPackage
 		exe, want string
 	}{
-		{windowsPackage, "/Users/a/Arman VPN/core/arman-vpn-core.exe", "/Users/a/Arman VPN"},
-		{linuxPackage, "/home/a/.local/opt/arman-vpn/core/arman-vpn-core", "/home/a/.local/opt/arman-vpn"},
-		{macPackage, "/Applications/Arman VPN.app/Contents/MacOS/arman-vpn-core", "/Applications/Arman VPN.app"},
+		{windowsPackage, "/Users/a/Vista VPN/core/vista-vpn-core.exe", "/Users/a/Vista VPN"},
+		{linuxPackage, "/home/a/.local/opt/vista-vpn/core/vista-vpn-core", "/home/a/.local/opt/vista-vpn"},
+		{macPackage, "/Applications/Vista VPN.app/Contents/MacOS/vista-vpn-core", "/Applications/Vista VPN.app"},
 	} {
 		thePackage = c.pkg
 		if got := AppDir(filepath.FromSlash(c.exe)); got != filepath.FromSlash(c.want) {
