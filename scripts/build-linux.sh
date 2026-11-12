@@ -58,11 +58,6 @@ fi
   -ldflags "$goflags" -o "$app/core/vista-vpn-tun" ./cmd/arman-vpn-tun)
 [ -z "$public" ] || (cd "$root/core" && go run ./tools/sign "$app/core/vista-vpn-tun")
 install -m 0644 "$root/LICENSE" "$app/LICENSE"
-# Links under the app's and the core's names before 1.0.9, which the update
-# of those versions checks for and starts; the app removes them
-# (core/internal/update/legacy_linux.go).
-ln -s vista-vpn "$app/vista-vpn"
-ln -s vista-vpn-core "$app/core/vista-vpn-core"
 
 mkdir -p "$root/dist"
 out="$root/dist/Vista-VPN-$version-Linux-$arch.tar.gz"
