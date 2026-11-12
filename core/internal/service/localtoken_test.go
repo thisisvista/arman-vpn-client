@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/version"
+	"github.com/thisisvista/vista-vpn/core/internal/version"
 )
 
 func TestLocalTokenBypassesHostCheckAndLogin(t *testing.T) {
