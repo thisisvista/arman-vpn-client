@@ -14,7 +14,7 @@ name: Build
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'infra/**']
     tags: ['v*']
     # A change to Markdown or documentation images alone
     # runs nothing; GitHub does not apply this filter to tags, so a release
