@@ -2,7 +2,7 @@
 # app/pubspec.yaml) also builds Windows, macOS, Android, Linux, and the Linux
 # core, and publishes them as a GitHub release, each file twice: under a
 # fixed name, which the README's releases/latest/download links fetch, and
-# with the version in its name (Arman-VPN-1.2.3-Android-arm64-v8a.apk),
+# with the version in its name (Vista-VPN-1.2.3-Android-arm64-v8a.apk),
 # which the release notes and older installed apps use during the update
 # manifest transition. "Run workflow" builds without
 # publishing.
@@ -136,15 +136,15 @@ jobs:
           # The key updates are signed with (scripts/signing-key.ps1): the
           # core and the TUN service take only updates it signed; without
           # it they take none.
-          ARMAN_VPN_SIGNING_KEY: ${{ secrets.FIREFOX_VPN_SIGNING_KEY }}
+          VISTA_VPN_SIGNING_KEY: ${{ secrets.VISTA_VPN_SIGNING_KEY }}
         run: ./scripts/build-windows.ps1
       - name: Release names
         shell: pwsh
         run: |
           $v = '${{ needs.test.outputs.version }}'
           New-Item -ItemType Directory out | Out-Null
-          Move-Item "dist/Arman-VPN-$v-Windows-x64.zip" out/Arman-VPN-Windows-x64.zip
-          Move-Item "dist/Arman-VPN-$v-Windows-Setup-x64.exe" out/Arman-VPN-Windows-Setup-x64.exe
+          Move-Item "dist/Vista-VPN-$v-Windows-x64.zip" out/Vista-VPN-Windows-x64.zip
+          Move-Item "dist/Vista-VPN-$v-Windows-Setup-x64.exe" out/Vista-VPN-Windows-Setup-x64.exe
       - uses: actions/upload-artifact@v7
         with:
           name: windows
@@ -204,10 +204,10 @@ jobs:
           mkdir -p ../out
           flutter build apk --release --split-per-abi --dart-define=APP_VERSION=$v
           for abi in arm64-v8a armeabi-v7a x86_64; do
-            cp "build/app/outputs/flutter-apk/app-$abi-release.apk" "../out/Arman-VPN-Android-$abi.apk"
+            cp "build/app/outputs/flutter-apk/app-$abi-release.apk" "../out/Vista-VPN-Android-$abi.apk"
           done
           flutter build apk --release --dart-define=APP_VERSION=$v
-          cp build/app/outputs/flutter-apk/app-release.apk ../out/Arman-VPN-Android-universal.apk
+          cp build/app/outputs/flutter-apk/app-release.apk ../out/Vista-VPN-Android-universal.apk
       - name: Remove the key
         if: always()
         run: rm -f app/android/release.jks app/android/key.properties
@@ -295,12 +295,12 @@ jobs:
         env:
           # The key updates are signed with: the core and the TUN service
           # take only updates it signed; without it they take none.
-          ARMAN_VPN_SIGNING_KEY: ${{ secrets.FIREFOX_VPN_SIGNING_KEY }}
+          VISTA_VPN_SIGNING_KEY: ${{ secrets.VISTA_VPN_SIGNING_KEY }}
         run: bash scripts/build-linux.sh
       - name: Release name
         run: |
           mkdir out
-          mv "dist/Arman-VPN-${{ needs.test.outputs.version }}-Linux-${{ matrix.arch }}.tar.gz" "out/Arman-VPN-Linux-${{ matrix.arch }}.tar.gz"
+          mv "dist/Vista-VPN-${{ needs.test.outputs.version }}-Linux-${{ matrix.arch }}.tar.gz" "out/Vista-VPN-Linux-${{ matrix.arch }}.tar.gz"
       - uses: actions/upload-artifact@v7
         with:
           name: linux-desktop-${{ matrix.arch }}
@@ -361,12 +361,12 @@ jobs:
           for i in $(seq 20); do sudo launchctl print system/com.arman.firefoxvpn.tun >/dev/null 2>&1 || break; sleep 0.5; done
           if sudo launchctl print system/com.arman.firefoxvpn.tun >/dev/null 2>&1; then echo "the job is still loaded"; exit 1; fi
           test ! -e /Library/LaunchDaemons/com.arman.firefoxvpn.tun.plist
-          test ! -e "/Library/Application Support/Arman VPN TUN"
+          test ! -e "/Library/Application Support/Vista VPN TUN"
       - name: Build
         env:
           # The key updates are signed with: the core and the TUN service
           # take only updates it signed; without it they take none.
-          ARMAN_VPN_SIGNING_KEY: ${{ secrets.FIREFOX_VPN_SIGNING_KEY }}
+          VISTA_VPN_SIGNING_KEY: ${{ secrets.VISTA_VPN_SIGNING_KEY }}
         run: bash scripts/build-macos.sh
       # The app's own update, end to end: the app just built, in
       # /Applications, updates itself to a test release on loopback
@@ -389,8 +389,8 @@ jobs:
       - name: Release name
         run: |
           mkdir out
-          mv "dist/Arman-VPN-${{ needs.test.outputs.version }}-macOS.dmg" out/Arman-VPN-macOS.dmg
-          mv "dist/Arman-VPN-${{ needs.test.outputs.version }}-macOS.tar.gz" out/Arman-VPN-macOS.tar.gz
+          mv "dist/Vista-VPN-${{ needs.test.outputs.version }}-macOS.dmg" out/Vista-VPN-macOS.dmg
+          mv "dist/Vista-VPN-${{ needs.test.outputs.version }}-macOS.tar.gz" out/Vista-VPN-macOS.tar.gz
       - uses: actions/upload-artifact@v7
         with:
           name: macos
@@ -425,9 +425,9 @@ jobs:
           v="${GITHUB_REF_NAME#v}"
           for f in *; do
             case "$f" in
-              Arman-VPN-*)
-                rest="${f#Arman-VPN-}"
-                cp "$f" "Arman-VPN-$v-$rest"
+              Vista-VPN-*)
+                rest="${f#Vista-VPN-}"
+                cp "$f" "Vista-VPN-$v-$rest"
                 cp "$f" "Firefox-VPN-$rest"
                 cp "$f" "Firefox-VPN-$v-$rest" ;;
               arman-vpn-core-*) cp "$f" "arman-vpn-core-$v-${f#arman-vpn-core-}" ;;
@@ -438,17 +438,17 @@ jobs:
         working-directory: release
         run: |
           sha256sum * > SHA256SUMS.txt
-          printf '# Arman VPN version: %s\n' "${GITHUB_REF_NAME#v}" >> SHA256SUMS.txt
+          printf '# Vista VPN version: %s\n' "${GITHUB_REF_NAME#v}" >> SHA256SUMS.txt
           cat SHA256SUMS.txt
       # The Windows app installs a new version only when the release key
       # signed this list (core/internal/update): SHA256SUMS.txt.sig.
       - name: Sign the checksums
         working-directory: core
         env:
-          ARMAN_VPN_SIGNING_KEY: ${{ secrets.FIREFOX_VPN_SIGNING_KEY }}
+          VISTA_VPN_SIGNING_KEY: ${{ secrets.VISTA_VPN_SIGNING_KEY }}
         run: |
-          if [ -z "$ARMAN_VPN_SIGNING_KEY" ]; then
-            echo "::error::no release key (the secret ARMAN_VPN_SIGNING_KEY): the apps could not install this release"
+          if [ -z "$VISTA_VPN_SIGNING_KEY" ]; then
+            echo "::error::no release key (the secret VISTA_VPN_SIGNING_KEY): the apps could not install this release"
             exit 1
           fi
           go run ./tools/sign ../release/SHA256SUMS.txt
@@ -461,5 +461,5 @@ jobs:
           bash scripts/release-notes.sh "$GITHUB_REF_NAME" > notes.md
           gh release create "$GITHUB_REF_NAME" release/* \
             --repo "$GITHUB_REPOSITORY" \
-            --title "Arman VPN ${{ needs.test.outputs.version }}" \
+            --title "Vista VPN ${{ needs.test.outputs.version }}" \
             --notes-file notes.md
