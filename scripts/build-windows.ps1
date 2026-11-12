@@ -68,11 +68,11 @@ Push-Location "$root\core"
 try {
     # The executable's icon and version information (Windows resources).
     $env:APP_VERSION = $version
-    go generate ./cmd/arman-vpn-core
+    go generate ./cmd/vista-vpn-core
     if ($LASTEXITCODE -ne 0) { throw 'go generate failed' }
     $ldflags = "-s -w -X github.com/thisisvista/vista-vpn/core/internal/version.Current=$version"
     if ($public) { $ldflags += " -X github.com/thisisvista/vista-vpn/core/internal/signing.Key=$public" }
-    go build -trimpath -ldflags $ldflags -o "$out\core\vista-vpn-core.exe" ./cmd/arman-vpn-core
+    go build -trimpath -ldflags $ldflags -o "$out\core\vista-vpn-core.exe" ./cmd/vista-vpn-core
     if ($LASTEXITCODE -ne 0) { throw 'go build failed' }
     & "$PSScriptRoot\build-windows-tun.ps1" -Version $version -Out "$out\core" -PublicKey $public
 } finally { Pop-Location }
