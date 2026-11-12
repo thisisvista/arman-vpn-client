@@ -7,6 +7,8 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.provider.Settings
+import androidx.core.content.FileProvider
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -250,6 +252,43 @@ class MainActivity : FlutterActivity() {
                 "abi" -> result.success(Build.SUPPORTED_ABIS.firstOrNull() ?: "")
                 "isTv" -> result.success(isTv(resources.configuration))
                 "routingCountries" -> inBackground(result) { routingCountries() }
+                "installApk" -> {
+                    val url = call.argument<String>("url") ?: ""
+                    if (url.isBlank()) {
+                        result.error("invalid_url", "The update URL is empty", null)
+                    } else {
+                        worker.execute {
+                            val apk = try {
+                                ApkUpdate.downloadAndVerify(this, url)
+                            } catch (e: Exception) {
+                                main.post { result.error("apk_invalid", e.message, null) }
+                                return@execute
+                            }
+                            main.post {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && !packageManager.canRequestPackageInstalls()) {
+                                    try {
+                                        startActivity(Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:$packageName")))
+                                        result.error("install_permission_required", "Allow Vista VPN to install updates, then try again", null)
+                                    } catch (e: ActivityNotFoundException) {
+                                        result.error("settings_unavailable", e.message, null)
+                                    }
+                                    return@post
+                                }
+                                try {
+                                    val contentUri = FileProvider.getUriForFile(this, "$packageName.fileprovider", apk)
+                                    val install = Intent(Intent.ACTION_VIEW).apply {
+                                        setDataAndType(contentUri, "application/vnd.android.package-archive")
+                                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                    }
+                                    startActivity(install)
+                                    result.success(true)
+                                } catch (e: Exception) {
+                                    result.error("installer_unavailable", e.message, null)
+                                }
+                            }
+                        }
+                    }
+                }
                 "openUrl" -> {
                     val url = call.argument<String>("url") ?: ""
                     val view = Intent(Intent.ACTION_VIEW, Uri.parse(url))
