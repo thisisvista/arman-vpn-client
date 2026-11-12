@@ -115,9 +115,9 @@ func runListAccounts(paths service.DataPaths) error {
 // use marked, its state, and its data.
 func writeAccountList(out io.Writer, p paint, list []accounts.Account, activeID string, enabled map[string]bool, threshold float64, now time.Time) {
 	const rule = "────────────────────────────────────────────────────────────────"
-	fmt.Fprintf(out, "\n  %s\n  %s\n", p.bold("Arman VPN accounts"), p.dim(rule))
+	fmt.Fprintf(out, "\n  %s\n  %s\n", p.bold("Vista VPN accounts"), p.dim(rule))
 	if len(list) == 0 {
-		fmt.Fprintf(out, "    No accounts yet. Add one: %s\n\n", p.cyan("arman-vpn add-account"))
+		fmt.Fprintf(out, "    No accounts yet. Add one: %s\n\n", p.cyan("vista-vpn add-account"))
 		return
 	}
 	width := 0
@@ -311,7 +311,7 @@ func interactiveSignIn() (*fxa.TokenResponse, string, string) {
 
 // accountTransferGuide explains signing in with the app's browser page
 // and moving the account to a device without one.
-const accountTransferGuide = "https://github.com/armanlife/arman-vpn-client/blob/main/docs/BROWSER-SIGNIN.md"
+const accountTransferGuide = "https://github.com/thisisvista/vista-vpn/blob/main/docs/BROWSER-SIGNIN.md"
 
 // printBlockedHint suggests the app's browser sign-in when Fastly's bot
 // check keeps refusing the terminal one.
@@ -321,7 +321,7 @@ func printBlockedHint(err error) {
 	}
 	fmt.Println()
 	fmt.Println("Mozilla's security check is refusing sign-ins from this program right now.")
-	fmt.Println("Tip: sign in with the browser in the Arman VPN app, then copy that")
+	fmt.Println("Tip: sign in with the browser in the Vista VPN app, then copy that")
 	fmt.Println("device's data folder to this one.")
 	fmt.Println("Guide: " + accountTransferGuide)
 }
@@ -384,7 +384,7 @@ func promptCredentials() (string, string) {
 }
 
 // runStatus prints the running service's state in a few aligned lines
-// (arman-vpn status adds the service's own lines above them): the proxy,
+// (vista-vpn status adds the service's own lines above them): the proxy,
 // the active account, and its data left.
 func runStatus(paths service.DataPaths, out io.Writer) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
@@ -442,7 +442,7 @@ func statusLines(st service.TrayStatus, now time.Time) [][2]string {
 			}
 		}
 	} else if st.Accounts["total"] == 0 {
-		lines = append(lines, [2]string{"Account", "none yet: arman-vpn add-account"})
+		lines = append(lines, [2]string{"Account", "none yet: vista-vpn add-account"})
 	}
 	return lines
 }
