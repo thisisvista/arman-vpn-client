@@ -143,7 +143,6 @@ func Install(uid string) error {
 	if err := stopInstalled(); err != nil {
 		return err
 	}
-	removeLegacy()
 	if err := os.MkdirAll(filepath.Join(dir, "logs"), 0o755); err != nil {
 		return err
 	}
@@ -183,7 +182,6 @@ func Uninstall() error {
 	if err := removeFolder(InstallDir); err != nil {
 		return err
 	}
-	removeLegacy()
 	return stopErr
 }
 
