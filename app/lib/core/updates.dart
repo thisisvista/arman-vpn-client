@@ -252,6 +252,8 @@ abstract final class Updates {
 
   /// With automatic updates, downloads the version found (once per run).
   static void _downloadInBackground() {
+    // Android installs APKs through its package installer, not the Go updater.
+    if (Platform.isAndroid) return;
     final core = _core, settings = _settings;
     final release = available.value;
     final update = core?.status?.update;
