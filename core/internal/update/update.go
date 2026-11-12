@@ -21,7 +21,7 @@
 // its bundle, whose Contents is replaced. For a copy that Setup
 // installed, it also sets the version in Windows' list of installed apps;
 // the uninstaller removes the app's files whichever version put them there
-// ([UninstallDelete] in app/windows/installer/vista-vpn.iss). The new
+// ([UninstallDelete] in app/windows/installer/arman-vpn.iss). The new
 // Setup is not run: when it fails, Inno Setup's rollback removes the files
 // it added but does not restore the ones it replaced (tried), which can
 // leave half of each version. The copy writes what happened to result.json
