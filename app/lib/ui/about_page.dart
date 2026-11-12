@@ -254,6 +254,27 @@ class _UpdateAction extends StatelessWidget {
               label: Text(label),
             ),
           );
+      if (Platform.isAndroid) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (Updates.failure.value case final failure?) ...[
+              Tooltip(
+                message: failure,
+                child: Text(l.updateFailed(release.version), style: muted),
+              ),
+              const SizedBox(height: 8),
+            ],
+            button(
+              Updates.failure.value == null ? l.updateNow : l.tryAgain,
+              Updates.failure.value == null
+                  ? Icons.system_update_alt_rounded
+                  : Icons.refresh_rounded,
+              () => Updates.update(release),
+            ),
+          ],
+        );
+      }
       if (update == null) {
         return release.url.isEmpty
             ? const SizedBox.shrink()
