@@ -155,7 +155,6 @@ func Install(user string) error {
 		return fmt.Errorf("connecting to the service manager: %w", err)
 	}
 	defer m.Disconnect()
-	removeLegacy(m)
 	s, err := m.OpenService(tunapi.ServiceName)
 	exists := err == nil
 	if exists {
@@ -250,7 +249,6 @@ func Uninstall() error {
 		return fmt.Errorf("connecting to the service manager: %w", err)
 	}
 	defer m.Disconnect()
-	removeLegacy(m)
 	if s, err := m.OpenService(tunapi.ServiceName); err == nil {
 		stopErr := stopService(s)
 		delErr := s.Delete()
