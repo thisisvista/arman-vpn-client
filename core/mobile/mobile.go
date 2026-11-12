@@ -18,12 +18,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
-	"github.com/armanlife/arman-vpn-client/core/internal/netstate"
-	"github.com/armanlife/arman-vpn-client/core/internal/securefile"
-	"github.com/armanlife/arman-vpn-client/core/internal/service"
-	"github.com/armanlife/arman-vpn-client/core/internal/tun"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/netstate"
+	"github.com/thisisvista/vista-vpn/core/internal/securefile"
+	"github.com/thisisvista/vista-vpn/core/internal/service"
+	"github.com/thisisvista/vista-vpn/core/internal/tun"
 )
 
 var (
