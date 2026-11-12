@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/fxa"
+	"github.com/thisisvista/vista-vpn/core/internal/fxa"
 )
 
 // A browser sign-in is refused before anything runs when the email or the
