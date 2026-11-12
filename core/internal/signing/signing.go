@@ -18,7 +18,7 @@ import (
 //	-ldflags "-X github.com/armanlife/arman-vpn-client/core/internal/signing.Key=..."
 //
 // The release build uses the release key, whose private half only CI holds
-// (the secret ARMAN_VPN_SIGNING_KEY); a local build may use a developer
+// (the secret VISTA_VPN_SIGNING_KEY); a local build may use a developer
 // key. A build without one takes no updates.
 var Key string
 
