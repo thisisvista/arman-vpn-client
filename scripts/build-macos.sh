@@ -56,11 +56,6 @@ tun="$app/Contents/MacOS/vista-vpn-tun"
 lipo -create -output "$core" "$stage/core-arm64" "$stage/core-amd64"
 lipo -create -output "$tun" "$stage/tun-arm64" "$stage/tun-amd64"
 
-# Links under the app's and the core's names before 1.0.9, which the update
-# of those versions checks for (core/internal/update/legacy_darwin.go); they
-# stay, as the bundle is sealed.
-ln -s "Vista VPN" "$app/Contents/MacOS/Firefox VPN"
-ln -s vista-vpn-core "$app/Contents/MacOS/vista-vpn-core"
 
 # The programs inside the bundle change it: sign them, then the whole app.
 codesign --force --sign - "$core"
