@@ -157,6 +157,17 @@ task opened from the notification, the tile, the widget, or the installer.
 The phone's home page has its own dark design
 (`_PhoneHome`), and phones get a bottom navigation bar.
 
+Updates are installed from About > Update, without uninstalling the existing app.
+The app downloads the HTTPS APK itself, then checks that it is a valid package
+with the same application ID, a newer version code, and the same signing
+certificate as the installed Vista VPN. Android's package installer opens
+after those checks; the user confirms the installation there. The existing
+app's data is kept because the application ID and signing key stay the same.
+On Android 8 and later, the first update may open the system's "Install unknown
+apps" setting for Vista VPN; allow it there, return to the app, and tap Update
+again. A release APK must be signed with Vista's persistent Android release
+keystore; a debug-signed build cannot update a release-signed installation.
+
 Build: `flutter build apk --release --split-per-abi`. From Iran, Gradle
 needs a proxy for Google's Maven repository (Google answers Java clients
 there with 404), for example `JAVA_TOOL_OPTIONS="-Dhttps.proxyHost=127.0.0.1
