@@ -105,10 +105,10 @@ func waitForExit(pids []int, timeout time.Duration) error {
 	return nil
 }
 
-// uninstallKey is Setup's entry in Windows' list of installed apps, for the
-// current user: its AppId (app/windows/installer/arman-vpn.iss) and "_is1".
+// uninstallKey is Vista Setup's entry in Windows' list of installed apps, for the
+// current user: its AppId (app/windows/installer/vista-vpn.iss) and "_is1".
 // Tests use a key of their own.
-var uninstallKey = `Software\Microsoft\Windows\CurrentVersion\Uninstall\{A6D5C3F2-8B71-4E9A-93C4-2F6D1A8B705E}_is1`
+var uninstallKey = `Software\Microsoft\Windows\CurrentVersion\Uninstall\{C17CF1E4-52D9-46E3-B345-DA7F26EB0712}_is1`
 
 // setInstalledVersion sets version v in Setup's entry when Setup installed
 // the app in appDir; nothing for a portable copy (no entry, or one for
