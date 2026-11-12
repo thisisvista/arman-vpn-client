@@ -195,7 +195,7 @@ jobs:
         run: |
           v='${{ needs.test.outputs.version }}'
           mkdir -p app/android/app/libs
-          flags="-s -w -X github.com/armanlife/arman-vpn-client/core/internal/version.Current=$v"
+          flags="-s -w -X github.com/thisisvista/vista-vpn/core/internal/version.Current=$v"
           (cd core && gomobile bind -target=android -androidapi 24 -trimpath \
             -ldflags "$flags" \
             -o ../app/android/app/libs/core.aar ./mobile)
@@ -232,7 +232,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         with:
           name: linux
-          path: dist/arman-vpn-core-linux-*.tar.gz
+          path: dist/vista-vpn-core-linux-*.tar.gz
           if-no-files-found: error
 
   linux-desktop:
@@ -283,14 +283,14 @@ jobs:
       - name: TUN service with systemd
         working-directory: core
         run: |
-          go build -tags with_gvisor -o "$RUNNER_TEMP/arman-vpn-tun" ./cmd/arman-vpn-tun
-          sudo "$RUNNER_TEMP/arman-vpn-tun" install
-          systemctl is-active arman-vpn-tun
-          "$RUNNER_TEMP/arman-vpn-tun" uninstall
-          for i in $(seq 20); do systemctl is-active --quiet arman-vpn-tun || break; sleep 0.5; done
-          if systemctl is-active --quiet arman-vpn-tun; then echo "the service still runs"; exit 1; fi
-          test ! -e /etc/systemd/system/arman-vpn-tun.service
-          test ! -e /opt/arman-vpn-tun
+          go build -tags with_gvisor -o "$RUNNER_TEMP/vista-vpn-tun" ./cmd/vista-vpn-tun
+          sudo "$RUNNER_TEMP/vista-vpn-tun" install
+          systemctl is-active vista-vpn-tun
+          "$RUNNER_TEMP/vista-vpn-tun" uninstall
+          for i in $(seq 20); do systemctl is-active --quiet vista-vpn-tun || break; sleep 0.5; done
+          if systemctl is-active --quiet vista-vpn-tun; then echo "the service still runs"; exit 1; fi
+          test ! -e /etc/systemd/system/vista-vpn-tun.service
+          test ! -e /opt/vista-vpn-tun
       - name: Build
         env:
           # The key updates are signed with: the core and the TUN service
@@ -354,13 +354,13 @@ jobs:
         continue-on-error: true
         working-directory: core
         run: |
-          go build -tags with_gvisor -o "$RUNNER_TEMP/arman-vpn-tun" ./cmd/arman-vpn-tun
-          sudo "$RUNNER_TEMP/arman-vpn-tun" install
-          sudo launchctl print system/com.arman.firefoxvpn.tun | head -20
-          "$RUNNER_TEMP/arman-vpn-tun" uninstall
-          for i in $(seq 20); do sudo launchctl print system/com.arman.firefoxvpn.tun >/dev/null 2>&1 || break; sleep 0.5; done
-          if sudo launchctl print system/com.arman.firefoxvpn.tun >/dev/null 2>&1; then echo "the job is still loaded"; exit 1; fi
-          test ! -e /Library/LaunchDaemons/com.arman.firefoxvpn.tun.plist
+          go build -tags with_gvisor -o "$RUNNER_TEMP/vista-vpn-tun" ./cmd/vista-vpn-tun
+          sudo "$RUNNER_TEMP/vista-vpn-tun" install
+          sudo launchctl print system/com.vista.vpn.tun | head -20
+          "$RUNNER_TEMP/vista-vpn-tun" uninstall
+          for i in $(seq 20); do sudo launchctl print system/com.vista.vpn.tun >/dev/null 2>&1 || break; sleep 0.5; done
+          if sudo launchctl print system/com.vista.vpn.tun >/dev/null 2>&1; then echo "the job is still loaded"; exit 1; fi
+          test ! -e /Library/LaunchDaemons/com.vista.vpn.tun.plist
           test ! -e "/Library/Application Support/Vista VPN TUN"
       - name: Build
         env:
@@ -430,7 +430,7 @@ jobs:
                 cp "$f" "Vista-VPN-$v-$rest"
                 cp "$f" "Firefox-VPN-$rest"
                 cp "$f" "Firefox-VPN-$v-$rest" ;;
-              arman-vpn-core-*) cp "$f" "arman-vpn-core-$v-${f#arman-vpn-core-}" ;;
+              vista-vpn-core-*) cp "$f" "vista-vpn-core-$v-${f#vista-vpn-core-}" ;;
             esac
           done
           ls
