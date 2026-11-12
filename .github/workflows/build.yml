@@ -415,10 +415,7 @@ jobs:
         with:
           path: release
           merge-multiple: true
-      # A copy of each file with the version after the program's name; and
-      # the app's files under their names before 1.0.9 (Firefox-VPN-*),
-      # which the update and the Android Download button of those versions
-      # look for.
+      # A copy of each file with the version after the program's name.
       - name: Versioned names
         working-directory: release
         run: |
@@ -427,9 +424,7 @@ jobs:
             case "$f" in
               Vista-VPN-*)
                 rest="${f#Vista-VPN-}"
-                cp "$f" "Vista-VPN-$v-$rest"
-                cp "$f" "Firefox-VPN-$rest"
-                cp "$f" "Firefox-VPN-$v-$rest" ;;
+                cp "$f" "Vista-VPN-$v-$rest" ;;
               vista-vpn-core-*) cp "$f" "vista-vpn-core-$v-${f#vista-vpn-core-}" ;;
             esac
           done
