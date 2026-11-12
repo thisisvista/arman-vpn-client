@@ -15,9 +15,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/tun"
-	"github.com/armanlife/arman-vpn-client/core/internal/tunapi"
-	"github.com/armanlife/arman-vpn-client/core/internal/tunstack"
+	"github.com/thisisvista/vista-vpn/core/internal/tun"
+	"github.com/thisisvista/vista-vpn/core/internal/tunapi"
+	"github.com/thisisvista/vista-vpn/core/internal/tunstack"
 )
 
 // fakeDevice stands for the adapter.
