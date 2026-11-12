@@ -52,10 +52,10 @@ if [ -n "${CORE:-}" ]; then
   install -D -m 0755 "$CORE" "$app/core/vista-vpn-core"
 else
   (cd "$root/core" && CGO_ENABLED=0 GOOS=linux GOARCH="$arch" go build -trimpath \
-    -ldflags "$goflags" -o "$app/core/vista-vpn-core" ./cmd/arman-vpn-core)
+    -ldflags "$goflags" -o "$app/core/vista-vpn-core" ./cmd/vista-vpn-core)
 fi
 (cd "$root/core" && CGO_ENABLED=0 GOOS=linux GOARCH="$arch" go build -tags with_gvisor -trimpath \
-  -ldflags "$goflags" -o "$app/core/vista-vpn-tun" ./cmd/arman-vpn-tun)
+  -ldflags "$goflags" -o "$app/core/vista-vpn-tun" ./cmd/vista-vpn-tun)
 [ -z "$public" ] || (cd "$root/core" && go run ./tools/sign "$app/core/vista-vpn-tun")
 install -m 0644 "$root/LICENSE" "$app/LICENSE"
 
