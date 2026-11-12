@@ -57,7 +57,7 @@ func acquireSingleInstance(paths service.DataPaths) (release func(), ok bool) {
 
 func trayMutexName(paths service.DataPaths) *uint16 {
 	sum := sha256.Sum256([]byte(strings.ToLower(paths.Dir)))
-	name, _ := windows.UTF16PtrFromString(`Local\ArmanVPN-tray-` + hex.EncodeToString(sum[:8]))
+	name, _ := windows.UTF16PtrFromString(`Local\VistaVPN-tray-` + hex.EncodeToString(sum[:8]))
 	return name
 }
 
@@ -92,6 +92,6 @@ func enableTerminalColors() bool {
 	if err := windows.SetConsoleMode(h, mode|windows.ENABLE_VIRTUAL_TERMINAL_PROCESSING|windows.ENABLE_PROCESSED_OUTPUT); err != nil {
 		return false
 	}
-	os.Stdout.WriteString("\x1b]0;Arman VPN\x07")
+	os.Stdout.WriteString("\x1b]0;Vista VPN\x07")
 	return true
 }
