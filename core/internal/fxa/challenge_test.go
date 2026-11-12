@@ -16,7 +16,7 @@ import (
 	"testing/synctest"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/controlplane"
+	"github.com/thisisvista/vista-vpn/core/internal/controlplane"
 )
 
 func TestSolvePowFindsSuffix(t *testing.T) {
