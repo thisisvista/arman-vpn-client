@@ -21,6 +21,9 @@ func TestLoadCreatesDefaultConfig(t *testing.T) {
 	if cfg.Accounts.SwitchThresholdPercent != 95 {
 		t.Fatalf("unexpected account defaults: %+v", cfg.Accounts)
 	}
+	if cfg.Network.SharedRelayEnabled {
+		t.Fatal("new installations must default to personal relays, not the shared relay pool")
+	}
 
 	again, created, err := Load(path)
 	if err != nil || created {
@@ -77,7 +80,7 @@ func TestRelayEnabledByDefault(t *testing.T) {
 	}
 }
 
-func TestSharedRelayDefaultDoesNotInheritDisabledPersonalRelay(t *testing.T) {
+func TestSharedRelayIsDisabledByDefault(t *testing.T) {
 	path := filepath.Join(t.TempDir(), FileName)
 	if err := os.WriteFile(path, []byte(`{"network":{"api_relay_enabled":false,"api_relay":"https://personal.example/"}}`), 0o600); err != nil {
 		t.Fatal(err)
@@ -86,8 +89,8 @@ func TestSharedRelayDefaultDoesNotInheritDisabledPersonalRelay(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if cfg.Network.APIRelayEnabled || !cfg.Network.SharedRelayInUse() {
-		t.Fatal("an old disabled personal relay disabled the new shared relay default")
+	if cfg.Network.APIRelayEnabled || cfg.Network.SharedRelayEnabled || cfg.Network.SharedRelayInUse() {
+		t.Fatal("shared relays must be disabled by default while preserving the personal relay setting")
 	}
 	cfg.Network.SharedRelayEnabled = false
 	if err := Save(path, cfg); err != nil {
