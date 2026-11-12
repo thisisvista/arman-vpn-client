@@ -12,7 +12,7 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/securefile"
+	"github.com/thisisvista/vista-vpn/core/internal/securefile"
 )
 
 // AppListURL is where a region's phone apps that should connect directly
