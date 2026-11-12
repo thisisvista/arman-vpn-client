@@ -113,4 +113,6 @@ dependencies {
     // ProxyController: the browser sign-in's WebView uses the core's
     // sign-in proxy. The version webview_flutter_android itself uses.
     implementation("androidx.webkit:webkit:1.15.0")
+    // Scoped content URIs for passing a verified APK to Android Package Installer.
+    implementation("androidx.core:core:1.15.0")
 }
