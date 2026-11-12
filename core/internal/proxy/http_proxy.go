@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/egress"
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/egress"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
 )
 
 // The SOCKS5 port also serves HTTP proxy clients (the Windows system proxy
