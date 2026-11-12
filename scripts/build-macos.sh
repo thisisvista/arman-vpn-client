@@ -47,9 +47,9 @@ cp -R "$root/app/build/macos/Build/Products/Release/Vista VPN.app" "$app"
 # The core and the TUN service for both processors, one file each.
 for arch in arm64 amd64; do
   (cd "$root/core" && CGO_ENABLED=0 GOOS=darwin GOARCH="$arch" go build -trimpath \
-    -ldflags "$goflags" -o "$stage/core-$arch" ./cmd/arman-vpn-core)
+    -ldflags "$goflags" -o "$stage/core-$arch" ./cmd/vista-vpn-core)
   (cd "$root/core" && CGO_ENABLED=0 GOOS=darwin GOARCH="$arch" go build -tags with_gvisor -trimpath \
-    -ldflags "$goflags" -o "$stage/tun-$arch" ./cmd/arman-vpn-tun)
+    -ldflags "$goflags" -o "$stage/tun-$arch" ./cmd/vista-vpn-tun)
 done
 core="$app/Contents/MacOS/vista-vpn-core"
 tun="$app/Contents/MacOS/vista-vpn-tun"
