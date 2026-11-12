@@ -10,7 +10,7 @@ import (
 	"strings"
 	"unsafe"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/service"
+	"github.com/thisisvista/vista-vpn/core/internal/service"
 
 	"golang.org/x/sys/windows"
 )
