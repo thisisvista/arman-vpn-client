@@ -19,7 +19,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/egress"
+	"github.com/thisisvista/vista-vpn/core/internal/egress"
 )
 
 // Result is what a check found.
