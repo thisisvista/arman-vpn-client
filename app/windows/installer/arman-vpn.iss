@@ -39,7 +39,7 @@
 [Setup]
 ; The same id in every version, so a new one replaces the old; the app's
 ; own update finds this Setup's entry by it (core\internal\update).
-AppId={{6F3A2C1E-9B4D-4E7A-8C21-5D0F7B9E4A63}
+AppId={{A6D5C3F2-8B71-4E9A-93C4-2F6D1A8B705E}
 AppName={#AppName}
 AppVersion={#AppVersion}
 AppVerName={#AppName} {#AppVersion}
