@@ -44,9 +44,9 @@ AppName={#AppName}
 AppVersion={#AppVersion}
 AppVerName={#AppName} {#AppVersion}
 AppPublisher=Vista
-AppPublisherURL=https://github.com/thisisvista/arman-vpn-client
-AppSupportURL=https://github.com/thisisvista/arman-vpn-client/issues
-AppUpdatesURL=https://github.com/thisisvista/arman-vpn-client/releases
+AppPublisherURL=https://github.com/thisisvista/vista-vpn
+AppSupportURL=https://github.com/thisisvista/vista-vpn/issues
+AppUpdatesURL=https://github.com/thisisvista/vista-vpn/releases
 VersionInfoVersion={#AppVersion}
 DefaultDirName={code:DefaultDir}
 ; The folder is asked on the first install only; an update goes where the
