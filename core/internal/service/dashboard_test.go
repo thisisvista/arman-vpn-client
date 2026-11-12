@@ -15,12 +15,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/accounts"
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
-	"github.com/armanlife/arman-vpn-client/core/internal/fxa"
-	"github.com/armanlife/arman-vpn-client/core/internal/guardian"
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
-	"github.com/armanlife/arman-vpn-client/core/internal/proxy"
+	"github.com/thisisvista/vista-vpn/core/internal/accounts"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/fxa"
+	"github.com/thisisvista/vista-vpn/core/internal/guardian"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/proxy"
 )
 
 // All credentials in this file are local fixtures; the control plane
