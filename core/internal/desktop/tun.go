@@ -10,13 +10,13 @@ import (
 	"slices"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
-	"github.com/armanlife/arman-vpn-client/core/internal/egress"
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
-	"github.com/armanlife/arman-vpn-client/core/internal/proxy"
-	"github.com/armanlife/arman-vpn-client/core/internal/service"
-	"github.com/armanlife/arman-vpn-client/core/internal/tunapi"
-	"github.com/armanlife/arman-vpn-client/core/internal/version"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/egress"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/proxy"
+	"github.com/thisisvista/vista-vpn/core/internal/service"
+	"github.com/thisisvista/vista-vpn/core/internal/tunapi"
+	"github.com/thisisvista/vista-vpn/core/internal/version"
 )
 
 // The TUN mode in the app's core process. While the daemon wants a TUN
