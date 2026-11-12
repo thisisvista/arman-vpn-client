@@ -278,6 +278,10 @@ class AndroidCore {
       await _channel.invokeMethod<String>('abi') ?? '';
 
   /// Opens [url] in the app that handles it (such as a tg:// link).
+  /// Downloads, verifies and hands a Vista APK to Android's package installer.
+  static Future<bool> installApk(String url) async =>
+      await _channel.invokeMethod<bool>('installApk', {'url': url}) ?? false;
+
   static Future<bool> openUrl(String url) async =>
       await _channel.invokeMethod<bool>('openUrl', {'url': url}) ?? false;
 }
