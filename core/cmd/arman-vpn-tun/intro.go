@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/version"
+	"github.com/thisisvista/vista-vpn/core/internal/version"
 )
 
 // projectURL is where people find the app this service belongs to.
