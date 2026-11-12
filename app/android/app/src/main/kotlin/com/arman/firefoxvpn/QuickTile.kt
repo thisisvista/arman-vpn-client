@@ -1,4 +1,4 @@
-package com.arman.firefoxvpn
+package com.vista.vpn
 
 import android.app.PendingIntent
 import android.content.ComponentName
