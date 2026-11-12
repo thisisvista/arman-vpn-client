@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
-	"github.com/armanlife/arman-vpn-client/core/internal/netstate"
-	"github.com/armanlife/arman-vpn-client/core/internal/proxy"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/netstate"
+	"github.com/thisisvista/vista-vpn/core/internal/proxy"
 )
 
 // An explicit connect owns its first wake and one retry within connectWindow.
