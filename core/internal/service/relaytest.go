@@ -19,8 +19,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
-	"github.com/armanlife/arman-vpn-client/core/internal/resolver"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/resolver"
 )
 
 const relayTestTimeout = 30 * time.Second
