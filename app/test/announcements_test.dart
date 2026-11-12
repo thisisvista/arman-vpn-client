@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:arman_vpn/app_settings.dart';
-import 'package:arman_vpn/core/announcements.dart';
+import 'package:vista_vpn/app_settings.dart';
+import 'package:vista_vpn/core/announcements.dart';
 
 Map<String, Object?> announcement({
   String id = 'notice',
