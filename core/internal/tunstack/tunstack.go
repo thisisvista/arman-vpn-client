@@ -28,7 +28,7 @@ import (
 	M "github.com/sagernet/sing/common/metadata"
 	N "github.com/sagernet/sing/common/network"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
 )
 
 // Config is the device.
