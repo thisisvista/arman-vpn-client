@@ -318,11 +318,11 @@ void main() {
       expect(dir(portable: true), r'D:\dist\Arman-VPN-1.3\user-data');
       expect(
         dir(os: 'macos', env: {'HOME': '/Users/u'}),
-        '/Users/u/Library/Application Support/Arman VPN',
+        '/Users/u/Library/Application Support/Vista VPN',
       );
       expect(
         dir(os: 'linux', env: {'HOME': '/home/u'}),
-        '/home/u/.local/share/arman-vpn',
+        '/home/u/.local/share/vista-vpn',
       );
     });
 
@@ -337,12 +337,12 @@ void main() {
   });
 
   test(
-    'the data folder of a version before 1.0.9 moves to the new name, once',
+    'the old Firefox data folder moves to Vista once',
     () {
       final sep = Platform.pathSeparator;
       for (final names in [
-        ['Firefox VPN Client', 'Arman VPN'],
-        ['firefox-vpn-client', 'arman-vpn'],
+        ['Firefox VPN Client', 'Vista VPN'],
+        ['firefox-vpn-client', 'vista-vpn'],
       ]) {
         final base = Directory.systemTemp.createTempSync('legacy');
         addTearDown(() => base.deleteSync(recursive: true));
