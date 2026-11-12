@@ -208,6 +208,20 @@ jobs:
           done
           flutter build apk --release --dart-define=APP_VERSION=$v
           cp build/app/outputs/flutter-apk/app-release.apk ../out/Vista-VPN-Android-universal.apk
+      - name: Verify APK signatures
+        run: |
+          expected="6b5583237fcaeaebd332c63e5d9ec294e3534c8acc18843803f44fd22f4dcc62"
+          build_tools="$(ls "$ANDROID_HOME/build-tools" | sort -V | tail -n1)"
+          apksigner="$ANDROID_HOME/build-tools/$build_tools/apksigner"
+          for apk in out/*.apk; do
+            "$apksigner" verify --verbose --print-certs "$apk"
+            actual="$("$apksigner" verify --print-certs "$apk" | awk -F': ' '/Signer #1 certificate SHA-256 digest:/{print tolower($2); exit}' | tr -d ':')"
+            if [ "$actual" != "$expected" ]; then
+              echo "::error::Unexpected signing certificate for $(basename "$apk")"
+              exit 1
+            fi
+            echo "Verified Vista signing certificate: $(basename "$apk")"
+          done
       - name: Remove the key
         if: always()
         run: rm -f app/android/release.jks app/android/key.properties
