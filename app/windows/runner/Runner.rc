@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "Vista VPN" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "vista-vpn" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 Vista" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 Arman" "\0"
             VALUE "OriginalFilename", "vista-vpn.exe" "\0"
             VALUE "ProductName", "Vista VPN" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
