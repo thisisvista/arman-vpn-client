@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/accounts"
-	"github.com/armanlife/arman-vpn-client/core/internal/service"
+	"github.com/thisisvista/vista-vpn/core/internal/accounts"
+	"github.com/thisisvista/vista-vpn/core/internal/service"
 )
 
 func TestStatusLines(t *testing.T) {
