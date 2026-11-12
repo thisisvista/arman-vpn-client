@@ -786,7 +786,7 @@ const (
 )
 
 // appExecutables are the desktop app's executables: Windows, Linux, and
-// macOS (inside Arman VPN.app/Contents/MacOS).
+// macOS (inside Vista VPN.app/Contents/MacOS).
 var appExecutables = []string{"vista-vpn.exe", "vista-vpn", "Vista VPN"}
 
 // DefaultDataDir returns the data folder: DataDirName next to the running
