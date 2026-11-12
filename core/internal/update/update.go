@@ -61,9 +61,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
-	"github.com/armanlife/arman-vpn-client/core/internal/signing"
-	"github.com/armanlife/arman-vpn-client/core/internal/version"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/signing"
+	"github.com/thisisvista/vista-vpn/core/internal/version"
 )
 
 // The states of Status.
