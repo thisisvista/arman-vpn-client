@@ -382,7 +382,7 @@ func TestDefaultDataDirFollowsTheApp(t *testing.T) {
 	}
 	// On macOS: the app's folder in the user's data location.
 	files["Vista VPN"] = true
-	if got := defaultDataDirFor(dir, "darwin", getenv, exists); got != filepath.Join("/home/u", "Library", "Application Support", "Arman VPN") {
+	if got := defaultDataDirFor(dir, "darwin", getenv, exists); got != filepath.Join("/home/u", "Library", "Application Support", "Vista VPN") {
 		t.Fatalf("beside the app on macOS: %s", got)
 	}
 	// A portable app keeps user-data beside it.
