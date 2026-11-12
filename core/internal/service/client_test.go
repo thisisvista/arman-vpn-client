@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
 )
 
 func TestLocalClientReadsStatusThroughToken(t *testing.T) {
