@@ -23,8 +23,8 @@ import (
 )
 
 const (
-	relayManifestURL    = "https://raw.githubusercontent.com/thisisvista/arman-vpn-client/main/.github/updates.json"
-	relayManifestMirror = "https://cdn.jsdelivr.net/gh/thisisvista/arman-vpn-client@main/.github/updates.json"
+	relayManifestURL    = "https://raw.githubusercontent.com/thisisvista/vista-vpn/main/.github/updates.json"
+	relayManifestMirror = "https://cdn.jsdelivr.net/gh/thisisvista/vista-vpn@main/.github/updates.json"
 	autoRelayBudget     = 20 * time.Second
 	relayProbeTimeout   = 4 * time.Second
 	maxRelayManifest    = 512 * 1024
