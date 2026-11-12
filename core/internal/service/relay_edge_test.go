@@ -170,7 +170,7 @@ func TestRelayHealthCanRecoverWorkerDNSFailureThroughDomain(t *testing.T) {
 		if r.Host != edgeFixtureHost || r.URL.Query().Get("health") != "1" || r.Header.Get("Authorization") != "" || r.Header.Get("Cookie") != "" {
 			t.Error("unexpected health request")
 		}
-		io.WriteString(w, `{"relay":"arman-vpn","version":1,"ready":true}`)
+		io.WriteString(w, `{"relay":"vista-vpn","version":1,"ready":true}`)
 	})
 	for _, poisoned := range []bool{false, true} {
 		probe := newRelayHealthTest(config.Network{APIRelayECH: config.RelayECHOff})
