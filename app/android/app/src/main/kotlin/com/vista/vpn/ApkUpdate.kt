@@ -17,18 +17,40 @@ internal object ApkUpdate {
 
     fun downloadAndVerify(context: Context, source: String): File {
         require(source.startsWith("https://")) { "Update URL must use HTTPS" }
-        val connection = (URL(source).openConnection() as HttpURLConnection).apply {
-            connectTimeout = 20_000
-            readTimeout = 30_000
-            instanceFollowRedirects = true
-            requestMethod = "GET"
-            setRequestProperty("User-Agent", "Vista-VPN-Android")
+        var currentUrl = URL(source)
+        var redirects = 0
+        var connection: HttpURLConnection
+        while (true) {
+            val next = (currentUrl.openConnection() as HttpURLConnection).apply {
+                connectTimeout = 20_000
+                readTimeout = 30_000
+                instanceFollowRedirects = false
+                requestMethod = "GET"
+                setRequestProperty("User-Agent", "Vista-VPN-Android")
+            }
+            next.connect()
+            val status = next.responseCode
+            if (status in 300..399) {
+                val location = next.getHeaderField("Location")
+                next.disconnect()
+                check(!location.isNullOrBlank() && ++redirects <= 5) {
+                    "APK download has too many or invalid redirects"
+                }
+                currentUrl = URL(currentUrl, location)
+                check(currentUrl.protocol == "https") {
+                    "Update redirected away from HTTPS"
+                }
+                continue
+            }
+            connection = next
+            break
         }
+
         val apk = File(context.cacheDir, "updates/vista-update.apk")
         try {
-            connection.connect()
-            check(connection.responseCode in 200..299) { "APK download failed (HTTP ${connection.responseCode})" }
-            check(connection.url.protocol == "https") { "Update redirected away from HTTPS" }
+            check(connection.responseCode in 200..299) {
+                "APK download failed (HTTP ${connection.responseCode})"
+            }
             val length = connection.contentLengthLong
             check(length != 0L && length <= MAX_APK_BYTES) { "APK size is invalid" }
             apk.parentFile?.mkdirs()
@@ -43,9 +65,14 @@ internal object ApkUpdate {
                         check(total <= MAX_APK_BYTES) { "APK is too large" }
                         output.write(buffer, 0, count)
                     }
-                    check(total > 0 && (length < 0 || total == length)) { "APK download was incomplete" }
+                    check(total > 0 && (length < 0 || total == length)) {
+                        "APK download was incomplete"
+                    }
                 }
             }
+        } catch (e: Exception) {
+            apk.delete()
+            throw e
         } finally {
             connection.disconnect()
         }
