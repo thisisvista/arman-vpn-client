@@ -20,14 +20,14 @@ $public = if ($PSBoundParameters.ContainsKey('PublicKey')) { $PublicKey } else {
 Push-Location "$root\core"
 try {
     $env:APP_VERSION = $Version
-    go generate ./cmd/arman-vpn-tun
+    go generate ./cmd/vista-vpn-tun
     if ($LASTEXITCODE -ne 0) { throw 'go generate failed (vista-vpn-tun)' }
 
     # windowsgui: no console window when the app or Setup starts it.
     $ldflags = "-s -w -H windowsgui -X github.com/thisisvista/vista-vpn/core/internal/version.Current=$Version"
     if ($public) { $ldflags += " -X github.com/thisisvista/vista-vpn/core/internal/signing.Key=$public" }
     $exe = Join-Path $Out 'vista-vpn-tun.exe'
-    go build -tags with_gvisor -trimpath -ldflags $ldflags -o $exe ./cmd/arman-vpn-tun
+    go build -tags with_gvisor -trimpath -ldflags $ldflags -o $exe ./cmd/vista-vpn-tun
     if ($LASTEXITCODE -ne 0) { throw 'go build failed (vista-vpn-tun)' }
     if ($public) {
         go run ./tools/sign $exe
