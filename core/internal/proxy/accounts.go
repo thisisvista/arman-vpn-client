@@ -10,10 +10,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/accounts"
-	"github.com/armanlife/arman-vpn-client/core/internal/fxa"
-	"github.com/armanlife/arman-vpn-client/core/internal/guardian"
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/accounts"
+	"github.com/thisisvista/vista-vpn/core/internal/fxa"
+	"github.com/thisisvista/vista-vpn/core/internal/guardian"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
 )
 
 // unavailableAccountRetry spaces retries of an account Guardian rejected
