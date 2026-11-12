@@ -21,7 +21,7 @@ import (
 
 // The TUN mode in the app's core process. While the daemon wants a TUN
 // (Daemon.TunWanted), tunSync holds a session with the TUN service
-// (cmd/arman-vpn-tun, protocol internal/tunapi): it opens the adapter,
+// (cmd/vista-vpn-tun, protocol internal/tunapi): it opens the adapter,
 // binds the core's own connections outside it (egress), routes everything
 // into it, and closes it when the mode changes, the proxy goes off, or the
 // app quits. However this process ends, its pipe connection ends with it,
