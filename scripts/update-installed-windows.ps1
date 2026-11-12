@@ -91,7 +91,7 @@ function Get-Installed {
 
 $running = @(Get-Installed)
 # The app may still run under its name before 1.0.9.
-$appExes = @($appExe, "$dir\vista-vpn.exe")
+$appExes = @($appExe)
 $appWasRunning = [bool]($running | Where-Object { $_.Path -in $appExes })
 $wasOn = $false
 if ($running) {
@@ -129,7 +129,7 @@ Write-Host "Installed $version in $dir"
 # app's core asks only when the service is older, and a test build keeps
 # the version. It refuses a build its key did not sign (then install it
 # again: core\vista-vpn-tun.exe install, with the administrator prompt).
-if (Get-Service ArmanVPNTun -ErrorAction SilentlyContinue) {
+if (Get-Service VistaVPNTun -ErrorAction SilentlyContinue) {
     $p = Start-Process -FilePath "$dir\core\vista-vpn-tun.exe" -ArgumentList update -Wait -PassThru -NoNewWindow -RedirectStandardError "$coreOut\tun-update.txt"
     $why = (Get-Content "$coreOut\tun-update.txt" -Raw -ErrorAction SilentlyContinue)
     if ($p.ExitCode -eq 0) { Write-Host 'The TUN service updated itself' }
