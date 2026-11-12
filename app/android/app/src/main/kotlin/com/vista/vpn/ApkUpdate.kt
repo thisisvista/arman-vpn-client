@@ -19,7 +19,7 @@ internal object ApkUpdate {
         require(source.startsWith("https://")) { "Update URL must use HTTPS" }
         var currentUrl = URL(source)
         var redirects = 0
-        var connection: HttpURLConnection
+        var connection: HttpURLConnection? = null
         while (true) {
             val next = (currentUrl.openConnection() as HttpURLConnection).apply {
                 connectTimeout = 20_000
@@ -46,15 +46,16 @@ internal object ApkUpdate {
             break
         }
 
+        val activeConnection = connection ?: error("APK connection was not established")
         val apk = File(context.cacheDir, "updates/vista-update.apk")
         try {
-            check(connection.responseCode in 200..299) {
-                "APK download failed (HTTP ${connection.responseCode})"
+            check(activeConnection.responseCode in 200..299) {
+                "APK download failed (HTTP ${activeConnection.responseCode})"
             }
-            val length = connection.contentLengthLong
+            val length = activeConnection.contentLengthLong
             check(length != 0L && length <= MAX_APK_BYTES) { "APK size is invalid" }
             apk.parentFile?.mkdirs()
-            connection.inputStream.use { input ->
+            activeConnection.inputStream.use { input ->
                 apk.outputStream().use { output ->
                     val buffer = ByteArray(64 * 1024)
                     var total = 0L
@@ -74,7 +75,7 @@ internal object ApkUpdate {
             apk.delete()
             throw e
         } finally {
-            connection.disconnect()
+            activeConnection.disconnect()
         }
 
         val flags = if (Build.VERSION.SDK_INT >= 28) {
