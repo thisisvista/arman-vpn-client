@@ -14,8 +14,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/tun"
-	"github.com/armanlife/arman-vpn-client/core/internal/tunapi"
+	"github.com/thisisvista/vista-vpn/core/internal/tun"
+	"github.com/thisisvista/vista-vpn/core/internal/tunapi"
 )
 
 // appSource is an app's connection on the adapter, as the stack sees it.
