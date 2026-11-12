@@ -9,7 +9,7 @@ import (
 	"runtime"
 	"syscall"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/service"
+	"github.com/thisisvista/vista-vpn/core/internal/service"
 )
 
 func enableTerminalColors() bool {
