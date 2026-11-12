@@ -84,15 +84,8 @@ Remove-Item -Recurse -Force $stage -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force $app | Out-Null
 Get-ChildItem $out -Force | Where-Object { $_.Name -notin 'user-data', 'portable' } | Copy-Item -Destination $app -Recurse
 try {
-    # The zip also carries the app and the core under their names before
-    # 1.0.9, which the update of those versions checks for and starts: a
-    # copy of the app, which starts the one under the new name, and an
-    # empty file (core\internal\update\legacy.go). The installer does not.
-    Copy-Item "$app\vista-vpn.exe" "$app\vista-vpn.exe"
-    New-Item -ItemType File "$app\core\vista-vpn-core.exe" | Out-Null
     $zip = "$root\dist\Vista-VPN-$version-Windows-x64.zip"
     Compress-Archive -Path $app -DestinationPath $zip -CompressionLevel Optimal -Force
-    Remove-Item "$app\vista-vpn.exe", "$app\core\vista-vpn-core.exe"
 
     $setupName = "Vista-VPN-$version-Windows-Setup-x64"
     & $iscc /Q "/DAppVersion=$version" "/DSourceDir=$app" "/DOutputDir=$root\dist" "/DOutputName=$setupName" "$root\app\windows\installer\arman-vpn.iss"
