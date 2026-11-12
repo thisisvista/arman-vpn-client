@@ -194,20 +194,16 @@ Type: files; Name: "{app}\native_assets.json"
 const
   RunKey = 'Software\Microsoft\Windows\CurrentVersion\Run';
   InternetKey = 'Software\Microsoft\Windows\CurrentVersion\Internet Settings';
-  // Where an uninstall that kept the data notes the folder it is in; the
-  // uninstall of a version before 1.0.9 noted it under the old name.
+  // Where an uninstall that kept the data notes the folder it is in.
   KeptKey = 'Software\{#AppName}';
-  LegacyKeptKey = 'Software\Firefox VPN';
   KeptValue = 'KeptDataIn';
 
 // The folder a first install offers: the one an uninstalled copy left its
 // data in, so installing again brings the data back; else the usual one.
 function DefaultDir(Param: String): String;
 begin
-  if (RegQueryStringValue(HKCU, KeptKey, KeptValue, Result) and
-      DirExists(AddBackslash(Result) + 'user-data')) or
-     (RegQueryStringValue(HKCU, LegacyKeptKey, KeptValue, Result) and
-      DirExists(AddBackslash(Result) + 'user-data')) then
+  if RegQueryStringValue(HKCU, KeptKey, KeptValue, Result) and
+     DirExists(AddBackslash(Result) + 'user-data') then
     Exit;
   Result := ExpandConstant('{localappdata}\Programs\{#AppDir}');
 end;
@@ -273,8 +269,6 @@ begin
   begin
     RegDeleteValue(HKCU, KeptKey, KeptValue);
     RegDeleteKeyIfEmpty(HKCU, KeptKey);
-    RegDeleteValue(HKCU, LegacyKeptKey, KeptValue);
-    RegDeleteKeyIfEmpty(HKCU, LegacyKeptKey);
   end;
 end;
 
@@ -291,7 +285,6 @@ begin
   if CurUninstallStep = usUninstall then
   begin
     RegDeleteValue(HKCU, RunKey, '{#AppName}');
-    RegDeleteValue(HKCU, RunKey, 'Firefox VPN');
     if RegQueryDWordValue(HKCU, InternetKey, 'ProxyEnable', Enabled) and (Enabled = 1) and
        RegQueryStringValue(HKCU, InternetKey, 'ProxyServer', Server) and
        (Pos('127.0.0.1:', Server) = 1) then
