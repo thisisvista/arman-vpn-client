@@ -69,7 +69,7 @@ abstract final class CoreLocator {
   static const _defaultPort = 10820;
 
   /// The folder name under the per-user data location (macOS).
-  static const appFolder = 'Arman VPN';
+  static const appFolder = 'Vista VPN';
 
   /// The file next to the app that makes it portable: its data stays in
   /// `user-data` beside it instead of the per-user location.
