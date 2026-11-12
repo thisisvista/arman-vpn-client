@@ -60,7 +60,7 @@ func runElevated(args ...string) error {
 	if err != nil {
 		return err
 	}
-	report, err := os.CreateTemp("", "arman-vpn-tun-*.txt")
+	report, err := os.CreateTemp("", "vista-vpn-tun-*.txt")
 	if err != nil {
 		return err
 	}
