@@ -14,12 +14,12 @@ const appVersion = String.fromEnvironment('APP_VERSION', defaultValue: '0.0.0');
 
 /// The GitHub repository, "owner/name", for the source link and the update
 /// check.
-const githubRepo = 'thisisvista/arman-vpn-client';
+const githubRepo = 'thisisvista/vista-vpn';
 
 const updateManifestUrl =
-    'https://raw.githubusercontent.com/thisisvista/arman-vpn-client/main/.github/updates.json';
+    'https://raw.githubusercontent.com/thisisvista/vista-vpn/main/.github/updates.json';
 const updateManifestMirror =
-    'https://cdn.jsdelivr.net/gh/thisisvista/arman-vpn-client@main/.github/updates.json';
+    'https://cdn.jsdelivr.net/gh/thisisvista/vista-vpn@main/.github/updates.json';
 
 /// A release server used instead of GitHub, to try updates with a local
 /// test release: it serves [updatesFile] at `<server>/updates.json`, answers
