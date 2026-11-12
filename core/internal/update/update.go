@@ -92,9 +92,9 @@ type appPackage struct {
 
 // windowsPackage is the Windows app's zip.
 var windowsPackage = appPackage{
-	name:   func(v string) string { return "Arman-VPN-" + v + "-Windows-x64.zip" },
-	app:    "arman-vpn.exe",
-	core:   "core/arman-vpn-core.exe",
+	name:   func(v string) string { return "Vista-VPN-" + v + "-Windows-x64.zip" },
+	app:    "vista-vpn.exe",
+	core:   "core/vista-vpn-core.exe",
 	unpack: unzip,
 }
 
@@ -115,13 +115,13 @@ func AppDir(exe string) string {
 
 // releasesURL is where GitHub serves a release's files:
 // <releasesURL>v<version>/<file>.
-const releasesURL = "https://github.com/armanlife/arman-vpn-client/releases/download/"
+const releasesURL = "https://github.com/thisisvista/arman-vpn-client/releases/download/"
 
 // ServerEnv names a release server to use instead of GitHub, for trying
 // updates with a local test release: it serves
 // <server>/releases/download/v<version>/<file>. A loopback server is
 // reached directly.
-const ServerEnv = "ARMAN_VPN_UPDATE_SERVER"
+const ServerEnv = "VISTA_VPN_UPDATE_SERVER"
 
 // Size limits of what a download reads.
 const (
