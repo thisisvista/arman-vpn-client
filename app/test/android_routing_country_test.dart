@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:arman_vpn/app_settings.dart';
-import 'package:arman_vpn/core/android_core.dart';
+import 'package:vista_vpn/app_settings.dart';
+import 'package:vista_vpn/core/android_core.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
