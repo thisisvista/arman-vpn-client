@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/netcheck"
-	"github.com/armanlife/arman-vpn-client/core/internal/proxy"
+	"github.com/thisisvista/vista-vpn/core/internal/netcheck"
+	"github.com/thisisvista/vista-vpn/core/internal/proxy"
 )
 
 func shortConnectWindow(t *testing.T) {
