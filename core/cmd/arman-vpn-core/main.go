@@ -45,7 +45,7 @@ func main() {
 		fmt.Fprintln(out)
 		flag.PrintDefaults()
 	}
-	dataDir := flag.String("data-dir", "", "Data folder (default: the desktop app's folder when the core sits beside arman-vpn(.exe), else the \"user-data\" folder next to the executable)")
+	dataDir := flag.String("data-dir", "", "Data folder (default: the desktop app's folder when the core sits beside vista-vpn(.exe), else the \"user-data\" folder next to the executable)")
 	addAccount := flag.Bool("add-account", false, "Sign in on the terminal and add the account, then exit")
 	listAccounts := flag.Bool("list-accounts", false, "List the accounts with status and quota, then exit")
 	status := flag.Bool("status", false, "Print the running service's proxy state, account, and data left in a few lines, then exit")
