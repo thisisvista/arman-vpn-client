@@ -30,7 +30,7 @@ internal object ApkUpdate {
             check(connection.responseCode in 200..299) { "APK download failed (HTTP ${connection.responseCode})" }
             check(connection.url.protocol == "https") { "Update redirected away from HTTPS" }
             val length = connection.contentLengthLong
-            check(length in 1..MAX_APK_BYTES) { "APK size is invalid" }
+            check(length != 0L && length <= MAX_APK_BYTES) { "APK size is invalid" }
             apk.parentFile?.mkdirs()
             connection.inputStream.use { input ->
                 apk.outputStream().use { output ->
