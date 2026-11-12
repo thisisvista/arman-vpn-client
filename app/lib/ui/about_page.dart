@@ -239,7 +239,7 @@ class _UpdateAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListenableBuilder(
-    listenable: Listenable.merge([core, Updates.failure]),
+    listenable: Listenable.merge([core, Updates.failure, Updates.installingApk]),
     builder: (context, _) {
       final l = AppLocalizations.of(context);
       final muted = Theme.of(context).textTheme.bodySmall
@@ -255,6 +255,16 @@ class _UpdateAction extends StatelessWidget {
             ),
           );
       if (Platform.isAndroid) {
+        if (Updates.installingApk.value) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(l.updateDownloading(release.version), style: muted),
+              const SizedBox(height: 8),
+              const LinearProgressIndicator(),
+            ],
+          );
+        }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
