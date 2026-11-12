@@ -9,7 +9,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
 )
 
 const upstreamSessionRetryDelay = 10 * time.Second
