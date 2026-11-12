@@ -1,4 +1,4 @@
-// Package tunservice is the TUN service (cmd/arman-vpn-tun): it serves
+// Package tunservice is the TUN service (cmd/vista-vpn-tun): it serves
 // the tunapi protocol on the service's channel and runs one TUN session at
 // a time, for the core that opened it, until that core closes it or its
 // connection ends. Every TCP flow goes to the core's SOCKS5 server on
