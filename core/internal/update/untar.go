@@ -14,22 +14,21 @@ import (
 )
 
 // linuxPackage is the Linux app's tar.gz for this processor
-// (scripts/build-linux.sh): an arman-vpn folder with the app, its lib/ and
+// (scripts/build-linux.sh): an vista-vpn folder with the app, its lib/ and
 // data/, and core/.
 var linuxPackage = appPackage{
-	name:   func(v string) string { return "Arman-VPN-" + v + "-Linux-" + runtime.GOARCH + ".tar.gz" },
-	app:    "arman-vpn",
-	core:   "core/arman-vpn-core",
+	name:   func(v string) string { return "Vista-VPN-" + v + "-Linux-" + runtime.GOARCH + ".tar.gz" },
+	app:    "vista-vpn",
+	core:   "core/vista-vpn-core",
 	unpack: untar,
 }
 
-// macPackage is the macOS app's tar.gz (scripts/build-macos.sh): Firefox
-// VPN.app, for Apple silicon and Intel, as the disk image holds it. The
+// macPackage is the macOS app's tar.gz (scripts/build-macos.sh): Vista VPN.app, for Apple silicon and Intel, as the disk image holds it. The
 // app's folder is the bundle, so an update replaces its Contents.
 var macPackage = appPackage{
-	name:   func(v string) string { return "Arman-VPN-" + v + "-macOS.tar.gz" },
-	app:    "Contents/MacOS/Arman VPN",
-	core:   "Contents/MacOS/arman-vpn-core",
+	name:   func(v string) string { return "Vista-VPN-" + v + "-macOS.tar.gz" },
+	app:    "Contents/MacOS/Vista VPN",
+	core:   "Contents/MacOS/vista-vpn-core",
 	unpack: untar,
 }
 
@@ -124,7 +123,7 @@ func untar(file, dir string) error {
 	linked := map[string]string{}
 	for _, e := range entries {
 		// The top folder's own entry; the app inside it has its name too
-		// (arman-vpn/arman-vpn).
+		// (vista-vpn/vista-vpn).
 		if top != "" && strings.TrimSuffix(e.name, "/")+"/" == top {
 			continue
 		}
