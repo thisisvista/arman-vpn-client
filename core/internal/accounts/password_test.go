@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/fxa"
+	"github.com/thisisvista/vista-vpn/core/internal/fxa"
 )
 
 func TestPasswordIsEncryptedAndSurvivesTokenUpdates(t *testing.T) {
