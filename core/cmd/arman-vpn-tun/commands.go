@@ -7,7 +7,7 @@ import (
 	"flag"
 	"os"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/tunservice"
+	"github.com/thisisvista/vista-vpn/core/internal/tunservice"
 )
 
 // run runs a command. The init system (the service manager, systemd,
