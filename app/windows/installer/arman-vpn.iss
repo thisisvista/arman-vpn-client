@@ -158,20 +158,7 @@ bn.DirNotWritable=Vista VPN এই ফোল্ডারে লিখতে প�
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
-; Versions before 1.1.2 kept the core beside the app; it is in core\ now.
-[InstallDelete]
-Type: files; Name: "{app}\firefox-vpn-core.exe"
-; The files and shortcuts under the program's name before 1.0.9 (Firefox
-; VPN); the app's own update may have left the copies the zip carries
-; under the old names (core\internal\update\legacy.go).
-Type: files; Name: "{app}\firefox-vpn.exe"
-Type: files; Name: "{app}\core\firefox-vpn-core.exe"
-Type: files; Name: "{app}\core\firefox-vpn-tun.exe"
-Type: files; Name: "{app}\core\firefox-vpn-tun.exe.sig"
-Type: files; Name: "{autoprograms}\Firefox VPN.lnk"
-Type: files; Name: "{autodesktop}\Firefox VPN.lnk"
-
-[Files]
+[Files]]
 ; Never an existing data folder, if one was in the source.
 Source: "{#SourceDir}\*"; DestDir: "{app}"; Excludes: "user-data,portable"; Flags: ignoreversion recursesubdirs createallsubdirs
 
@@ -201,7 +188,6 @@ Type: filesandordirs; Name: "{app}\core"
 Type: filesandordirs; Name: "{app}\data"
 Type: files; Name: "{app}\*.dll"
 Type: files; Name: "{app}\{#AppExe}"
-Type: files; Name: "{app}\firefox-vpn.exe"
 Type: files; Name: "{app}\native_assets.json"
 
 [Code]
@@ -230,7 +216,7 @@ end;
 // installed (core\cmd\vista-vpn-tun).
 function TunServiceInstalled: Boolean;
 begin
-  Result := RegKeyExists(HKLM, 'SYSTEM\CurrentControlSet\Services\ArmanVPNTun');
+  Result := RegKeyExists(HKLM, 'SYSTEM\CurrentControlSet\Services\VistaVPNTun');
 end;
 
 // IsUnder tells whether Dir is Parent or a folder inside it.
