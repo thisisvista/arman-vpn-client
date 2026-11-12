@@ -132,6 +132,9 @@ abstract final class Updates {
   /// say it in its status.
   static final failure = ValueNotifier<String?>(null);
 
+  /// Android is downloading and validating an APK before opening the installer.
+  static final installingApk = ValueNotifier<bool>(false);
+
   /// The notice of what the last update did was closed.
   static final resultSeen = ValueNotifier<bool>(false);
 
@@ -205,6 +208,7 @@ abstract final class Updates {
     announcements.value = null;
     installingAtStart.value = false;
     failure.value = null;
+    installingApk.value = false;
     resultSeen.value = false;
     quitApp = null;
     windowHidden = () => false;
@@ -283,6 +287,7 @@ abstract final class Updates {
     if (core == null) return;
     failure.value = null;
     if (Platform.isAndroid) {
+      installingApk.value = true;
       try {
         final url = await downloadUrl(release, os: 'android');
         final started = await AndroidCore.installApk(url);
@@ -291,6 +296,8 @@ abstract final class Updates {
         }
       } on Exception catch (e) {
         failure.value = '$e';
+      } finally {
+        installingApk.value = false;
       }
       return;
     }
