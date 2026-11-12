@@ -19,7 +19,7 @@ const unitName = tunapi.ServiceName + ".service"
 // good (stopForGood).
 const unit = `[Unit]
 Description=Vista VPN TUN
-Documentation=https://github.com/armanlife/arman-vpn-client
+Documentation=https://github.com/thisisvista/vista-vpn
 After=network.target
 
 [Service]
