@@ -1,2 +1,2 @@
-# hev-socks5-tunnel binds its native methods to this class by name.
--keep class com.arman.firefoxvpn.Tun2Socks { *; }
+# hev-socks5-tunnel binds all native methods in this class by name.
+-keep class com.vista.vpn.Tun2Socks { *; }
