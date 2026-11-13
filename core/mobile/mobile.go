@@ -95,6 +95,9 @@ func Start(dataDir string, on bool) error {
 	if err := neverSleep(paths.Config); err != nil {
 		return err
 	}
+	if err := useAndroidDashboardPort(paths.Config); err != nil {
+		return err
+	}
 	d, err := service.NewDaemon(paths, false)
 	if err != nil {
 		return err
@@ -241,6 +244,25 @@ func ProxyAddress() string {
 	}
 	addr, _, _ := d.ProxyEndpoint()
 	return addr
+}
+
+
+// androidDashboardListen is separate from the desktop default so two
+// independently installed VPN apps can run their dashboards side by side.
+const androidDashboardListen = "127.0.0.1:10821"
+
+// useAndroidDashboardPort moves only the stock loopback dashboard address.
+// A user's explicitly configured dashboard address is left untouched.
+func useAndroidDashboardPort(path string) error {
+	cfg, _, err := config.Load(path)
+	if err != nil {
+		return err
+	}
+	if cfg.Dashboard.Listen != config.DefaultDashboardListen {
+		return nil
+	}
+	cfg.Dashboard.Listen = androidDashboardListen
+	return config.Save(path, cfg)
 }
 
 // neverSleep sets proxy.idle_sleep to 0 in the config at path: the phone
