@@ -91,8 +91,8 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
     final status = widget.core.status;
     final theme = Theme.of(context);
     final baseText = theme.textTheme;
-    const background = Color(0xFF0C0E12);
-    const card = Color(0xFF14171F);
+    const background = Color(0xFF0A1024);
+    const card = Color(0xFF1A1B32);
     const border = Color(0x16FFFFFF);
     const muted = Color(0xFF9CA3AF);
 
@@ -127,7 +127,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
             : status.state.phase == Phase.error
                 ? const Color(0xFFEF6475)
                 : connected
-                    ? const Color(0xFF00FFC8)
+                    ? const Color(0xFF36DDB3)
                     : const Color(0xFFF59E0B);
     final test = status.isCurrentTest(widget.core.lastTest)
         ? widget.core.lastTest
@@ -210,7 +210,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
           gradient: RadialGradient(
             center: Alignment(0, -0.42),
             radius: 1.08,
-            colors: [Color(0xFF171B24), background],
+            colors: [Color(0xFF123348), background],
           ),
         ),
         child: SafeArea(
@@ -524,12 +524,12 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                         width: 42,
                         height: 42,
                         decoration: BoxDecoration(
-                          color: const Color(0xFF10B981).withValues(alpha: 0.11),
+                          color: const Color(0xFF36DDB3).withValues(alpha: 0.11),
                           borderRadius: BorderRadius.circular(13),
                         ),
                         child: const Icon(
                           Icons.data_usage_rounded,
-                          color: Color(0xFF34D399),
+                          color: Color(0xFF58DDB8),
                           size: 24,
                         ),
                       ),
@@ -572,7 +572,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                   minHeight: 5,
                                   backgroundColor: Colors.white.withValues(alpha: 0.09),
                                   valueColor: const AlwaysStoppedAnimation(
-                                    Color(0xFF34D399),
+                                    Color(0xFF58DDB8),
                                   ),
                                 ),
                               ),
@@ -627,7 +627,7 @@ class _ActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-        color: const Color(0xFF14171F),
+        color: const Color(0xFF1A1B32),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18),
           side: const BorderSide(color: Color(0x16FFFFFF)),
