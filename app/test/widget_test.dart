@@ -2632,9 +2632,10 @@ void main() {
     expect(find.textContaining('Brussels'), findsNothing);
     // No public IP on the phone's home.
     expect(find.textContaining('192.0.2.7'), findsNothing);
-    // The home identifies the app and keeps the full account email private.
+    // The home identifies the app and masks, rather than fully exposing,
+    // the active account email.
     expect(find.text('Vista '), findsOneWidget);
-    expect(find.textContaining('@example.com'), findsNothing);
+    expect(find.text('alice@example.com'), findsNothing);
     // Apps in the VPN trying refused ports are no news on the phone.
     expect(find.textContaining('5228'), findsNothing);
     // The local address is not shown unless shared with the LAN.
