@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../core/core_controller.dart';
 import '../core/models.dart';
@@ -413,7 +414,6 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                           _sessionTime(status.proxy!.startedAt),
                           style: baseText.labelSmall?.copyWith(
                             color: muted,
-                            fontFeatures: const [FontFeature.tabularFigures()],
                           ),
                         ),
                       ],
