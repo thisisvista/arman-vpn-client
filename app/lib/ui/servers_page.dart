@@ -172,7 +172,10 @@ class _ServersPageState extends State<ServersPage> {
         ],
         _SectionHeader(title: l.autoSection),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          // This row is inside a scrolling ListView, so its height is
+          // unbounded. Let the two tiles take their natural height instead
+          // of stretching to an infinite constraint.
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: _AutomaticChoiceTile(
