@@ -19,7 +19,7 @@ Accounts added from the dashboard take effect immediately. After `-add-account` 
 
 ## Portable data folder
 
-All data lives in a `user-data` folder **next to the executable**. A core in the Windows desktop app's `core` folder (or beside `vista-vpn.exe`) uses the app's `user-data` instead, so the core shares the app's accounts and settings. The one exception is a core beside the macOS or Linux app (`arman_vpn` in the same folder, without a `portable` file): it uses the app's data folder (`~/Library/Application Support/Vista VPN`, or `$XDG_DATA_HOME/vista-vpn`). (Not `data`: Flutter keeps its own files in a `data` folder beside the app.) Moving the program's folder moves its data. If the folder is read-only (for example under `Program Files`), startup fails with a message; move the program or pass `-data-dir`.
+All data lives in a `user-data` folder **next to the executable**. A core launched from the desktop app's own folder structure detects the app and uses its data folder, so the core shares the app's accounts and settings. On Windows, that folder is `user-data` beside the app; on macOS and Linux, it is `~/Library/Application Support/Vista VPN` or `$XDG_DATA_HOME/vista-vpn`, unless a `portable` marker beside the app tells it to use `user-data` there. (Not `data`: Flutter keeps its own files in a `data` folder beside the app.) Moving the program's folder moves its data. If the folder is read-only (for example under `Program Files`), startup fails with a message; move the program or pass `-data-dir`.
 
 ```text
 <program folder>/
