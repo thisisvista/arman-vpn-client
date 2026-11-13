@@ -193,7 +193,7 @@ jobs:
           printf 'storeFile=../release.jks\nstorePassword=%s\nkeyAlias=release\nkeyPassword=%s\n' "$PASSWORD" "$PASSWORD" > app/android/key.properties
       - name: Generate branded app icons
         run: |
-          python3 -m pip install --user Pillow
+          python3 -m pip install --break-system-packages Pillow
           cd app
           python3 tool/app_icons.py
       - name: Build
