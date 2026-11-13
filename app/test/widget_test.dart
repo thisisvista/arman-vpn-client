@@ -158,7 +158,12 @@ class FakeApi implements CoreApi {
             'transport': 'HTTP/3',
           },
     if (recommended)
-      'exit': {'ipv4': '192.0.2.7', 'country_code': 'BE', 'city': 'Brussels'},
+      'exit': {
+        'ipv4': '192.0.2.7',
+        'country_code': 'BE',
+        'country_name': 'Belgium',
+        'city': 'Brussels',
+      },
     'active_account': accountsJson.first,
     'last_test': _lastTest,
     if (!systemProxySupported)
