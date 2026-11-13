@@ -4,7 +4,7 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/tunservice"
+	"github.com/thisisvista/vista-vpn/core/internal/tunservice"
 )
 
 // runPlatform runs the commands an update and an uninstall from inside the

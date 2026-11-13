@@ -21,6 +21,9 @@ func TestLoadCreatesDefaultConfig(t *testing.T) {
 	if cfg.Accounts.SwitchThresholdPercent != 95 {
 		t.Fatalf("unexpected account defaults: %+v", cfg.Accounts)
 	}
+	if cfg.Network.SharedRelayEnabled {
+		t.Fatal("new installations must default to personal relays, not the shared relay pool")
+	}
 
 	again, created, err := Load(path)
 	if err != nil || created {
@@ -77,7 +80,7 @@ func TestRelayEnabledByDefault(t *testing.T) {
 	}
 }
 
-func TestSharedRelayDefaultDoesNotInheritDisabledPersonalRelay(t *testing.T) {
+func TestSharedRelayIsDisabledByDefault(t *testing.T) {
 	path := filepath.Join(t.TempDir(), FileName)
 	if err := os.WriteFile(path, []byte(`{"network":{"api_relay_enabled":false,"api_relay":"https://personal.example/"}}`), 0o600); err != nil {
 		t.Fatal(err)
@@ -86,8 +89,8 @@ func TestSharedRelayDefaultDoesNotInheritDisabledPersonalRelay(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if cfg.Network.APIRelayEnabled || !cfg.Network.SharedRelayInUse() {
-		t.Fatal("an old disabled personal relay disabled the new shared relay default")
+	if cfg.Network.APIRelayEnabled || cfg.Network.SharedRelayEnabled || cfg.Network.SharedRelayInUse() {
+		t.Fatal("shared relays must be disabled by default while preserving the personal relay setting")
 	}
 	cfg.Network.SharedRelayEnabled = false
 	if err := Save(path, cfg); err != nil {
@@ -373,13 +376,13 @@ func TestDefaultDataDirFollowsTheApp(t *testing.T) {
 		t.Fatalf("alone: %s", got)
 	}
 	// Beside the desktop app on Windows: user-data beside both.
-	files["arman-vpn.exe"] = true
+	files["vista-vpn.exe"] = true
 	if got := defaultDataDirFor(dir, "windows", getenv, exists); got != filepath.Join(dir, "user-data") {
 		t.Fatalf("beside the app on Windows: %s", got)
 	}
 	// On macOS: the app's folder in the user's data location.
-	files["Arman VPN"] = true
-	if got := defaultDataDirFor(dir, "darwin", getenv, exists); got != filepath.Join("/home/u", "Library", "Application Support", "Arman VPN") {
+	files["Vista VPN"] = true
+	if got := defaultDataDirFor(dir, "darwin", getenv, exists); got != filepath.Join("/home/u", "Library", "Application Support", "Vista VPN") {
 		t.Fatalf("beside the app on macOS: %s", got)
 	}
 	// A portable app keeps user-data beside it.
@@ -393,12 +396,12 @@ func TestAppDir(t *testing.T) {
 	// Files by their full path, so the parent folder counts.
 	files := map[string]bool{}
 	exists := func(p string) bool { return files[p] }
-	app := filepath.Join("opt", "Arman VPN")
+	app := filepath.Join("opt", "Vista VPN")
 	core := filepath.Join(app, "core")
 	if got := appDir(app, exists); got != "" {
 		t.Fatalf("a core on its own belongs to %q", got)
 	}
-	for _, name := range []string{"arman-vpn.exe", "arman-vpn", "Arman VPN"} {
+	for _, name := range []string{"vista-vpn.exe", "vista-vpn", "Vista VPN"} {
 		files = map[string]bool{filepath.Join(app, name): true}
 		if got := appDir(app, exists); got != app {
 			t.Fatalf("beside %s: %q", name, got)
@@ -409,7 +412,7 @@ func TestAppDir(t *testing.T) {
 		}
 	}
 	// The parent counts only from a folder named core.
-	files = map[string]bool{filepath.Join(app, "arman-vpn.exe"): true}
+	files = map[string]bool{filepath.Join(app, "vista-vpn.exe"): true}
 	if got := appDir(filepath.Join(app, "tools"), exists); got != "" {
 		t.Fatalf("a core in another folder belongs to %q", got)
 	}

@@ -5,10 +5,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/netcheck"
-	"github.com/armanlife/arman-vpn-client/core/internal/netstate"
-	"github.com/armanlife/arman-vpn-client/core/internal/proxy"
-	"github.com/armanlife/arman-vpn-client/core/internal/resolver"
+	"github.com/thisisvista/vista-vpn/core/internal/netcheck"
+	"github.com/thisisvista/vista-vpn/core/internal/netstate"
+	"github.com/thisisvista/vista-vpn/core/internal/proxy"
+	"github.com/thisisvista/vista-vpn/core/internal/resolver"
 )
 
 // failureCode is proxy.FailureCode for err, made sure for failures that may

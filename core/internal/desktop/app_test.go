@@ -14,8 +14,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
-	"github.com/armanlife/arman-vpn-client/core/internal/service"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/service"
 )
 
 // The app's end of the standard input closing ends the watch; data the
@@ -177,7 +177,7 @@ func TestReportAppError(t *testing.T) {
 			exit: ExitAlreadyRunning,
 			want: []string{
 				"app-error: already_running " + dir,
-				"arman-vpn-core: " + ErrAlreadyRunning.Error() + " (" + dir + "): a tray icon runs for it",
+				"vista-vpn-core: " + ErrAlreadyRunning.Error() + " (" + dir + "): a tray icon runs for it",
 			},
 		},
 		"dashboard port in use": {

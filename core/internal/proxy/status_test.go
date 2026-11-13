@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/guardian"
+	"github.com/thisisvista/vista-vpn/core/internal/guardian"
 )
 
 func TestProxyControllerWritesStatusFile(t *testing.T) {

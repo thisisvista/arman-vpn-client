@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/fxa"
-	"github.com/armanlife/arman-vpn-client/core/internal/guardian"
+	"github.com/thisisvista/vista-vpn/core/internal/fxa"
+	"github.com/thisisvista/vista-vpn/core/internal/guardian"
 )
 
 func TestProxyControllerSleepOrDoneWakesOnClose(t *testing.T) {

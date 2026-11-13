@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
 )
 
 // status is the TUN's state as GET /api/status reports it.

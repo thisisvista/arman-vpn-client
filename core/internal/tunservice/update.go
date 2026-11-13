@@ -7,7 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/signing"
+	"github.com/thisisvista/vista-vpn/core/internal/signing"
 )
 
 // Updates of the service must be signed with the key built into it

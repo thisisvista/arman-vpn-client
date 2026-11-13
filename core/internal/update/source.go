@@ -20,7 +20,7 @@ type Source struct {
 }
 
 const packageFile = "package.json"
-const versionPrefix = "# Arman VPN version: "
+const versionPrefix = "# Vista VPN version: "
 
 func (m *Manager) defaultSource(v string) Source {
 	base := m.baseURL + "v" + v + "/"

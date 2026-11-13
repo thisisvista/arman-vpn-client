@@ -5,31 +5,31 @@
 </div>
 <br>
 
-<p align="center"><img src="../images/logo.png" width="128" alt="Arman VPN"></p>
+<p align="center"><img src="../images/logo.png" width="128" alt="Vista VPN"></p>
 
-<h1 align="center">Arman VPN</h1>
+<h1 align="center">Vista VPN</h1>
 
 <h2 align="center" dir="rtl">⚠️ پروژه غیررسمی</h2>
 
-<h3 align="center" dir="rtl">&rlm;Arman VPN یک پروژه مستقل است. موزیلا آن را نساخته، مالک آن نیست، از آن حمایت نمی‌کند، آن را تأیید نکرده و هیچ ارتباطی با آن ندارد. <a href="#سلب-مسئولیت">سلب مسئولیت</a> را ببینید.</h3>
+<h3 align="center" dir="rtl">&rlm;Vista VPN یک پروژه مستقل است. موزیلا آن را نساخته، مالک آن نیست، از آن حمایت نمی‌کند، آن را تأیید نکرده و هیچ ارتباطی با آن ندارد. <a href="#سلب-مسئولیت">سلب مسئولیت</a> را ببینید.</h3>
 
 <div align="center">
 
-[![Downloads](https://img.shields.io/github/downloads/armanlife/arman-vpn-client/total?style=flat-square&logo=github&label=Downloads)](https://github.com/armanlife/arman-vpn-client/releases)
-[![Last Version](https://img.shields.io/github/v/release/armanlife/arman-vpn-client?style=flat-square&label=Version)](https://github.com/armanlife/arman-vpn-client/releases/latest)
-[![License](https://img.shields.io/github/license/armanlife/arman-vpn-client?style=flat-square&label=License)](../../LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/thisisvista/vista-vpn/total?style=flat-square&logo=github&label=Downloads)](https://github.com/thisisvista/vista-vpn/releases)
+[![Last Version](https://img.shields.io/github/v/release/thisisvista/vista-vpn?style=flat-square&label=Version)](https://github.com/thisisvista/vista-vpn/releases/latest)
+[![License](https://img.shields.io/github/license/thisisvista/vista-vpn?style=flat-square&label=License)](../../LICENSE)
 
 </div>
 
 <div dir="rtl">
 
-## &rlm;Arman VPN چیست؟
+## &rlm;Vista VPN چیست؟
 
-&rlm;**Arman VPN** یک VPN رایگان و متن‌باز است که با حساب فایرفاکس (Firefox Account) کار می‌کند. اینترنت شما را از سرورهای موزیلا، روی زیرساخت **Fastly**، و با تونل‌های امن **HTTP/2 و HTTP/3** عبور می‌دهد.
+&rlm;**Vista VPN** یک VPN رایگان و متن‌باز است که با حساب فایرفاکس (Firefox Account) کار می‌کند. اینترنت شما را از سرورهای موزیلا، روی زیرساخت **Fastly**، و با تونل‌های امن **HTTP/2 و HTTP/3** عبور می‌دهد.
 
 &rlm;برای **اندروید، ویندوز، مک و لینوکس**؛ کاملاً رایگان، بدون تبلیغات.
 
-<p align="center"><a href="https://raw.githubusercontent.com/armanlife/arman-vpn-client/main/docs/screenshots/main.webp" target="_blank"><img src="../screenshots/main.webp" width="720" alt="Arman VPN"></a></p>
+<p align="center"><a href="https://raw.githubusercontent.com/thisisvista/vista-vpn/main/docs/screenshots/main.webp" target="_blank"><img src="../screenshots/main.webp" width="720" alt="Vista VPN"></a></p>
 
 ## 🚀 امکانات اصلی
 
@@ -74,12 +74,12 @@
 <tr><th>سیستم‌عامل</th><th>دانلود</th></tr>
 </thead>
 <tbody align="right">
-<tr><td>اندروید</td><td><a href="https://github.com/armanlife/arman-vpn-client/releases/latest/download/Arman-VPN-Android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-1a7f37?logo=android&logoColor=white" alt="APK Universal"></a><br><a href="https://github.com/armanlife/arman-vpn-client/releases/latest/download/Arman-VPN-Android-arm64-v8a.apk"><img src="https://img.shields.io/badge/APK-ARMv8-2da44e?logo=android&logoColor=white" alt="APK ARMv8"></a><br><a href="https://github.com/armanlife/arman-vpn-client/releases/latest/download/Arman-VPN-Android-armeabi-v7a.apk"><img src="https://img.shields.io/badge/APK-ARMv7-4ac26b?logo=android&logoColor=white" alt="APK ARMv7"></a><br><a href="https://github.com/armanlife/arman-vpn-client/releases/latest/download/Arman-VPN-Android-x86_64.apk"><img src="https://img.shields.io/badge/APK-x64-6fdd8b?logo=android&logoColor=white" alt="APK x64"></a></td></tr>
-<tr><td>اندروید TV</td><td><a href="https://github.com/armanlife/arman-vpn-client/releases/latest/download/Arman-VPN-Android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-1a7f37?logo=android&logoColor=white" alt="APK Universal"></a></td></tr>
-<tr><td>ویندوز</td><td><a href="https://github.com/armanlife/arman-vpn-client/releases/latest/download/Arman-VPN-Windows-Setup-x64.exe"><img src="https://img.shields.io/badge/Setup-x64-0550ae?logo=windows&logoColor=white" alt="Setup x64"></a><br><a href="https://github.com/armanlife/arman-vpn-client/releases/latest/download/Arman-VPN-Windows-x64.zip"><img src="https://img.shields.io/badge/Portable-x64-0969da" alt="Portable x64"></a></td></tr>
-<tr><td>مک</td><td><a href="https://github.com/armanlife/arman-vpn-client/releases/latest/download/Arman-VPN-macOS.dmg"><img src="https://img.shields.io/badge/DMG-Universal-24292f?logo=apple&logoColor=white" alt="DMG Universal"></a></td></tr>
-<tr><td rowspan="2">لینوکس</td><td><a href="https://github.com/armanlife/arman-vpn-client/releases/latest/download/Arman-VPN-Linux-amd64.tar.gz"><img src="https://img.shields.io/badge/App-amd64-e36209?logo=linux&logoColor=white" alt="App amd64"></a><br><a href="https://github.com/armanlife/arman-vpn-client/releases/latest/download/Arman-VPN-Linux-arm64.tar.gz"><img src="https://img.shields.io/badge/App-ARM64-e36209?logo=linux&logoColor=white" alt="App ARM64"></a></td></tr>
-<tr><td><a href="https://github.com/armanlife/arman-vpn-client/releases/latest/download/arman-vpn-core-linux-amd64.tar.gz"><img src="https://img.shields.io/badge/Core-amd64-f0883e?logo=linux&logoColor=white" alt="Core amd64"></a><br><a href="https://github.com/armanlife/arman-vpn-client/releases/latest/download/arman-vpn-core-linux-arm64.tar.gz"><img src="https://img.shields.io/badge/Core-ARM64-f6a35e?logo=linux&logoColor=white" alt="Core ARM64"></a></td></tr>
+<tr><td>اندروید</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-1a7f37?logo=android&logoColor=white" alt="APK Universal"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-arm64-v8a.apk"><img src="https://img.shields.io/badge/APK-ARMv8-2da44e?logo=android&logoColor=white" alt="APK ARMv8"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-armeabi-v7a.apk"><img src="https://img.shields.io/badge/APK-ARMv7-4ac26b?logo=android&logoColor=white" alt="APK ARMv7"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-x86_64.apk"><img src="https://img.shields.io/badge/APK-x64-6fdd8b?logo=android&logoColor=white" alt="APK x64"></a></td></tr>
+<tr><td>اندروید TV</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-1a7f37?logo=android&logoColor=white" alt="APK Universal"></a></td></tr>
+<tr><td>ویندوز</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Windows-Setup-x64.exe"><img src="https://img.shields.io/badge/Setup-x64-0550ae?logo=windows&logoColor=white" alt="Setup x64"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Windows-x64.zip"><img src="https://img.shields.io/badge/Portable-x64-0969da" alt="Portable x64"></a></td></tr>
+<tr><td>مک</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-macOS.dmg"><img src="https://img.shields.io/badge/DMG-Universal-24292f?logo=apple&logoColor=white" alt="DMG Universal"></a></td></tr>
+<tr><td rowspan="2">لینوکس</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Linux-amd64.tar.gz"><img src="https://img.shields.io/badge/App-amd64-e36209?logo=linux&logoColor=white" alt="App amd64"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Linux-arm64.tar.gz"><img src="https://img.shields.io/badge/App-ARM64-e36209?logo=linux&logoColor=white" alt="App ARM64"></a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/vista-vpn-core-linux-amd64.tar.gz"><img src="https://img.shields.io/badge/Core-amd64-f0883e?logo=linux&logoColor=white" alt="Core amd64"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/vista-vpn-core-linux-arm64.tar.gz"><img src="https://img.shields.io/badge/Core-ARM64-f6a35e?logo=linux&logoColor=white" alt="Core ARM64"></a></td></tr>
 </tbody>
 </table>
 
@@ -96,14 +96,14 @@
 </div>
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/armanlife/arman-vpn-client/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/thisisvista/vista-vpn/main/install.sh | bash
 ```
 
 <div dir="rtl">
 
 ### 🌐 پنل تحت وب
 
-برای سرورهای لینوکس، Arman VPN یک **پنل تحت وب** دارد که در هر مرورگری باز می‌شود و همه امکانات برنامه را دارد: مدیریت حساب‌ها و حجم، انتخاب سرور و تست تأخیر، تست اتصال، لاگ زنده، و همه تنظیمات.
+برای سرورهای لینوکس، Vista VPN یک **پنل تحت وب** دارد که در هر مرورگری باز می‌شود و همه امکانات برنامه را دارد: مدیریت حساب‌ها و حجم، انتخاب سرور و تست تأخیر، تست اتصال، لاگ زنده، و همه تنظیمات.
 
 <p align="center"><img src="../screenshots/web.webp" width="720" alt="Web panel"></p>
 
@@ -112,37 +112,37 @@ curl -fsSL https://raw.githubusercontent.com/armanlife/arman-vpn-client/main/ins
 
 ### ⌨️ مدیریت از ترمینال
 
-روی سرور، دستور `sudo arman-vpn` را بزنید تا منوی مدیریت باز شود:
+روی سرور، دستور `sudo vista-vpn` را بزنید تا منوی مدیریت باز شود:
 
 </div>
 
 ```text
-$ sudo arman-vpn
+$ sudo vista-vpn
 
-  Arman VPN
+  Vista VPN
   ────────────────────────────────────────────────────────────────────────────
     Service     ● running
     Autostart   on
   ────────────────────────────────────────────────────────────────────────────
    0) Exit
   ────────────────────────────────────────────────────────────────────────────
-   1) Update                                   arman-vpn update
-   2) Uninstall                                arman-vpn uninstall
+   1) Update                                   vista-vpn update
+   2) Uninstall                                vista-vpn uninstall
   ────────────────────────────────────────────────────────────────────────────
-   3) Set panel login                          arman-vpn panel
-   4) View panel info                          arman-vpn panel-info
+   3) Set panel login                          vista-vpn panel
+   4) View panel info                          vista-vpn panel-info
   ────────────────────────────────────────────────────────────────────────────
-   5) Status                                   arman-vpn status
-   6) Start                                    arman-vpn start
-   7) Stop                                     arman-vpn stop
-   8) Restart                                  arman-vpn restart
-   9) Show the log                             arman-vpn logs
+   5) Status                                   vista-vpn status
+   6) Start                                    vista-vpn start
+   7) Stop                                     vista-vpn stop
+   8) Restart                                  vista-vpn restart
+   9) Show the log                             vista-vpn logs
   ────────────────────────────────────────────────────────────────────────────
-  10) Enable autostart                         arman-vpn enable
-  11) Disable autostart                        arman-vpn disable
+  10) Enable autostart                         vista-vpn enable
+  11) Disable autostart                        vista-vpn disable
   ────────────────────────────────────────────────────────────────────────────
-  12) Add a Firefox Account                    arman-vpn add-account
-  13) List the accounts                        arman-vpn list-accounts
+  12) Add a Firefox Account                    vista-vpn add-account
+  13) List the accounts                        vista-vpn list-accounts
   ────────────────────────────────────────────────────────────────────────────
   Enter a number [0-13]:
 ```

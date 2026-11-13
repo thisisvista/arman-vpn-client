@@ -12,14 +12,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/accounts"
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
-	"github.com/armanlife/arman-vpn-client/core/internal/netstate"
-	"github.com/armanlife/arman-vpn-client/core/internal/proxy"
-	"github.com/armanlife/arman-vpn-client/core/internal/serverlist"
-	"github.com/armanlife/arman-vpn-client/core/internal/update"
-	"github.com/armanlife/arman-vpn-client/core/internal/version"
+	"github.com/thisisvista/vista-vpn/core/internal/accounts"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/netstate"
+	"github.com/thisisvista/vista-vpn/core/internal/proxy"
+	"github.com/thisisvista/vista-vpn/core/internal/serverlist"
+	"github.com/thisisvista/vista-vpn/core/internal/update"
+	"github.com/thisisvista/vista-vpn/core/internal/version"
 )
 
 type proxyView struct {

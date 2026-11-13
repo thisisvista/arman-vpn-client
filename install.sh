@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Installs or updates Arman VPN from the newest release on GitHub:
+# Installs or updates Vista VPN from the newest release on GitHub:
 #
-#   curl -fsSL https://raw.githubusercontent.com/armanlife/arman-vpn-client/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/thisisvista/vista-vpn/main/install.sh | bash
 #
 # Without an argument it decides by itself:
 #   - macOS, or Linux with a graphical session: the app, for the current
@@ -9,7 +9,7 @@
 #   - Linux without a graphical session, or run as root: the core alone as
 #     a systemd service with the web dashboard (it asks sudo for that);
 #   - a Linux SSH session could be either, so it asks;
-#   - when Arman VPN is already installed, it asks: update (the default)
+#   - when Vista VPN is already installed, it asks: update (the default)
 #     or remove, and on remove whether to delete the accounts too.
 # Questions are read from the terminal; without one (automation) the
 # default answer is taken, so a rerun updates. Accounts and settings stay.
@@ -24,7 +24,7 @@
 #   core/scripts/install-systemd.sh
 set -euo pipefail
 
-REPO="armanlife/arman-vpn-client"
+REPO="thisisvista/vista-vpn"
 RAW="https://raw.githubusercontent.com/$REPO/main/install.sh"
 VERSION="${VERSION:-latest}"
 if [ "$VERSION" = "latest" ]; then
@@ -32,7 +32,7 @@ if [ "$VERSION" = "latest" ]; then
 else
   BASE_URL="${BASE_URL:-https://github.com/$REPO/releases/download/$VERSION}"
 fi
-COMMAND=/usr/local/bin/arman-vpn
+COMMAND=/usr/local/bin/vista-vpn
 OS="$(uname -s)"
 PURGE="${PURGE:-0}"
 
@@ -52,7 +52,7 @@ fi
 
 # The service's unit, and its settings to pass through sudo, which clears
 # the environment.
-SERVICE_UNIT="/etc/systemd/system/${SERVICE_NAME:-arman-vpn}.service"
+SERVICE_UNIT="/etc/systemd/system/${SERVICE_NAME:-vista-vpn}.service"
 SERVICE_ENV=()
 [ -z "${INSTALL_DIR:-}" ] || SERVICE_ENV+=("INSTALL_DIR=$INSTALL_DIR")
 [ -z "${SERVICE_NAME:-}" ] || SERVICE_ENV+=("SERVICE_NAME=$SERVICE_NAME")
@@ -60,20 +60,20 @@ SERVICE_ENV=()
 
 # The Linux app's places, for the current user.
 DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-APP_DIR="$HOME/.local/opt/arman-vpn"
-DESKTOP_FILE="$DATA_HOME/applications/com.arman.firefoxvpn.desktop"
-AUTOSTART_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/autostart/arman-vpn.desktop"
-APP_DATA="$DATA_HOME/arman-vpn"
+APP_DIR="$HOME/.local/opt/vista-vpn"
+DESKTOP_FILE="$DATA_HOME/applications/com.vista.vpn.desktop"
+AUTOSTART_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/autostart/vista-vpn.desktop"
+APP_DATA="$DATA_HOME/vista-vpn"
 
 # The macOS app's.
-MAC_APP="Arman VPN.app"
-MAC_AGENT="$HOME/Library/LaunchAgents/com.arman.firefoxvpn.plist"
-MAC_DATA="$HOME/Library/Application Support/Arman VPN"
+MAC_APP="Vista VPN.app"
+MAC_AGENT="$HOME/Library/LaunchAgents/com.vista.vpn.plist"
+MAC_DATA="$HOME/Library/Application Support/Vista VPN"
 
 # The TUN mode's service, which the app installs for the whole computer the
-# first time the mode is chosen (core/cmd/arman-vpn-tun).
-TUN_LINUX="/opt/arman-vpn-tun/arman-vpn-tun"
-TUN_MAC="/Library/Application Support/Arman VPN TUN/arman-vpn-tun"
+# first time the mode is chosen (core/cmd/vista-vpn-tun).
+TUN_LINUX="/opt/vista-vpn-tun/vista-vpn-tun"
+TUN_MAC="/Library/Application Support/Vista VPN TUN/vista-vpn-tun"
 
 # The same before 1.0.9 (LEGACY_NAME): an install or an update moves them
 # to the new names, a removal removes them.
@@ -106,7 +106,7 @@ esac
 rule() { local i; for ((i = 0; i < $1; i++)); do printf '%s' "$LINE"; done; }
 
 banner() {
-  printf '\n  %s%sArman VPN%s %sinstaller%s\n' "$BOLD" "$FOX" "$OFF" "$DIM" "$OFF"
+  printf '\n  %s%sVista VPN%s %sinstaller%s\n' "$BOLD" "$FOX" "$OFF" "$DIM" "$OFF"
   printf '  %s%s%s\n' "$DIM" "$(rule 34)" "$OFF"
   field "System" "$(os_name)"
   field "Processor" "$(processor_name)"
@@ -234,7 +234,7 @@ has_app() {
     done
     return 1
   else
-    [ -x "$APP_DIR/arman-vpn" ] || [ -x "$LEGACY_APP_EXE" ]
+    [ -x "$APP_DIR/vista-vpn" ] || [ -x "$LEGACY_APP_EXE" ]
   fi
 }
 
@@ -347,15 +347,15 @@ install_server() {
   fi
   local name dir
   # The archive's new name; the folder inside keeps the old one for now.
-  name="arman-vpn-core-linux-$(arch)"
+  name="vista-vpn-core-linux-$(arch)"
   dir="$tmp/$name"
-  download "arman-vpn-core-linux-$(arch).tar.gz"
-  tar -xzf "$tmp/arman-vpn-core-linux-$(arch).tar.gz" -C "$tmp"
-  [ -f "$dir/arman-vpn-core" ] && [ -f "$dir/install-systemd.sh" ] || die "not an arman-vpn-core archive"
+  download "vista-vpn-core-linux-$(arch).tar.gz"
+  tar -xzf "$tmp/vista-vpn-core-linux-$(arch).tar.gz" -C "$tmp"
+  [ -f "$dir/vista-vpn-core" ] && [ -f "$dir/install-systemd.sh" ] || die "not an vista-vpn-core archive"
 
   step "Installing the service"
   # Its own lines only when it fails.
-  if ! $SUDO env ${SERVICE_ENV[@]+"${SERVICE_ENV[@]}"} SELF=arman-vpn BINARY="$dir/arman-vpn-core" \
+  if ! $SUDO env ${SERVICE_ENV[@]+"${SERVICE_ENV[@]}"} SELF=vista-vpn BINARY="$dir/vista-vpn-core" \
     bash "$dir/install-systemd.sh" install >"$tmp/service.log" 2>&1; then
     cat "$tmp/service.log" >&2
     die "installing the service failed"
@@ -364,12 +364,12 @@ install_server() {
   # The command's name before 1.0.9; the service took the new names.
   if [ -f "$LEGACY_COMMAND" ]; then
     $SUDO rm -f "$LEGACY_COMMAND"
-    log "the command is arman-vpn now (it was $LEGACY_ID)"
+    log "the command is vista-vpn now (it was $LEGACY_ID)"
   fi
   ok "the service runs, and starts with the server"
 
   if [ "$fresh" = 0 ]; then
-    printf '\n  %s%s Arman VPN is updated and running.%s\n' "$GREEN$BOLD" "$TICK" "$OFF"
+    printf '\n  %s%s Vista VPN is updated and running.%s\n' "$GREEN$BOLD" "$TICK" "$OFF"
     log "The panel and the proxy keep their addresses and logins."
     command_menu
     return
@@ -379,7 +379,7 @@ install_server() {
   step "Opening the panel and the proxy to the network"
   local out
   out="$($SUDO env ${SERVICE_ENV[@]+"${SERVICE_ENV[@]}"} bash "$COMMAND" setup-server "$user")" ||
-    die "setting up the logins failed; set them with: sudo arman-vpn panel"
+    die "setting up the logins failed; set them with: sudo vista-vpn panel"
   value() { printf '%s\n' "$out" | sed -n "s/^$1=//p"; }
   local panel_user panel_pass panel_port proxy_user proxy_pass proxy_port lan wan
   panel_user="$(value dashboard_username)"
@@ -393,7 +393,7 @@ install_server() {
   ok "each behind its own login"
   [ "$lan" != "$wan" ] || lan=""
 
-  printf '\n  %s%s Arman VPN is installed and running.%s\n' "$GREEN$BOLD" "$TICK" "$OFF"
+  printf '\n  %s%s Vista VPN is installed and running.%s\n' "$GREEN$BOLD" "$TICK" "$OFF"
   printf '  %s%s%s\n' "$DIM" "$(rule 58)" "$OFF"
   section "Proxy ${DIM}(SOCKS5 and HTTP)${OFF}"
   [ -z "$lan" ] || field "Local" "$lan:$proxy_port" "$CYAN"
@@ -413,31 +413,31 @@ install_server() {
   command_menu
 }
 
-# command_menu: what the arman-vpn command does on this server.
+# command_menu: what the vista-vpn command does on this server.
 command_menu() {
   local width=58
-  section "Arman VPN commands"
+  section "Vista VPN commands"
   printf '  %s%s%s\n' "$DIM" "$(rule $width)" "$OFF"
-  # In the groups of the arman-vpn menu, a rule between them.
-  menu_line "arman-vpn" "The menu: pick a command by its number"
+  # In the groups of the vista-vpn menu, a rule between them.
+  menu_line "vista-vpn" "The menu: pick a command by its number"
   printf '  %s%s%s\n' "$DIM" "$(rule $width)" "$OFF"
-  menu_line "arman-vpn update" "Update"
-  menu_line "arman-vpn uninstall" "Uninstall"
+  menu_line "vista-vpn update" "Update"
+  menu_line "vista-vpn uninstall" "Uninstall"
   printf '  %s%s%s\n' "$DIM" "$(rule $width)" "$OFF"
-  menu_line "arman-vpn panel" "Set panel login"
-  menu_line "arman-vpn panel-info" "View panel info"
+  menu_line "vista-vpn panel" "Set panel login"
+  menu_line "vista-vpn panel-info" "View panel info"
   printf '  %s%s%s\n' "$DIM" "$(rule $width)" "$OFF"
-  menu_line "arman-vpn status" "The service's state"
-  menu_line "arman-vpn start" "Start the service"
-  menu_line "arman-vpn stop" "Stop the service"
-  menu_line "arman-vpn restart" "Restart the service"
-  menu_line "arman-vpn logs" "Show the log"
+  menu_line "vista-vpn status" "The service's state"
+  menu_line "vista-vpn start" "Start the service"
+  menu_line "vista-vpn stop" "Stop the service"
+  menu_line "vista-vpn restart" "Restart the service"
+  menu_line "vista-vpn logs" "Show the log"
   printf '  %s%s%s\n' "$DIM" "$(rule $width)" "$OFF"
-  menu_line "arman-vpn enable" "Enable autostart"
-  menu_line "arman-vpn disable" "Disable autostart"
+  menu_line "vista-vpn enable" "Enable autostart"
+  menu_line "vista-vpn disable" "Disable autostart"
   printf '  %s%s%s\n' "$DIM" "$(rule $width)" "$OFF"
-  menu_line "arman-vpn add-account" "Add a Firefox Account"
-  menu_line "arman-vpn list-accounts" "List the accounts"
+  menu_line "vista-vpn add-account" "Add a Firefox Account"
+  menu_line "vista-vpn list-accounts" "List the accounts"
   printf '  %s%s%s\n' "$DIM" "$(rule $width)" "$OFF"
   printf '\n'
 }
@@ -451,7 +451,7 @@ menu_line() { printf '  %s%-33s%s %s\n' "$CYAN" "$1" "$OFF" "$2"; }
 # or when either fails, the install goes on: the tray library is named,
 # and the app asks for the service the first time TUN mode is chosen.
 linux_system_parts() {
-  local pkg="" install="" tun="$APP_DIR/core/arman-vpn-tun" want_tun=0
+  local pkg="" install="" tun="$APP_DIR/core/vista-vpn-tun" want_tun=0
   if ! { ldconfig -p 2>/dev/null | grep -qE 'lib(ayatana-)?appindicator3\.so'; }; then
     if command -v apt-get >/dev/null 2>&1; then
       install="apt-get install -y" pkg=libayatana-appindicator3-1
@@ -503,25 +503,25 @@ linux_system_parts() {
 install_linux_app() {
   local file
   [ "$(arch)" != armv7 ] || die "the app has no 32-bit ARM build; install the service: curl -fsSL $RAW | bash -s -- server"
-  file="Arman-VPN-Linux-$(arch).tar.gz"
+  file="Vista-VPN-Linux-$(arch).tar.gz"
   download "$file"
   tar -xzf "$tmp/$file" -C "$tmp"
-  [ -f "$tmp/arman-vpn/arman-vpn" ] || die "not an Arman VPN archive"
-  chmod 0755 "$tmp/arman-vpn/arman-vpn" "$tmp/arman-vpn/core/arman-vpn-core"
-  if [ -f "$tmp/arman-vpn/core/arman-vpn-tun" ]; then chmod 0755 "$tmp/arman-vpn/core/arman-vpn-tun"; fi
+  [ -f "$tmp/vista-vpn/vista-vpn" ] || die "not an Vista VPN archive"
+  chmod 0755 "$tmp/vista-vpn/vista-vpn" "$tmp/vista-vpn/core/vista-vpn-core"
+  if [ -f "$tmp/vista-vpn/core/vista-vpn-tun" ]; then chmod 0755 "$tmp/vista-vpn/core/vista-vpn-tun"; fi
 
   # A running copy keeps its open files; the new one replaces the folder.
   mkdir -p "$(dirname "$APP_DIR")"
   rm -rf "$APP_DIR.old"
   if [ -d "$APP_DIR" ]; then mv "$APP_DIR" "$APP_DIR.old"; fi
-  mv "$tmp/arman-vpn" "$APP_DIR"
+  mv "$tmp/vista-vpn" "$APP_DIR"
   rm -rf "$APP_DIR.old"
   # The app under its name before 1.0.9: the new one takes its place (and
   # its data folder, at its first start), and its autostart entry.
   rm -rf "$LEGACY_APP_DIR" "$LEGACY_APP_DIR.old"
   if [ -f "$LEGACY_AUTOSTART" ]; then
-    sed -e "s|$LEGACY_APP_EXE|$APP_DIR/arman-vpn|g" -e "s|$LEGACY_APP_DIR/|$APP_DIR/|g" \
-      -e "s|^Name=$LEGACY_NAME\$|Name=Arman VPN|" "$LEGACY_AUTOSTART" >"$AUTOSTART_FILE"
+    sed -e "s|$LEGACY_APP_EXE|$APP_DIR/vista-vpn|g" -e "s|$LEGACY_APP_DIR/|$APP_DIR/|g" \
+      -e "s|^Name=$LEGACY_NAME\$|Name=Vista VPN|" "$LEGACY_AUTOSTART" >"$AUTOSTART_FILE"
     rm -f "$LEGACY_AUTOSTART"
   fi
 
@@ -529,13 +529,13 @@ install_linux_app() {
   cat >"$DESKTOP_FILE" <<EOF
 [Desktop Entry]
 Type=Application
-Name=Arman VPN
+Name=Vista VPN
 Comment=Free VPN through Mozilla's servers
-Exec="$APP_DIR/arman-vpn"
+Exec="$APP_DIR/vista-vpn"
 Icon=$APP_DIR/data/app_icon.png
 Terminal=false
 Categories=Network;
-StartupWMClass=com.arman.firefoxvpn
+StartupWMClass=com.vista.vpn
 EOF
   if command -v update-desktop-database >/dev/null 2>&1; then
     update-desktop-database -q "$(dirname "$DESKTOP_FILE")" || true
@@ -543,10 +543,10 @@ EOF
 
   ok "installed in $APP_DIR"
   linux_system_parts
-  printf '\n  %s%s Arman VPN is installed.%s\n' "$GREEN$BOLD" "$TICK" "$OFF"
+  printf '\n  %s%s Vista VPN is installed.%s\n' "$GREEN$BOLD" "$TICK" "$OFF"
   section "Open it"
-  field "Menu" "Arman VPN in the applications menu"
-  field "Command" "$APP_DIR/arman-vpn" "$CYAN"
+  field "Menu" "Vista VPN in the applications menu"
+  field "Command" "$APP_DIR/vista-vpn" "$CYAN"
   field "Update" "run the same install command again (it also removes)"
   printf '\n'
 }
@@ -555,32 +555,32 @@ EOF
 # writable). Downloaded this way it carries no quarantine flag, so macOS
 # opens it without asking.
 install_mac_app() {
-  local file="Arman-VPN-macOS.dmg" dest=/Applications
+  local file="Vista-VPN-macOS.dmg" dest=/Applications
   [ -w "$dest" ] || dest="$HOME/Applications"
   mkdir -p "$dest"
   download "$file"
   mkdir "$tmp/mnt"
   hdiutil attach -nobrowse -readonly -quiet -mountpoint "$tmp/mnt" "$tmp/$file" || die "could not open $file"
   mounted="$tmp/mnt"
-  [ -d "$tmp/mnt/$MAC_APP" ] || die "not an Arman VPN disk image"
+  [ -d "$tmp/mnt/$MAC_APP" ] || die "not an Vista VPN disk image"
   # A running copy quits first, so the new one replaces it; so does the
   # app under its name before 1.0.9, which an update may have kept.
-  osascript -e 'quit app "Arman VPN"' >/dev/null 2>&1 || true
+  osascript -e 'quit app "Vista VPN"' >/dev/null 2>&1 || true
   osascript -e "quit app \"$LEGACY_NAME\"" >/dev/null 2>&1 || true
   rm -rf "$dest/$MAC_APP" "$dest/$LEGACY_MAC_APP"
   ditto "$tmp/mnt/$MAC_APP" "$dest/$MAC_APP"
   # The app's LaunchAgent (starting it at sign-in) starts the new one until
   # the app writes it again.
   if [ -f "$MAC_AGENT" ]; then
-    sed -i '' -e "s|$dest/$LEGACY_MAC_APP/Contents/MacOS/$LEGACY_NAME|$dest/$MAC_APP/Contents/MacOS/Arman VPN|g" \
+    sed -i '' -e "s|$dest/$LEGACY_MAC_APP/Contents/MacOS/$LEGACY_NAME|$dest/$MAC_APP/Contents/MacOS/Vista VPN|g" \
       -e "s|$dest/$LEGACY_MAC_APP/|$dest/$MAC_APP/|g" "$MAC_AGENT" || true
   fi
   hdiutil detach -quiet "$tmp/mnt" || true
   mounted=""
   ok "installed in $dest/$MAC_APP"
-  printf '\n  %s%s Arman VPN is installed.%s\n' "$GREEN$BOLD" "$TICK" "$OFF"
+  printf '\n  %s%s Vista VPN is installed.%s\n' "$GREEN$BOLD" "$TICK" "$OFF"
   section "Open it"
-  field "Launchpad" "Arman VPN in Launchpad or Applications"
+  field "Launchpad" "Vista VPN in Launchpad or Applications"
   field "Command" "open \"$dest/$MAC_APP\"" "$CYAN"
   field "Update" "run the same install command again (it also removes)"
   printf '\n'
@@ -611,7 +611,7 @@ remove_desktop() {
     fi
   fi
   if [ "$OS" = "Darwin" ]; then
-    osascript -e 'quit app "Arman VPN"' >/dev/null 2>&1 || true
+    osascript -e 'quit app "Vista VPN"' >/dev/null 2>&1 || true
     osascript -e "quit app \"$LEGACY_NAME\"" >/dev/null 2>&1 || true
     rm -rf "/Applications/$MAC_APP" "$HOME/Applications/$MAC_APP" \
       "/Applications/$LEGACY_MAC_APP" "$HOME/Applications/$LEGACY_MAC_APP"
@@ -653,7 +653,7 @@ detect() {
 }
 
 # auto: with no argument, find what to do: install what the machine needs,
-# or, when Arman VPN is already there, update it or remove it.
+# or, when Vista VPN is already there, update it or remove it.
 auto() {
   local n installed=1
   # A Linux machine without a graphical session gets the service, which
@@ -662,7 +662,7 @@ auto() {
     need_root
   fi
   if has_app && has_service; then
-    n="$(choose 1 "Arman VPN is installed both as the app and as the service. Which one?"       "the app" "the service with the web panel")"
+    n="$(choose 1 "Vista VPN is installed both as the app and as the service. Which one?"       "the app" "the service with the web panel")"
     if [ "$n" = 1 ]; then KIND=desktop; else KIND=server; fi
   elif has_app; then
     KIND=desktop
@@ -685,7 +685,7 @@ auto() {
   if [ "$installed" = 1 ]; then
     local what="the app"
     [ "$KIND" = desktop ] || what="the service"
-    n="$(choose 1 "Arman VPN ($what) is already installed." "update to the newest version" "remove it")"
+    n="$(choose 1 "Vista VPN ($what) is already installed." "update to the newest version" "remove it")"
     if [ "$n" = 2 ]; then
       n="$(choose 1 "Delete its accounts and settings too?" "no, keep them" "yes, delete them")"
       [ "$n" = 1 ] || PURGE=1

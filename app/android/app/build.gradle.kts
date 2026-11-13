@@ -15,7 +15,7 @@ val releaseKey = Properties().apply {
 }
 
 android {
-    namespace = "com.arman.firefoxvpn"
+    namespace = "com.vista.vpn"
     compileSdk = flutter.compileSdkVersion
     // The NDK installed here (Flutter's default, 28.x, is not).
     ndkVersion = "30.0.16248370"
@@ -45,7 +45,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.arman.firefoxvpn"
+        applicationId = "com.vista.vpn"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         // The core's aar is built for API 24 (gomobile bind -androidapi 24).
@@ -63,7 +63,7 @@ android {
                 // REV_ID: its version, which it would ask Git for.
                 arguments += listOf("REV_ID=2.19.3", "APP_SUPPORT_FLEXIBLE_PAGE_SIZES=true")
                 // The class its native methods bind to.
-                cFlags += listOf("-O3", "-DPKGNAME=com/arman/firefoxvpn", "-DCLSNAME=Tun2Socks")
+                cFlags += listOf("-O3", "-DPKGNAME=com/vista/vpn", "-DCLSNAME=Tun2Socks")
             }
         }
     }
@@ -113,4 +113,6 @@ dependencies {
     // ProxyController: the browser sign-in's WebView uses the core's
     // sign-in proxy. The version webview_flutter_android itself uses.
     implementation("androidx.webkit:webkit:1.15.0")
+    // Scoped content URIs for passing a verified APK to Android Package Installer.
+    implementation("androidx.core:core:1.15.0")
 }

@@ -6,11 +6,11 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/tunapi"
+	"github.com/thisisvista/vista-vpn/core/internal/tunapi"
 )
 
 // InstallDir is the installed service's folder.
-const InstallDir = "/opt/arman-vpn-tun"
+const InstallDir = "/opt/vista-vpn-tun"
 
 const unitName = tunapi.ServiceName + ".service"
 
@@ -18,8 +18,8 @@ const unitName = tunapi.ServiceName + ".service"
 // a crash and after an update (which ends it); an uninstall stops it for
 // good (stopForGood).
 const unit = `[Unit]
-Description=Arman VPN TUN
-Documentation=https://github.com/armanlife/arman-vpn-client
+Description=Vista VPN TUN
+Documentation=https://github.com/thisisvista/vista-vpn
 After=network.target
 
 [Service]

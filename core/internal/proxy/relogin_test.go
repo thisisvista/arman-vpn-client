@@ -7,7 +7,7 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/accounts"
+	"github.com/thisisvista/vista-vpn/core/internal/accounts"
 )
 
 func TestGuardianRejectsRefreshedTokenWithoutSigningIn(t *testing.T) {

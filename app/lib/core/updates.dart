@@ -78,14 +78,14 @@ String apkName(String abi) =>
 String windowsName({required bool installed}) =>
     installed ? 'Windows-Setup-x64.exe' : 'Windows-x64.zip';
 
-/// The file `Arman-VPN-<version>-[name]` in the release whose page is
+/// The file `Vista-VPN-<version>-[name]` in the release whose page is
 /// [releaseUrl] (".../releases/tag/v1.2.3"): its versioned name, so the
 /// downloaded file says which version it is.
 String releaseFileUrl(String releaseUrl, String name) {
   final tag = releaseUrl.substring(releaseUrl.lastIndexOf('/') + 1);
   final version = tag.replaceFirst(RegExp('^[vV]'), '');
   return '${releaseUrl.replaceFirst('/releases/tag/', '/releases/download/')}'
-      '/Arman-VPN-$version-$name';
+      '/Vista-VPN-$version-$name';
 }
 
 /// The APK for processor [abi] in the release whose page is [releaseUrl].
@@ -131,6 +131,9 @@ abstract final class Updates {
   /// Why the app's last request to install failed, when the core could not
   /// say it in its status.
   static final failure = ValueNotifier<String?>(null);
+
+  /// Android is downloading and validating an APK before opening the installer.
+  static final installingApk = ValueNotifier<bool>(false);
 
   /// The notice of what the last update did was closed.
   static final resultSeen = ValueNotifier<bool>(false);
@@ -205,6 +208,7 @@ abstract final class Updates {
     announcements.value = null;
     installingAtStart.value = false;
     failure.value = null;
+    installingApk.value = false;
     resultSeen.value = false;
     quitApp = null;
     windowHidden = () => false;
@@ -248,6 +252,8 @@ abstract final class Updates {
 
   /// With automatic updates, downloads the version found (once per run).
   static void _downloadInBackground() {
+    // Android installs APKs through its package installer, not the Go updater.
+    if (Platform.isAndroid) return;
     final core = _core, settings = _settings;
     final release = available.value;
     final update = core?.status?.update;
@@ -282,6 +288,21 @@ abstract final class Updates {
     final core = _core;
     if (core == null) return;
     failure.value = null;
+    if (Platform.isAndroid) {
+      installingApk.value = true;
+      try {
+        final url = await downloadUrl(release, os: 'android');
+        final started = await AndroidCore.installApk(url);
+        if (!started) {
+          failure.value = 'Android did not open the package installer';
+        }
+      } on Exception catch (e) {
+        failure.value = '$e';
+      } finally {
+        installingApk.value = false;
+      }
+      return;
+    }
     final current = core.status?.update;
     if (current != null &&
         current.ready &&

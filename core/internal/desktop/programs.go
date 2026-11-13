@@ -4,15 +4,15 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/service"
-	"github.com/armanlife/arman-vpn-client/core/internal/tunapi"
+	"github.com/thisisvista/vista-vpn/core/internal/service"
+	"github.com/thisisvista/vista-vpn/core/internal/tunapi"
 )
 
 // ownPrograms are this app's own executables, which never skip the VPN by
 // choice.
 var ownPrograms = map[string]bool{
-	"arman-vpn.exe": true, "arman-vpn-core.exe": true, "arman-vpn-tun.exe": true,
-	"arman-vpn": true, "arman-vpn-core": true, "arman-vpn-tun": true,
+	"vista-vpn.exe": true, "vista-vpn-core.exe": true, "vista-vpn-tun.exe": true,
+	"vista-vpn": true, "vista-vpn-core": true, "vista-vpn-tun": true,
 }
 
 // runningPrograms are the programs running on this computer, for the TUN

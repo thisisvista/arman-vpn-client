@@ -9,7 +9,6 @@
 
 #include "flutter_window.h"
 #include "gpu.h"
-#include "legacy.h"
 #include "utils.h"
 
 namespace {
@@ -64,13 +63,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   // plugins.
   ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
 
-  // The copy under the old name, which an update of a version before 1.0.9
-  // started: the app under the new name takes over.
-  if (legacy::HandOff(command_line ? command_line : L"")) {
-    ::CoUninitialize();
-    return EXIT_SUCCESS;
-  }
-
   std::vector<std::string> command_line_arguments =
       GetCommandLineArguments();
 
@@ -97,7 +89,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
     ::CoUninitialize();
     return EXIT_SUCCESS;
   }
-  legacy::Migrate();
   // Started by Windows at sign-in, or by an update of a copy that was in
   // the tray: stay in the tray.
   const bool start_hidden = HasArgument(command_line_arguments, "--autostart") ||
@@ -108,7 +99,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   FlutterWindow window(project, static_cast<WPARAM>(std::stoul(key)), start_hidden);
   Win32Window::Size size(820, 680);
   Win32Window::Point origin = CenteredOrigin(size);
-  if (!window.Create(L"Arman VPN", origin, size)) {
+  if (!window.Create(L"Vista VPN", origin, size)) {
     return EXIT_FAILURE;
   }
   window.SetQuitOnClose(true);

@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
 )
 
 // exitWait bounds the wait for the app and the core to exit.
@@ -66,7 +66,6 @@ func Apply(dataDir string) error {
 		logx.Error("update: failed err=%s", logx.Err(err))
 	} else {
 		logx.Info("update: installed version=%s", p.To)
-		appDir = relocate(appDir)
 		// What the system keeps about the app: Windows' list of installed
 		// apps shows the new version of a copy Setup installed; on macOS
 		// the bundle loses the mark of a downloaded app.

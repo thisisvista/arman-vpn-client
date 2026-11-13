@@ -11,7 +11,7 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/tunapi"
+	"github.com/thisisvista/vista-vpn/core/internal/tunapi"
 )
 
 // ownerPath is the executable of the program whose socket has source as

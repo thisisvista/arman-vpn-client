@@ -7,11 +7,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/egress"
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
-	"github.com/armanlife/arman-vpn-client/core/internal/tun"
-	"github.com/armanlife/arman-vpn-client/core/internal/tunapi"
-	"github.com/armanlife/arman-vpn-client/core/internal/tunstack"
+	"github.com/thisisvista/vista-vpn/core/internal/egress"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/tun"
+	"github.com/thisisvista/vista-vpn/core/internal/tunapi"
+	"github.com/thisisvista/vista-vpn/core/internal/tunstack"
 )
 
 // UDP in the TUN: a flow is one app port's packets. Its program may skip the

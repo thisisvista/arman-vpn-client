@@ -16,10 +16,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
-	"github.com/armanlife/arman-vpn-client/core/internal/tunapi"
-	"github.com/armanlife/arman-vpn-client/core/internal/tunstack"
-	"github.com/armanlife/arman-vpn-client/core/internal/version"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/tunapi"
+	"github.com/thisisvista/vista-vpn/core/internal/tunstack"
+	"github.com/thisisvista/vista-vpn/core/internal/version"
 )
 
 // The installed service lives in a folder only root may write to
@@ -143,7 +143,6 @@ func Install(uid string) error {
 	if err := stopInstalled(); err != nil {
 		return err
 	}
-	removeLegacy()
 	if err := os.MkdirAll(filepath.Join(dir, "logs"), 0o755); err != nil {
 		return err
 	}
@@ -183,7 +182,6 @@ func Uninstall() error {
 	if err := removeFolder(InstallDir); err != nil {
 		return err
 	}
-	removeLegacy()
 	return stopErr
 }
 

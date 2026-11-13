@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/accounts"
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/accounts"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
 )
 
 func TestReconcileAccountOrder(t *testing.T) {

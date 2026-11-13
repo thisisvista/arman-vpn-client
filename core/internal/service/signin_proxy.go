@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/controlplane"
-	"github.com/armanlife/arman-vpn-client/core/internal/logx"
-	"github.com/armanlife/arman-vpn-client/core/internal/signinproxy"
+	"github.com/thisisvista/vista-vpn/core/internal/controlplane"
+	"github.com/thisisvista/vista-vpn/core/internal/logx"
+	"github.com/thisisvista/vista-vpn/core/internal/signinproxy"
 )
 
 // signInProxy holds the browser sign-in's proxy (package signinproxy):

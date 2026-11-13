@@ -11,9 +11,9 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/accounts"
-	"github.com/armanlife/arman-vpn-client/core/internal/fxa"
-	"github.com/armanlife/arman-vpn-client/core/internal/guardian"
+	"github.com/thisisvista/vista-vpn/core/internal/accounts"
+	"github.com/thisisvista/vista-vpn/core/internal/fxa"
+	"github.com/thisisvista/vista-vpn/core/internal/guardian"
 )
 
 // Failure codes say why a connection through Mozilla failed, so the apps

@@ -1,6 +1,6 @@
 <div dir="rtl">
 
-# آموزش ساخت رله برای Arman VPN
+# آموزش ساخت رله برای Vista VPN
 
 **برای کاربران داخل ایران که خطای `HTTP 451: unavailable_in_region` می‌بینن.**
 
@@ -58,7 +58,7 @@ https://YOUR-WORKER.YOUR-ACCOUNT.workers.dev/?secret=YOUR_SECRET&health=1
 باید این جواب رو ببینی:
 
 ```json
-{"relay":"arman-vpn","version":1,"ready":true}
+{"relay":"vista-vpn","version":1,"ready":true}
 ```
 
 این بررسی فقط از خود ورکر جواب می‌گیره و درخواستی به موزیلا نمی‌فرسته.

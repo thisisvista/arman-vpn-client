@@ -69,7 +69,7 @@ abstract final class CoreLocator {
   static const _defaultPort = 10820;
 
   /// The folder name under the per-user data location (macOS).
-  static const appFolder = 'Arman VPN';
+  static const appFolder = 'Vista VPN';
 
   /// The file next to the app that makes it portable: its data stays in
   /// `user-data` beside it instead of the per-user location.
@@ -103,7 +103,7 @@ abstract final class CoreLocator {
   };
 
   /// The folder name under the per-user data location (Linux).
-  static const linuxFolder = 'arman-vpn';
+  static const linuxFolder = 'vista-vpn';
 
   /// Moves the data folder of a version before 1.0.9 to [dir] when only the
   /// old one exists (the core does the same: MoveLegacyDataDir in
@@ -549,7 +549,7 @@ class CoreApi {
       final disposition = res.headers.value('content-disposition') ?? '';
       final name =
           RegExp(r'filename="([^"]+)"').firstMatch(disposition)?.group(1) ??
-          'Arman-VPN-backup.zip';
+          'Vista-VPN-backup.zip';
       return (name: name, bytes: bytes);
     } on SocketException catch (e) {
       throw CoreUnavailable(

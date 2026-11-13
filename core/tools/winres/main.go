@@ -1,11 +1,11 @@
 // Command winres writes the Windows resources of an executable (its icon,
 // version information, and application manifest) as .syso objects that go
-// build links into the package in the current folder: ./cmd/arman-vpn-core,
-// or with -program tun ./cmd/arman-vpn-tun. scripts/build-windows.ps1 runs
+// build links into the package in the current folder: ./cmd/vista-vpn-core,
+// or with -program tun ./cmd/vista-vpn-tun. scripts/build-windows.ps1 runs
 // it before each build with the release version in APP_VERSION (else
 // version.Current):
 //
-//	APP_VERSION=1.1.0 go generate ./cmd/arman-vpn-core ./cmd/arman-vpn-tun
+//	APP_VERSION=1.1.0 go generate ./cmd/vista-vpn-core ./cmd/vista-vpn-tun
 //
 // The objects are build output, not kept in Git; a build without them has
 // no icon, version information, or manifest.
@@ -20,18 +20,18 @@ import (
 	"github.com/tc-hib/winres"
 	winversion "github.com/tc-hib/winres/version"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/desktop"
-	"github.com/armanlife/arman-vpn-client/core/internal/version"
+	"github.com/thisisvista/vista-vpn/core/internal/desktop"
+	"github.com/thisisvista/vista-vpn/core/internal/version"
 )
 
 // program is what each executable's version information says.
 type program struct{ description, name string }
 
 var programs = map[string]program{
-	"core": {"Arman VPN Core", "arman-vpn-core"},
+	"core": {"Vista VPN Core", "vista-vpn-core"},
 	// The administrator prompt shows this description when the app
 	// installs the service.
-	"tun": {"Arman VPN TUN", "arman-vpn-tun"},
+	"tun": {"Vista VPN TUN", "vista-vpn-tun"},
 }
 
 func main() {
@@ -67,13 +67,13 @@ func run(p program) error {
 	vi.SetFileVersion(release)
 	vi.SetProductVersion(release)
 	for key, value := range map[string]string{
-		winversion.ProductName:      "Arman VPN",
+		winversion.ProductName:      "Vista VPN",
 		winversion.FileDescription:  p.description,
 		winversion.OriginalFilename: p.name + ".exe",
 		winversion.InternalName:     p.name,
 		// The publisher, as in the installer (AppPublisher) and the app.
-		winversion.CompanyName:    "Arman",
-		winversion.LegalCopyright: "Copyright (c) 2026 Arman",
+		winversion.CompanyName:    "Vista",
+		winversion.LegalCopyright: "Copyright (c) 2026 Vista",
 	} {
 		if err := vi.Set(winversion.LangDefault, key, value); err != nil {
 			return err

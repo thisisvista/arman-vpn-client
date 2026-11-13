@@ -1,4 +1,4 @@
-module github.com/armanlife/arman-vpn-client/core
+module github.com/thisisvista/vista-vpn/core
 
 go 1.27.2
 

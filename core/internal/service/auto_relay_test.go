@@ -16,9 +16,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/armanlife/arman-vpn-client/core/internal/config"
-	"github.com/armanlife/arman-vpn-client/core/internal/controlplane"
-	"github.com/armanlife/arman-vpn-client/core/internal/guardian"
+	"github.com/thisisvista/vista-vpn/core/internal/config"
+	"github.com/thisisvista/vista-vpn/core/internal/controlplane"
+	"github.com/thisisvista/vista-vpn/core/internal/guardian"
 )
 
 func TestAutomaticRelayKeepsCustomControlPlaneIsolated(t *testing.T) {
@@ -38,7 +38,7 @@ func TestAutomaticRelayKeepsCustomControlPlaneIsolated(t *testing.T) {
 				io.WriteString(w, `{"relays":{"enabled":false,"urls":[]}}`)
 			}))
 			defer metadata.Close()
-			t.Setenv("ARMAN_VPN_UPDATE_SERVER", metadata.URL)
+			t.Setenv("VISTA_VPN_UPDATE_SERVER", metadata.URL)
 			fixture := auditRoundTripper(func(r *http.Request) (*http.Response, error) {
 				return coreResponse(r, http.StatusUnavailableForLegalReasons, `{"error":"fixture refusal"}`, nil), nil
 			})
@@ -149,7 +149,7 @@ func newRelayPoolFixture(t *testing.T) *relayPoolFixture {
 				status = 200
 			}
 			w.WriteHeader(status)
-			json.NewEncoder(w).Encode(map[string]any{"relay": "arman-vpn", "version": 1, "ready": status == 200})
+			json.NewEncoder(w).Encode(map[string]any{"relay": "vista-vpn", "version": 1, "ready": status == 200})
 			return
 		}
 		if r.URL.Query().Get("url") != "https://vpn.mozilla.org/api/v1/fpn/token" {
@@ -164,7 +164,7 @@ func newRelayPoolFixture(t *testing.T) *relayPoolFixture {
 		}
 		w.Header().Set("X-Quota-Limit", "5000")
 		if !f.bareResponse[r.URL.Path] {
-			w.Header().Set("X-Arman-Relay", "1")
+			w.Header().Set("X-Vista-Relay", "1")
 		}
 		w.Header().Set("X-Quota-Remaining", "4000")
 		w.Header().Set("X-Quota-Reset", "2026-12-01T00:00:00Z")
@@ -364,7 +364,7 @@ func TestAutomaticRelayQuotaFailureAfterSuccessfulHealthTriesNextWorker(t *testi
 }
 
 func TestAutomaticRelayUsesTheLocalUpdateServerManifest(t *testing.T) {
-	t.Setenv("ARMAN_VPN_UPDATE_SERVER", "http://127.0.0.1:18199/")
+	t.Setenv("VISTA_VPN_UPDATE_SERVER", "http://127.0.0.1:18199/")
 	pool := newAutomaticRelays(config.Network{})
 	if len(pool.manifestURLs) != 1 || pool.manifestURLs[0] != "http://127.0.0.1:18199/updates.json" {
 		t.Fatal("local release server did not supply the relay manifest")
