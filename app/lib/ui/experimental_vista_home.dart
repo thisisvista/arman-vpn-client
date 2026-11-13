@@ -121,6 +121,14 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                 : connected
                     ? const Color(0xFF10B981)
                     : const Color(0xFFF59E0B);
+    final failure = failureText(l, status.proxy, widget.core.lastTest);
+    final failureMessage = failure.code.isNotEmpty
+        ? failure.text
+        : status.connectFailure.isNotEmpty
+            ? failureCodeText(l, status.connectFailure)
+            : status.noNetwork && on
+                ? l.noNetwork
+                : '';
     final test = status.isCurrentTest(widget.core.lastTest)
         ? widget.core.lastTest
         : null;
@@ -312,16 +320,21 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                                 color: Colors.transparent,
                                 shape: const CircleBorder(),
                                 clipBehavior: Clip.antiAlias,
-                                child: InkWell(
-                                  onTap: widget.core.switchingProxy
-                                      ? null
-                                      : () => _toggle(status, on),
-                                  child: Center(
+                                child: Tooltip(
+                                  message: on
+                                      ? l.tapToDisconnectPhone
+                                      : l.tapToConnectPhone,
+                                  child: InkWell(
+                                    onTap: widget.core.switchingProxy
+                                        ? null
+                                        : () => _toggle(status, on),
+                                    child: Center(
                                     child: VistaCircuitMark(
                                       size: 128,
                                       color: on
                                           ? const Color(0xFFFFFFFF)
                                           : const Color(0xFFE5E7EB),
+                                    ),
                                     ),
                                   ),
                                 ),
@@ -429,11 +442,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              selectionLower == 'fastest'
-                                  ? l.modeFastest
-                                  : selectionLower.isEmpty
-                                      ? l.recommendedLocation
-                                      : l.navServers,
+                              l.navServers,
                               style: baseText.labelSmall?.copyWith(
                                 color: muted,
                                 fontWeight: FontWeight.w600,
@@ -512,13 +521,10 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                     ],
                   ),
                 ),
-                if (status.connectFailure.isNotEmpty ||
-                    (status.noNetwork && on)) ...[
+                if (failureMessage.isNotEmpty) ...[
                   const SizedBox(height: 12),
                   Text(
-                    status.noNetwork && on
-                        ? l.noNetwork
-                        : failureCodeText(l, status.connectFailure),
+                    failureMessage,
                     textAlign: TextAlign.center,
                     style: baseText.bodySmall?.copyWith(
                       color: const Color(0xFFEF6475),
