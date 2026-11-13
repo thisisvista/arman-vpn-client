@@ -619,6 +619,30 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
   }
 }
 
+class _ActionCard extends StatelessWidget {
+  const _ActionCard({required this.onTap, required this.child});
+
+  final VoidCallback onTap;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => Material(
+        color: const Color(0xFF14171F),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(18),
+          side: const BorderSide(color: Color(0x16FFFFFF)),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: child,
+          ),
+        ),
+      );
+}
+
 class _HeaderButton extends StatelessWidget {
   const _HeaderButton({required this.icon, required this.onTap});
 
