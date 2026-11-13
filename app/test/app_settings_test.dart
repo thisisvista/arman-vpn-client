@@ -114,7 +114,7 @@ void main() {
     expect(
       CoreProcess.executableFrom(const []),
       endsWith(
-        Platform.isWindows ? r'core\arman-vpn-core.exe' : 'core/arman-vpn-core',
+        Platform.isWindows ? r'core\vista-vpn-core.exe' : 'core/vista-vpn-core',
       ),
     );
   });
