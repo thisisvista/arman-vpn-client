@@ -2634,7 +2634,10 @@ void main() {
     expect(find.textContaining('192.0.2.7'), findsNothing);
     // The data used, in the ring and in large type; the email is not on
     // the phone's home.
-    expect(find.textContaining('40%'), findsOneWidget);
+    final quotaBar = tester.widget<LinearProgressIndicator>(
+      find.byType(LinearProgressIndicator),
+    );
+    expect(quotaBar.value, closeTo(0.4, 0.001));
     expect(find.text('Data used'), findsOneWidget);
     expect(find.textContaining('20.0 GB'), findsOneWidget);
     expect(find.textContaining('@example.com'), findsNothing);
