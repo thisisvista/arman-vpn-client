@@ -10,7 +10,7 @@ import 'about_page.dart';
 import 'announcement_panel.dart';
 import 'accounts_page.dart';
 import 'logs_page.dart';
-import 'overview_page.dart';
+import 'experimental_vista_home.dart';
 import 'servers_page.dart';
 import 'settings_page.dart';
 import 'widgets.dart';
@@ -114,14 +114,11 @@ class _MobileShellState extends State<MobileShell> {
     final page =
         widget.noCore ??
         (_tab == 0
-            ? OverviewPage(
+            ? ExperimentalVistaHome(
                 core: core,
-                settings: settings,
                 onOpenServers: openServers,
                 onOpenAccounts: openAccounts,
-                onOpenConnection: openConnection,
-                onOpenUpstreamProxy: openUpstreamProxy,
-                phone: true,
+                onOpenSettings: () => setState(() => _tab = 1),
               )
             : _readable(
                 _SettingsList(
