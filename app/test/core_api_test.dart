@@ -24,7 +24,7 @@ void main() {
             ..headers.contentType = ContentType('application', 'zip')
             ..headers.set(
               'Content-Disposition',
-              'attachment; filename="Arman-VPN-backup-2026-11-06_19-26-03.zip"',
+              'attachment; filename="Vista-VPN-backup-2026-11-06_19-26-03.zip"',
             )
             ..add([0x50, 0x4b, 0x03, 0x04]);
           await req.response.close();
@@ -199,7 +199,7 @@ void main() {
     test('saves and takes in a backup', () async {
       final file = await api.exportBackup();
       expect(seen['token'], 'secret-token');
-      expect(file.name, 'Arman-VPN-backup-2026-11-06_19-26-03.zip');
+      expect(file.name, 'Vista-VPN-backup-2026-11-06_19-26-03.zip');
       expect(file.bytes, [0x50, 0x4b, 0x03, 0x04]);
 
       final contents = await api.inspectBackup(file.bytes);
@@ -235,7 +235,7 @@ void main() {
       'passes manifest download metadata through the authenticated API',
       () async {
         final source = <String, Object?>{
-          'file': 'Arman-VPN-Windows-x64.zip',
+          'file': 'Vista-VPN-Windows-x64.zip',
           'url': 'https://cdn.example/package',
           'checksums_url': 'https://cdn.example/sums',
           'signature_url': 'https://cdn.example/signature',
@@ -308,14 +308,14 @@ void main() {
         Map<String, String>? env,
       }) => CoreLocator.dataDirFor(
         args: const [],
-        exeDir: r'D:\dist\Arman-VPN-1.3',
+        exeDir: r'D:\dist\Vista-VPN-1.3',
         portable: portable,
         env: env ?? {'LOCALAPPDATA': r'C:\Users\u\AppData\Local'},
         os: os,
       );
       // Windows: always beside the app.
-      expect(dir(), r'D:\dist\Arman-VPN-1.3\user-data');
-      expect(dir(portable: true), r'D:\dist\Arman-VPN-1.3\user-data');
+      expect(dir(), r'D:\dist\Vista-VPN-1.3\user-data');
+      expect(dir(portable: true), r'D:\dist\Vista-VPN-1.3\user-data');
       expect(
         dir(os: 'macos', env: {'HOME': '/Users/u'}),
         '/Users/u/Library/Application Support/Vista VPN',
