@@ -125,14 +125,20 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
         !confirming;
     final look = PhaseLook.of(l, status);
     final accent = !on
-        ? const Color(0xFFCBD0D8)
+        ? (isDark ? const Color(0xFF8D7AB8) : const Color(0xFFB8A2F5))
         : confirming
             ? const Color(0xFFFFB52E)
             : status.state.phase == Phase.error
                 ? const Color(0xFFEF6475)
                 : connected
-                    ? const Color(0xFF36DDB3)
+                    ? const Color(0xFF00FFC8)
                     : const Color(0xFFF59E0B);
+    final powerFill = connected
+        ? const Color(0xFF00FFC8)
+        : isDark
+            ? const Color(0xFF171C2B)
+            : Colors.white;
+    final powerMark = connected ? Colors.white : accent;
     final test = status.isCurrentTest(widget.core.lastTest)
         ? widget.core.lastTest
         : null;
@@ -229,16 +235,14 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                       width: 38,
                       height: 38,
                       decoration: BoxDecoration(
-                        color: isDark
-                            ? Colors.white.withValues(alpha: 0.055)
-                            : const Color(0xFFE8EDF5),
+                        color: Colors.black,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: border),
                       ),
                       child: const Center(
                         child: VistaCircuitMark(
                           size: 26,
-                          color: Color(0xFFE5E7EB),
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -285,21 +289,25 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                 shape: BoxShape.circle,
                                 gradient: RadialGradient(
                                   colors: [
-                                    accent.withValues(alpha: on ? 0.17 : 0.075),
+                                    accent.withValues(alpha: connected ? 0.16 : 0.055),
                                     accent.withValues(alpha: 0),
                                   ],
                                 ),
                               ),
                             ),
-                            for (final size in [174.0, 210.0, 246.0])
+                            for (final ring in [
+                              (size: 166.0, alpha: isDark ? 0.15 : 0.27),
+                              (size: 190.0, alpha: isDark ? 0.10 : 0.19),
+                              (size: 214.0, alpha: isDark ? 0.065 : 0.12),
+                            ])
                               Container(
-                                width: size,
-                                height: size,
+                                width: ring.size,
+                                height: ring.size,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     color: accent.withValues(
-                                      alpha: size == 174 ? 0.34 : 0.12,
+                                      alpha: connected ? ring.alpha * 1.15 : ring.alpha,
                                     ),
                                     width: 1,
                                   ),
@@ -328,25 +336,27 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                 gradient: LinearGradient(
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
-                                  colors: on
+                                  colors: connected
                                       ? [
-                                          Color.lerp(accent, Colors.white, 0.20)!,
-                                          accent,
-                                          Color.lerp(accent, Colors.black, 0.20)!,
+                                          Color.lerp(powerFill, Colors.white, 0.10)!,
+                                          powerFill,
+                                          Color.lerp(powerFill, Colors.black, 0.10)!,
                                         ]
-                                      : const [
-                                          Color(0xFF252A32),
-                                          Color(0xFF171C24),
+                                      : [
+                                          powerFill,
+                                          Color.lerp(powerFill, isDark ? const Color(0xFF22263A) : const Color(0xFFF5F2FF), 0.30)!,
                                         ],
                                 ),
                                 border: Border.all(
-                                  color: Colors.white.withValues(alpha: 0.20),
-                                  width: 1.2,
+                                  color: (isDark ? Colors.white : accent).withValues(
+                                  alpha: connected ? 0.28 : (isDark ? 0.10 : 0.22),
+                                ),
+                                width: 1.0,
                                 ),
                                 boxShadow: [
                                   BoxShadow(
                                     color: accent.withValues(
-                                      alpha: on ? 0.30 : 0.12,
+                                      alpha: connected ? 0.28 : (isDark ? 0.07 : 0.15),
                                     ),
                                     blurRadius: 38,
                                     spreadRadius: 1,
@@ -377,9 +387,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                         offset: const Offset(0, -7),
                                         child: VistaCircuitMark(
                                           size: 128,
-                                          color: on
-                                              ? const Color(0xFFFFFFFF)
-                                              : const Color(0xFFE5E7EB),
+                                          color: powerMark,
                                         ),
                                       ),
                                     ),
@@ -489,16 +497,31 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              recommendedSelection
-                                  ? 'Recommend location'
-                                  : selectionLower == 'fastest'
-                                      ? 'Fastest'
-                                      : l.navServers,
-                              style: baseText.labelSmall?.copyWith(
-                                color: muted,
-                                fontWeight: FontWeight.w600,
-                              ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                if (recommendedSelection || selectionLower == 'fastest') ...[
+                                  const Icon(
+                                    Icons.star_rounded,
+                                    size: 12,
+                                    color: Color(0xFF20B879),
+                                  ),
+                                  const SizedBox(width: 3),
+                                ],
+                                Text(
+                                  recommendedSelection
+                                      ? 'Recommend location'
+                                      : selectionLower == 'fastest'
+                                          ? 'Fastest'
+                                          : l.navServers,
+                                  style: baseText.labelSmall?.copyWith(
+                                    color: recommendedSelection || selectionLower == 'fastest'
+                                        ? const Color(0xFF20B879)
+                                        : muted,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
                             ),
                             const SizedBox(height: 3),
                             Text(
