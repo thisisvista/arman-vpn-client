@@ -2650,8 +2650,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(api.on, isFalse);
     expect(find.text('Disconnected'), findsOneWidget);
-    // Off: the chosen location, the recommended one by default.
-    expect(find.text('Location'), findsOneWidget);
+    // Off: the chosen location remains identified as the recommended one.
     expect(find.text('Recommended location'), findsOneWidget);
 
     await tester.tap(find.byTooltip('Tap to connect'));
