@@ -2448,7 +2448,7 @@ void main() {
         tester.widget<NavigationBar>(find.byType(NavigationBar)).selectedIndex,
         0,
       );
-      expect(find.text('Data used'), findsOneWidget);
+      expect(find.text('Vista '), findsOneWidget);
       expect(api.on, wasOn);
       await tester.pumpWidget(const SizedBox());
       core.dispose();
@@ -2533,7 +2533,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(popped, isTrue);
     expect(find.text('Network'), findsNothing);
-    expect(find.text('Data used'), findsOneWidget);
+    expect(find.text('Vista '), findsOneWidget);
 
     // Logs cleared stay cleared when the page opens again.
     await tester.tap(find.text('Settings'));
@@ -2627,11 +2627,8 @@ void main() {
     expect(find.textContaining('Brussels'), findsNothing);
     // No public IP on the phone's home.
     expect(find.textContaining('192.0.2.7'), findsNothing);
-    // The data used, in the ring and in large type; the email is not on
-    // the phone's home.
-    expect(find.textContaining('40%'), findsOneWidget);
-    expect(find.text('Data used'), findsOneWidget);
-    expect(find.textContaining('20.0 GB'), findsOneWidget);
+    // The home identifies the app and keeps the full account email private.
+    expect(find.text('Vista '), findsOneWidget);
     expect(find.textContaining('@example.com'), findsNothing);
     // Apps in the VPN trying refused ports are no news on the phone.
     expect(find.textContaining('5228'), findsNothing);
@@ -2688,7 +2685,7 @@ void main() {
 
     // No internet: the proxy runs, but the VPN does not claim to work.
     expect(find.text('Connecting…'), findsOneWidget);
-    expect(find.textContaining("Couldn't connect"), findsOneWidget);
+    expect(find.textContaining('No internet'), findsOneWidget);
     expect(find.text('Connected'), findsNothing);
 
     // The internet is back: the next test confirms it.
