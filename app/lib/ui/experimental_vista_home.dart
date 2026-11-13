@@ -179,9 +179,13 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
         : connected
             ? l.stateConnected
             : look.label;
-    if (confirming && !_floatController.isAnimating) {
+    // Respect the OS reduced-motion setting. Apart from accessibility,
+    // this keeps widget tests and devices with animations disabled settled.
+    final reduceMotion = MediaQuery.maybeOf(context)?.disableAnimations ?? false;
+    if (confirming && !reduceMotion && !_floatController.isAnimating) {
       _floatController.repeat();
-    } else if (!confirming && _floatController.isAnimating) {
+    } else if ((!confirming || reduceMotion) &&
+        _floatController.isAnimating) {
       _floatController.stop();
       _floatController.value = 0.5;
     }
