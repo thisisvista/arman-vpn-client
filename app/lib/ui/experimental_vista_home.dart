@@ -360,12 +360,17 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                         ? null
                                         : () => _toggle(status, on),
                                     child: Center(
-                                    child: VistaCircuitMark(
-                                      size: 128,
-                                      color: on
-                                          ? const Color(0xFFFFFFFF)
-                                          : const Color(0xFFE5E7EB),
-                                    ),
+                                      child: Transform.translate(
+                                        // The circuit artwork is optically a little
+                                        // lower than its canvas center.
+                                        offset: const Offset(0, -7),
+                                        child: VistaCircuitMark(
+                                          size: 128,
+                                          color: on
+                                              ? const Color(0xFFFFFFFF)
+                                              : const Color(0xFFE5E7EB),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
