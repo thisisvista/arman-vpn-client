@@ -91,15 +91,19 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
     final status = widget.core.status;
     final theme = Theme.of(context);
     final baseText = theme.textTheme;
-    const background = Color(0xFF0A1024);
-    const card = Color(0xFF1A1B32);
-    const border = Color(0x16FFFFFF);
-    const muted = Color(0xFF9CA3AF);
+    final isDark = theme.brightness == Brightness.dark;
+    final background = isDark ? const Color(0xFF0A1024) : const Color(0xFFF4F6FB);
+    final topBackground = isDark ? const Color(0xFF123348) : const Color(0xFFE8F1F7);
+    final card = isDark ? const Color(0xFF1A1B32) : Colors.white;
+    final border = isDark ? const Color(0x16FFFFFF) : const Color(0x180A1024);
+    final foreground = isDark ? Colors.white : const Color(0xFF172033);
+    final secondary = isDark ? const Color(0xFFB7C0D0) : const Color(0xFF536174);
+    final muted = isDark ? const Color(0xFF9CA3AF) : const Color(0xFF667085);
 
     if (status == null) {
-      return const ColoredBox(
+      return ColoredBox(
         color: background,
-        child: Center(child: CircularProgressIndicator()),
+        child: Center(child: CircularProgressIndicator(color: theme.colorScheme.primary)),
       );
     }
 
@@ -201,16 +205,16 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
             : l.tapToDisconnectPhone;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light.copyWith(
+      value: (isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark).copyWith(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.transparent,
       ),
       child: DecoratedBox(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: RadialGradient(
-            center: Alignment(0, -0.42),
+            center: const Alignment(0, -0.42),
             radius: 1.08,
-            colors: [Color(0xFF123348), background],
+            colors: [topBackground, background],
           ),
         ),
         child: SafeArea(
@@ -225,7 +229,9 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                       width: 38,
                       height: 38,
                       decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.055),
+                        color: isDark
+                            ? Colors.white.withValues(alpha: 0.055)
+                            : const Color(0xFFE8EDF5),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: border),
                       ),
@@ -240,7 +246,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                     Text(
                       'Vista ',
                       style: baseText.titleLarge?.copyWith(
-                        color: Colors.white,
+                        color: foreground,
                         fontWeight: FontWeight.w800,
                         letterSpacing: -0.4,
                       ),
@@ -248,7 +254,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                     Text(
                       'VPN',
                       style: baseText.titleLarge?.copyWith(
-                        color: const Color(0xFFB7C0D0),
+                        color: secondary,
                         fontWeight: FontWeight.w500,
                         letterSpacing: -0.4,
                       ),
@@ -570,7 +576,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                 child: LinearProgressIndicator(
                                   value: quotaProgress,
                                   minHeight: 5,
-                                  backgroundColor: Colors.white.withValues(alpha: 0.09),
+                                  backgroundColor: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.07),
                                   valueColor: const AlwaysStoppedAnimation(
                                     Color(0xFF58DDB8),
                                   ),
@@ -627,10 +633,16 @@ class _ActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-        color: const Color(0xFF1A1B32),
+        color: Theme.of(context).brightness == Brightness.dark
+            ? const Color(0xFF1A1B32)
+            : Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18),
-          side: const BorderSide(color: Color(0x16FFFFFF)),
+          side: BorderSide(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? const Color(0x16FFFFFF)
+                : const Color(0x180A1024),
+          ),
         ),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -651,10 +663,16 @@ class _HeaderButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-        color: Colors.white.withValues(alpha: 0.055),
+        color: Theme.of(context).brightness == Brightness.dark
+            ? Colors.white.withValues(alpha: 0.055)
+            : const Color(0xFFE8EDF5),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
-          side: const BorderSide(color: Color(0x16FFFFFF)),
+          side: BorderSide(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? const Color(0x16FFFFFF)
+                : const Color(0x180A1024),
+          ),
         ),
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
@@ -662,7 +680,13 @@ class _HeaderButton extends StatelessWidget {
           child: SizedBox(
             width: 42,
             height: 42,
-            child: Icon(icon, color: const Color(0xFFD1D5DB), size: 21),
+            child: Icon(
+              icon,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? const Color(0xFFD1D5DB)
+                  : const Color(0xFF536174),
+              size: 21,
+            ),
           ),
         ),
       );
