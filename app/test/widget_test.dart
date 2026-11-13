@@ -2650,8 +2650,8 @@ void main() {
     await tester.pumpAndSettle();
     expect(api.on, isFalse);
     expect(find.text('Disconnected'), findsOneWidget);
-    // Off: the chosen location remains identified as the recommended one.
-    expect(find.text('Recommended location'), findsOneWidget);
+    // Off: the location label appears in both the badge and the card title.
+    expect(find.text('Recommended location'), findsNWidgets(2));
 
     await tester.tap(find.byTooltip('Tap to connect'));
     await tester.pumpAndSettle();
