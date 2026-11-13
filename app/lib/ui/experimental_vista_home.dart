@@ -162,16 +162,10 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
         ? 'REC'
         : selection.toUpperCase();
     final account = status.activeAccount;
-    final accountTitle = account == null
-        ? l.navAccounts
-        : account.name.isNotEmpty && !account.name.contains('@')
-            ? account.name
-            : account.email.isNotEmpty
-                ? maskEmail(account.email)
-                : l.navAccounts;
-    final accountSubtitle = account?.email.isNotEmpty == true
-        ? maskEmail(account!.email)
-        : l.navAccounts;
+    final usage = account?.usage;
+    final quotaProgress = usage == null || usage.unlimited || usage.limitBytes <= 0
+        ? 0.0
+        : (usage.usedBytes / usage.limitBytes).clamp(0.0, 1.0);
     final stateLabel = confirming
         ? l.stateConnecting
         : connected
@@ -487,9 +481,9 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                           borderRadius: BorderRadius.circular(13),
                         ),
                         child: const Icon(
-                          Icons.all_inclusive_rounded,
+                          Icons.data_usage_rounded,
                           color: Color(0xFF34D399),
-                          size: 25,
+                          size: 24,
                         ),
                       ),
                       const SizedBox(width: 13),
@@ -498,23 +492,56 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              accountTitle,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
+                              l.dataUsedTitle,
                               style: baseText.titleSmall?.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            const SizedBox(height: 3),
-                            Text(
-                              accountSubtitle,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: baseText.bodySmall?.copyWith(
-                                color: muted,
+                            const SizedBox(height: 5),
+                            if (usage == null)
+                              Text(
+                                l.quotaNotRead,
+                                style: baseText.bodySmall?.copyWith(color: muted),
+                              )
+                            else if (usage.unlimited)
+                              Text(
+                                l.unlimited,
+                                style: baseText.bodySmall?.copyWith(color: muted),
+                              )
+                            else if (usage.limitBytes > 0) ...[
+                              Text(
+                                l.usedOf(
+                                  formatBytes(usage.usedBytes.clamp(0, usage.limitBytes)),
+                                  formatBytes(usage.limitBytes),
+                                ),
+                                style: baseText.bodySmall?.copyWith(color: muted),
                               ),
-                            ),
+                              const SizedBox(height: 8),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(99),
+                                child: LinearProgressIndicator(
+                                  value: quotaProgress,
+                                  minHeight: 5,
+                                  backgroundColor: Colors.white.withValues(alpha: 0.09),
+                                  valueColor: const AlwaysStoppedAnimation(
+                                    Color(0xFF34D399),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              Text(
+                                '${formatBytes(usage.remainingBytes.clamp(0, usage.limitBytes))} ${l.dataLeftOf(formatBytes(usage.limitBytes))}'
+                                '${usage.resetAt == null ? '' : ' · ${l.resets(formatDate(l, usage.resetAt!))}'}',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: baseText.bodySmall?.copyWith(color: muted),
+                              ),
+                            ] else
+                              Text(
+                                l.quotaNotRead,
+                                style: baseText.bodySmall?.copyWith(color: muted),
+                              ),
                           ],
                         ),
                       ),
