@@ -42,10 +42,10 @@ class CoreProcess {
     }
     final sep = Platform.pathSeparator;
     final dir = File(Platform.resolvedExecutable).parent.path;
-    if (Platform.isMacOS) return '$dir${sep}arman-vpn-core';
+    if (Platform.isMacOS) return '$dir${sep}vista-vpn-core';
     final name = Platform.isWindows
-        ? 'arman-vpn-core.exe'
-        : 'arman-vpn-core';
+        ? 'vista-vpn-core.exe'
+        : 'vista-vpn-core';
     return '$dir${sep}core$sep$name';
   }
 
