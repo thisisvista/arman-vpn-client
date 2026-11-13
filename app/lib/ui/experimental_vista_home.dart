@@ -177,7 +177,6 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
       ),
       child: DecoratedBox(
         decoration: const BoxDecoration(
-          color: background,
           gradient: RadialGradient(
             center: Alignment(0, -0.42),
             radius: 1.08,
@@ -432,7 +431,9 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                             Text(
                               selectionLower == 'fastest'
                                   ? l.modeFastest
-                                  : l.recommendedLocation,
+                                  : selectionLower.isEmpty
+                                      ? l.recommendedLocation
+                                      : l.navServers,
                               style: baseText.labelSmall?.copyWith(
                                 color: muted,
                                 fontWeight: FontWeight.w600,
