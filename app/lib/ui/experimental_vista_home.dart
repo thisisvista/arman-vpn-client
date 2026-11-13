@@ -127,7 +127,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
             : status.state.phase == Phase.error
                 ? const Color(0xFFEF6475)
                 : connected
-                    ? const Color(0xFF10B981)
+                    ? const Color(0xFF39E75F)
                     : const Color(0xFFF59E0B);
     final test = status.isCurrentTest(widget.core.lastTest)
         ? widget.core.lastTest
@@ -156,18 +156,22 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
             : delayColor(test.responseMs);
     final selection = status.selection.trim();
     final selectionLower = selection.toLowerCase();
-    final serverName = selection.isEmpty && connected &&
-            status.exit?.countryName.isNotEmpty == true
-        ? status.exit!.countryName
-        : status.selectionName.isNotEmpty
-            ? status.selectionName
+    final automaticSelection = selection.isEmpty || selectionLower == 'fastest';
+    final actualExit = connected ? status.exit : null;
+    final hasActualExit = actualExit?.countryName.isNotEmpty == true;
+    final serverName = automaticSelection && hasActualExit
+        ? actualExit!.countryName
+        : selectionLower == 'fastest'
+            ? l.modeFastest
             : selection.isEmpty
-                ? l.recommendedLocation
-                : selectionLower == 'fastest'
-                    ? l.modeFastest
+                ? (status.selectionName.isNotEmpty
+                    ? status.selectionName
+                    : l.recommendedLocation)
+                : status.selectionName.isNotEmpty
+                    ? status.selectionName
                     : locationName(l, selection, selection);
-    final flagCode = selection.isEmpty || selectionLower == 'fastest'
-        ? 'REC'
+    final flagCode = automaticSelection
+        ? (hasActualExit ? actualExit!.countryCode.toUpperCase() : 'REC')
         : selection.toUpperCase();
     final account = status.activeAccount;
     final usage = account?.usage;
