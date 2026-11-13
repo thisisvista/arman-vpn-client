@@ -123,7 +123,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
     final accent = !on
         ? const Color(0xFFCBD0D8)
         : confirming
-            ? const Color(0xFFF59E0B)
+            ? const Color(0xFFFFB52E)
             : status.state.phase == Phase.error
                 ? const Color(0xFFEF6475)
                 : connected
@@ -329,8 +329,8 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                           Color.lerp(accent, Colors.black, 0.20)!,
                                         ]
                                       : const [
-                                          Color(0xFF343944),
-                                          Color(0xFF171A21),
+                                          Color(0xFF252A32),
+                                          Color(0xFF171C24),
                                         ],
                                 ),
                                 border: Border.all(
