@@ -164,7 +164,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
     final account = status.activeAccount;
     final accountTitle = account == null
         ? l.navAccounts
-        : account.name.isNotEmpty
+        : account.name.isNotEmpty && !account.name.contains('@')
             ? account.name
             : account.email.isNotEmpty
                 ? maskEmail(account.email)
