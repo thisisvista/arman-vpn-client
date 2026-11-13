@@ -3,160 +3,94 @@
 [🇺🇸 English](../../README.md) &nbsp;/&nbsp; **🇮🇷 فارسی** &nbsp;/&nbsp; [🇨🇳 简体中文](README_zh.md) &nbsp;/&nbsp; [🇷🇺 Русский](README_ru.md)
 
 </div>
-<br>
 
-<p align="center"><img src="../images/logo.png" width="128" alt="Vista VPN"></p>
+<p align="center"><img src="../images/logo.png" width="128" alt="نشان Vista VPN"></p>
 
 <h1 align="center">Vista VPN</h1>
 
-<h2 align="center" dir="rtl">⚠️ پروژه غیررسمی</h2>
-
-<h3 align="center" dir="rtl">&rlm;Vista VPN یک پروژه مستقل است. موزیلا آن را نساخته، مالک آن نیست، از آن حمایت نمی‌کند، آن را تأیید نکرده و هیچ ارتباطی با آن ندارد. <a href="#سلب-مسئولیت">سلب مسئولیت</a> را ببینید.</h3>
-
-<div align="center">
-
-[![Downloads](https://img.shields.io/github/downloads/thisisvista/vista-vpn/total?style=flat-square&logo=github&label=Downloads)](https://github.com/thisisvista/vista-vpn/releases)
-[![Last Version](https://img.shields.io/github/v/release/thisisvista/vista-vpn?style=flat-square&label=Version)](https://github.com/thisisvista/vista-vpn/releases/latest)
-[![License](https://img.shields.io/github/license/thisisvista/vista-vpn?style=flat-square&label=License)](../../LICENSE)
-
-</div>
-
-<div dir="rtl">
-
-## &rlm;Vista VPN چیست؟
-
-&rlm;**Vista VPN** یک VPN رایگان و متن‌باز است که با حساب فایرفاکس (Firefox Account) کار می‌کند. اینترنت شما را از سرورهای موزیلا، روی زیرساخت **Fastly**، و با تونل‌های امن **HTTP/2 و HTTP/3** عبور می‌دهد.
-
-&rlm;برای **اندروید، ویندوز، مک و لینوکس**؛ کاملاً رایگان، بدون تبلیغات.
-
-<p align="center"><a href="https://raw.githubusercontent.com/thisisvista/vista-vpn/main/docs/screenshots/main.webp" target="_blank"><img src="../screenshots/main.webp" width="720" alt="Vista VPN"></a></p>
-
-## 🚀 امکانات اصلی
-
-✈️ چندپلتفرمی: اندروید، ویندوز، مک و لینوکس
-
-📺 اندروید TV: قابل استفاده با کنترل تلویزیون
-
-⭐ استفاده بسیار آسان با رابط کاربری ساده
-
-&rlm;🆓 رایگان: هر حساب فایرفاکس ماهی ۵۰ گیگابایت
-
-🌐 سرورهای موزیلا: انتخاب کشور با تست پینگ، یا انتخاب خودکار بهترین سرور
-
-⚡ اتصال سریع و پایدار با HTTP/2 و HTTP/3
-
-🔀 مسیریابی هوشمند (Split Tunneling): سایت‌ها و برنامه‌هایی که از VPN عبور نکنند را انتخاب کنید
-
-🧱 اگر شبکه شما اتصال را مسدود کند: فرگمنت TLS، پروکسی SOCKS5 بالادستی و [سرور رله](../relay/README.md)
-
-&rlm;🔒 DNS رمزگذاری‌شده (DNS over HTTPS)
-
-🌍 ۱۵ زبان، از جمله انگلیسی، فارسی، چینی و روسی
-
-🌙 پوسته روشن و تیره
-
-🛡 اپن سورس، کاملا امن و کامیونیتی محور
-
-🔄 آپدیت خودکار
-
-## 📸 تصاویر
+<p align="center" dir="rtl"><strong>یک کلاینت مستقل و متن‌باز VPN</strong></p>
 
 <p align="center" dir="ltr">
-<img src="../screenshots/phone_01.webp" width="240" alt="Home">&nbsp;&nbsp;
-<img src="../screenshots/phone_02.webp" width="240" alt="Servers">&nbsp;&nbsp;
-<img src="../screenshots/phone_03.webp" width="240" alt="Settings">
+  <a href="../../releases">انتشارهای GitHub</a> ·
+  <a href="../../LICENSE">مجوز GPL-3.0</a> ·
+  <a href="../../SECURITY.md">امنیت</a> ·
+  <a href="../../SUPPORT.md">پشتیبانی</a>
 </p>
 
-## 📥 دانلود مستقیم
-
-<table>
-<thead align="right">
-<tr><th>سیستم‌عامل</th><th>دانلود</th></tr>
-</thead>
-<tbody align="right">
-<tr><td>اندروید</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-1a7f37?logo=android&logoColor=white" alt="APK Universal"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-arm64-v8a.apk"><img src="https://img.shields.io/badge/APK-ARMv8-2da44e?logo=android&logoColor=white" alt="APK ARMv8"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-armeabi-v7a.apk"><img src="https://img.shields.io/badge/APK-ARMv7-4ac26b?logo=android&logoColor=white" alt="APK ARMv7"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-x86_64.apk"><img src="https://img.shields.io/badge/APK-x64-6fdd8b?logo=android&logoColor=white" alt="APK x64"></a></td></tr>
-<tr><td>اندروید TV</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-1a7f37?logo=android&logoColor=white" alt="APK Universal"></a></td></tr>
-<tr><td>ویندوز</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Windows-Setup-x64.exe"><img src="https://img.shields.io/badge/Setup-x64-0550ae?logo=windows&logoColor=white" alt="Setup x64"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Windows-x64.zip"><img src="https://img.shields.io/badge/Portable-x64-0969da" alt="Portable x64"></a></td></tr>
-<tr><td>مک</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-macOS.dmg"><img src="https://img.shields.io/badge/DMG-Universal-24292f?logo=apple&logoColor=white" alt="DMG Universal"></a></td></tr>
-<tr><td rowspan="2">لینوکس</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Linux-amd64.tar.gz"><img src="https://img.shields.io/badge/App-amd64-e36209?logo=linux&logoColor=white" alt="App amd64"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Linux-arm64.tar.gz"><img src="https://img.shields.io/badge/App-ARM64-e36209?logo=linux&logoColor=white" alt="App ARM64"></a></td></tr>
-<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/vista-vpn-core-linux-amd64.tar.gz"><img src="https://img.shields.io/badge/Core-amd64-f0883e?logo=linux&logoColor=white" alt="Core amd64"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/vista-vpn-core-linux-arm64.tar.gz"><img src="https://img.shields.io/badge/Core-ARM64-f6a35e?logo=linux&logoColor=white" alt="Core ARM64"></a></td></tr>
-</tbody>
-</table>
-
-**کدام فایل را دانلود کنم؟**
-
-- **اندروید:** اگر نمی‌دانید، **Universal** را بگیرید؛ روی همه گوشی‌ها نصب می‌شود. **ARMv8** برای بیشتر گوشی‌های امروزی است و حجمش کمتر است.
-- **ویندوز:** **Setup** نصب‌کننده معمولی است؛ **Portable** بدون نصب، از هر پوشه‌ای اجرا می‌شود.
-- **لینوکس:** **App** برای لینوکس دسکتاپ (Desktop، با محیط گرافیکی)؛ **Core** برای سرور (Server، بدون محیط گرافیکی، با پنل تحت وب).
-
-## 💻 نصب و به‌روزرسانی در لینوکس و مک
-
-> کاربران ویندوز و اندروید به این بخش نیاز ندارند: فایل نصب را از جدول «دانلود مستقیم» بالا بگیرید.
-
-</div>
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/thisisvista/vista-vpn/main/install.sh | bash
-```
-
 <div dir="rtl">
 
-### 🌐 پنل تحت وب
+> **پروژه‌ای غیررسمی:** Vista VPN به‌صورت مستقل توسعه داده می‌شود. این برنامه محصول موزیلا نیست، متعلق به موزیلا نیست، از طرف موزیلا حمایت یا تأیید نشده و وابستگی سازمانی به آن ندارد. سرویس‌ها، شرایط حساب، میزان دسترسی و محدودیت‌های استفاده تابع قوانین خود ارائه‌دهنده سرویس هستند.
 
-برای سرورهای لینوکس، Vista VPN یک **پنل تحت وب** دارد که در هر مرورگری باز می‌شود و همه امکانات برنامه را دارد: مدیریت حساب‌ها و حجم، انتخاب سرور و تست تأخیر، تست اتصال، لاگ زنده، و همه تنظیمات.
+## درباره برنامه
 
-<p align="center"><img src="../screenshots/web.webp" width="720" alt="Web panel"></p>
+Vista VPN کلاینتی برای عبور دادن ترافیک دستگاه از سرویس VPN پشتیبانی‌شده در این پروژه است و برای دسترسی به سرویس از حساب Mozilla/Firefox استفاده می‌کند. خود Vista VPN ارائه‌دهنده شبکه سرور VPN نیست؛ دسترسی به سرویس و محدودیت‌های حساب را ارائه‌دهنده بالادستی تعیین می‌کند.
 
-- **آدرس پنل:** `http://SERVER-IP:10820/app/`&lrm;، با نام کاربری و رمز. آدرس دقیق در پایان نصب نمایش داده می‌شود.
-- **پروکسی:** SOCKS5 و HTTP روی پورت `10810`، با نام کاربری و رمز جدا.
+این مخزن شامل برنامه اندروید و کد برنامه دسکتاپ است. فایل‌های قابل دریافت پس از انتشار در صفحه [GitHub Releases](../../releases) قرار می‌گیرند. موفقیت یک فرایند ساخت خودکار (CI) به‌تنهایی به معنی انتشار عمومی نیست.
 
-### ⌨️ مدیریت از ترمینال
+## امکانات
 
-روی سرور، دستور `sudo vista-vpn` را بزنید تا منوی مدیریت باز شود:
+- اتصال و قطع اتصال VPN از داخل برنامه
+- انتخاب موقعیت سرور یا استفاده از موقعیت پیشنهادی برنامه
+- تنظیم گزینه‌های مسیریابی پشتیبانی‌شده توسط هسته برنامه
+- مدیریت حساب و تنظیمات اتصال
+- یکپارچگی با سرویس VPN اندروید و نمایش اعلان دائمی هنگام فعال بودن سرویس
+- کد متن‌باز با مجوز GNU GPL نسخه ۳
 
-</div>
+ممکن است بعضی قابلیت‌ها با توجه به سیستم‌عامل یا سرویس VPN بالادستی متفاوت باشند.
 
-```text
-$ sudo vista-vpn
+## تصاویر برنامه
 
-  Vista VPN
-  ────────────────────────────────────────────────────────────────────────────
-    Service     ● running
-    Autostart   on
-  ────────────────────────────────────────────────────────────────────────────
-   0) Exit
-  ────────────────────────────────────────────────────────────────────────────
-   1) Update                                   vista-vpn update
-   2) Uninstall                                vista-vpn uninstall
-  ────────────────────────────────────────────────────────────────────────────
-   3) Set panel login                          vista-vpn panel
-   4) View panel info                          vista-vpn panel-info
-  ────────────────────────────────────────────────────────────────────────────
-   5) Status                                   vista-vpn status
-   6) Start                                    vista-vpn start
-   7) Stop                                     vista-vpn stop
-   8) Restart                                  vista-vpn restart
-   9) Show the log                             vista-vpn logs
-  ────────────────────────────────────────────────────────────────────────────
-  10) Enable autostart                         vista-vpn enable
-  11) Disable autostart                        vista-vpn disable
-  ────────────────────────────────────────────────────────────────────────────
-  12) Add a Firefox Account                    vista-vpn add-account
-  13) List the accounts                        vista-vpn list-accounts
-  ────────────────────────────────────────────────────────────────────────────
-  Enter a number [0-13]:
-```
+<p align="center" dir="ltr">
+  <img src="../screenshots/phone_01.webp" width="220" alt="صفحه اصلی Vista VPN">
+  &nbsp;
+  <img src="../screenshots/phone_02.webp" width="220" alt="انتخاب سرور">
+  &nbsp;
+  <img src="../screenshots/phone_03.webp" width="220" alt="تنظیمات">
+</p>
 
-## روترهای OpenWrt
+تصاویر باید با نسخه منتشرشده برنامه مطابقت داشته باشند. اگر تصویری با نسخه فعلی هماهنگ نیست، از بخش [پشتیبانی](../../SUPPORT.md) گزارش دهید.
 
-برای نصب روی روتر OpenWrt، [راهنمای OpenWrt](../OPENWRT.md) را ببینید.
+## دانلود
 
-<div dir="rtl">
+**هنوز نسخه عمومی منتشر نشده است.** پس از آماده شدن اولین نسخه، فایل‌ها از این صفحه قابل دریافت خواهند بود:
+
+[**دانلود Vista VPN از GitHub Releases**](../../releases)
+
+برای اندروید:
+- **Universal APK** برای سازگاری با طیف گسترده‌ای از دستگاه‌ها مناسب است.
+- **ARM64-v8a APK** برای بیشتر گوشی‌های اندرویدی جدید مناسب است و معمولاً حجم کمتری دارد.
+- فقط در صورتی نسخه ABI دیگری را انتخاب کنید که از معماری دستگاه خود مطمئن باشید.
+
+فقط APKهایی را نصب کنید که در بخش Releases رسمی همین مخزن منتشر شده‌اند. فایل‌های آزمایشی CI یا APKهای امضاشده با کلید Debug را نسخه نهایی و عمومی تلقی نکنید.
+
+## نصب در اندروید
+
+۱. وارد صفحه [GitHub Releases](../../releases) شوید.  
+۲. فایل APK متناسب با دستگاه خود را دریافت کنید.  
+۳. فایل را باز کنید و مراحل نصب اندروید را انجام دهید. ممکن است لازم باشد اجازه نصب برنامه از آن منبع را برای مرورگر یا فایل‌منیجر فعال کنید.  
+۴. Vista VPN را اجرا کنید و مراحل راه‌اندازی و ورود به حساب را در برنامه انجام دهید.  
+۵. پیش از اولین اتصال، اندروید برای فعال‌سازی اتصال VPN از شما اجازه می‌خواهد.
+
+به‌روزرسان داخلی برنامه برای نسخه‌هایی طراحی شده که با گواهی امضای دائمی پروژه امضا شده‌اند. نسخه Debug یا نسخه‌ای که با کلید دیگری امضا شده باشد ممکن است نتواند جایگزین نسخه رسمی نصب‌شده شود.
+
+## عیب‌یابی و پشتیبانی
+
+- پیش از ثبت مشکل، راهنمای [پشتیبانی](../../SUPPORT.md) را بخوانید.
+- برای گزارش مسائل امنیتی، دستورالعمل [امنیت](../../SECURITY.md) را دنبال کنید. اطلاعات ورود، توکن‌ها، اطلاعات خصوصی حساب یا گزارش‌های بدون حذف اطلاعات حساس را عمومی منتشر نکنید.
+- برای دیدن تغییرات هر نسخه، [CHANGELOG](../../CHANGELOG.md) را بررسی کنید.
+
+## ساخت از کد منبع
+
+برنامه اندروید با Flutter ساخته می‌شود و هسته VPN مبتنی بر Go و یکپارچگی TUN اندروید را در بر می‌گیرد. برای نیازمندی‌ها و دستورهای ساخت، فایل [app/README.md](../../app/README.md) و [راهنمای توسعه هسته](../../core/doc/DEVELOPMENT.md) را ببینید.
+
+ساخت نسخه انتشار به تنظیمات امضای اختصاصی پروژه نیاز دارد. فایل‌های آزمایشی CI ممکن است با کلید Debug امضا شوند و جایگزین APK رسمی امضاشده نیستند.
+
+## مجوز و اجزای شخص ثالث
+
+Vista VPN تحت [مجوز GNU General Public License نسخه ۳](../../LICENSE) منتشر می‌شود. اجزای شخص ثالث مجوزهای مستقل خود را دارند؛ فایل‌های مجوز مربوط به آن‌ها را در پوشه‌های منبع بررسی کنید.
 
 ## سلب مسئولیت
 
-این برنامه یک کلاینت مستقل و غیررسمی است که توسعه‌دهنده خودش آن را ساخته و نگهداری می‌کند. محصول موزیلا نیست: موزیلا آن را نساخته، مالک آن نیست، از آن حمایت نمی‌کند، آن را تأیید نکرده و هیچ نقشی در ساخت یا پشتیبانی آن ندارد. سؤال‌ها و مشکلات این برنامه را در همین مخزن مطرح کنید، نه با موزیلا.
-
-شما با اکانت موزیلای خودتان وارد می‌شوید. شرایط، سهمیه و دسترسی اکانت را موزیلا تعیین می‌کند. رمز و اطلاعات ورود شما فقط روی دستگاه خودتان می‌ماند.
+این برنامه یک کلاینت مستقل و غیررسمی است. موزیلا Vista VPN را توسعه نداده، اداره نمی‌کند، از آن حمایت نکرده و آن را تأیید نکرده است. استفاده از حساب موزیلا و سرویس بالادستی تابع شرایط و سیاست‌های همان ارائه‌دهنده است. مسئولیت این برنامه و پشتیبانی آن بر عهده نگهدارندگان همین مخزن است.
 
 </div>
