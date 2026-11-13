@@ -127,7 +127,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
             : status.state.phase == Phase.error
                 ? const Color(0xFFEF6475)
                 : connected
-                    ? const Color(0xFF39E75F)
+                    ? const Color(0xFF00FFC8)
                     : const Color(0xFFF59E0B);
     final test = status.isCurrentTest(widget.core.lastTest)
         ? widget.core.lastTest
