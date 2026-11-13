@@ -405,7 +405,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                         stateLabel,
                         textAlign: TextAlign.center,
                         style: baseText.headlineSmall?.copyWith(
-                          color: on ? accent : Colors.white,
+                          color: on ? accent : foreground,
                           fontWeight: FontWeight.w800,
                           letterSpacing: -0.3,
                         ),
@@ -414,7 +414,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                       if (connected)
                         Material(
                           color: card,
-                          shape: const StadiumBorder(
+                          shape: StadiumBorder(
                             side: BorderSide(color: border),
                           ),
                           clipBehavior: Clip.antiAlias,
@@ -506,7 +506,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: baseText.titleMedium?.copyWith(
-                                color: Colors.white,
+                                color: foreground,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -515,7 +515,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                       ),
                       const Icon(
                         Icons.chevron_right_rounded,
-                        color: Color(0xFF9CA3AF),
+                        color: muted,
                         size: 24,
                       ),
                     ],
@@ -547,7 +547,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                             Text(
                               l.dataUsedTitle,
                               style: baseText.titleSmall?.copyWith(
-                                color: Colors.white,
+                                color: foreground,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -600,7 +600,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                       ),
                       const Icon(
                         Icons.chevron_right_rounded,
-                        color: Color(0xFF9CA3AF),
+                        color: muted,
                         size: 24,
                       ),
                     ],
