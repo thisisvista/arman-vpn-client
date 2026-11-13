@@ -11,6 +11,7 @@ This repository's release workflow publishes a GitHub Release automatically when
 - [ ] Run CI successfully and install the release candidate on real devices.
 - [ ] Test sign-in, connection/disconnection, server selection, routing, app restart, notification behavior, update flow, and recovery from network changes.
 - [ ] Review the privacy policy, security instructions, support guide, screenshots, and third-party license notices.
+- [ ] Decide whether the remembered-password encryption key should remain beside account data or be protected by a platform keystore; review Android backup behavior because the current rules may back up both the encrypted password and its key.
 
 ## 2. Version and update metadata
 
