@@ -510,7 +510,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                 ],
                                 Text(
                                   recommendedSelection
-                                      ? 'Recommend location'
+                                      ? l.recommendedLocation
                                       : selectionLower == 'fastest'
                                           ? 'Fastest'
                                           : l.navServers,
