@@ -165,7 +165,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
     final usage = account?.usage;
     final quotaProgress = usage == null || usage.unlimited || usage.limitBytes <= 0
         ? 0.0
-        : (usage.usedBytes / usage.limitBytes).clamp(0.0, 1.0);
+        : (usage.usedBytes / usage.limitBytes).clamp(0.0, 1.0).toDouble();
     final stateLabel = confirming
         ? l.stateConnecting
         : connected
@@ -512,7 +512,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                             else if (usage.limitBytes > 0) ...[
                               Text(
                                 l.usedOf(
-                                  formatBytes(usage.usedBytes.clamp(0, usage.limitBytes)),
+                                  formatBytes(usage.usedBytes.clamp(0, usage.limitBytes).toInt()),
                                   formatBytes(usage.limitBytes),
                                 ),
                                 style: baseText.bodySmall?.copyWith(color: muted),
@@ -531,7 +531,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                               ),
                               const SizedBox(height: 6),
                               Text(
-                                '${formatBytes(usage.remainingBytes.clamp(0, usage.limitBytes))} ${l.dataLeftOf(formatBytes(usage.limitBytes))}'
+                                '${formatBytes(usage.remainingBytes.clamp(0, usage.limitBytes).toInt())} ${l.dataLeftOf(formatBytes(usage.limitBytes))}'
                                 '${usage.resetAt == null ? '' : ' · ${l.resets(formatDate(l, usage.resetAt!))}'}',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
