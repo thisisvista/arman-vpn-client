@@ -486,7 +486,9 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                             Text(
                               recommendedSelection
                                   ? 'Recommend location'
-                                  : l.navServers,
+                                  : selectionLower == 'fastest'
+                                      ? 'Fastest'
+                                      : l.navServers,
                               style: baseText.labelSmall?.copyWith(
                                 color: muted,
                                 fontWeight: FontWeight.w600,
