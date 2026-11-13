@@ -15,7 +15,8 @@
   <a href="LICENSE">GPL-3.0 license</a> ·
   <a href="SECURITY.md">Security</a> ·
   <a href="PRIVACY.md">Privacy</a> ·
-  <a href="SUPPORT.md">Support</a>
+  <a href="SUPPORT.md">Support</a> ·
+  <a href="docs/RELEASE_CHECKLIST.md">Release checklist</a>
 </p>
 
 > **Unofficial project:** Vista VPN is independently developed. It is not made, owned, sponsored, or endorsed by Mozilla and is not affiliated with Mozilla. Mozilla's services, account requirements, availability, and usage limits remain subject to Mozilla's own terms.
@@ -81,6 +82,7 @@ The app's built-in updater is intended for releases signed with the project's pe
 - Read [Support](SUPPORT.md) before opening an issue.
 - For security concerns, follow [SECURITY.md](SECURITY.md); do not post credentials, tokens, private account data, or unredacted logs in public.
 - Review [CHANGELOG.md](CHANGELOG.md) for changes included in each release.
+- Maintainers should follow the [GitHub release checklist](docs/RELEASE_CHECKLIST.md) before tagging a release.
 
 ## Building from source
 
