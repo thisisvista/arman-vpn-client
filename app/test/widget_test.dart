@@ -420,7 +420,7 @@ void main() {
     expect(find.text('Connected'), findsOneWidget);
     // Where the traffic goes: the country, under how it was chosen.
     expect(find.text('Netherlands'), findsOneWidget);
-    expect(find.text('Recommended location'), findsOneWidget);
+    expect(find.text('Recommend location'), findsOneWidget);
     expect(find.textContaining('Amsterdam'), findsNothing);
     // The data used rather than the email.
     expect(find.text('Data used'), findsOneWidget);
@@ -2626,7 +2626,7 @@ void main() {
     // On, with no system proxy: connected, not "proxy only".
     expect(find.text('Connected'), findsOneWidget);
     // Connected through the recommended location: the exit's country,
-    // without the city, under "Recommended location".
+    // without the city, under "Recommend location".
     expect(find.text('Recommended location'), findsOneWidget);
     expect(find.text('Belgium'), findsOneWidget);
     expect(find.textContaining('Brussels'), findsNothing);
