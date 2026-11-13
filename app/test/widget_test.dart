@@ -2625,10 +2625,10 @@ void main() {
 
     // On, with no system proxy: connected, not "proxy only".
     expect(find.text('Connected'), findsOneWidget);
-    // Connected through the recommended location: the exit's country,
-    // without the city, under "Recommended location".
-    expect(find.text('Recommended location'), findsOneWidget);
+    // Connected through the recommended location: show the exit country,
+    // without the city. The generic recommendation label is used only off.
     expect(find.text('Belgium'), findsOneWidget);
+    expect(find.text('Recommended location'), findsNothing);
     expect(find.textContaining('Brussels'), findsNothing);
     // No public IP on the phone's home.
     expect(find.textContaining('192.0.2.7'), findsNothing);
