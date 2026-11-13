@@ -15,10 +15,11 @@ When you sign in, account credentials are sent to Mozilla Account authentication
 
 - Your account email address and an internal account identifier.
 - OAuth access and refresh tokens used to keep the account signed in.
+- The account password, if the remember-password feature is used, so the app can reauthenticate after a token is revoked.
 - Account/device registration identifiers.
 - Account status and the latest usage/quota information returned by the upstream service.
 
-The core stores account records and credentials in the app's data directory. It creates private directories and restricts credential-file permissions where the operating system supports POSIX file permissions. This is local file protection; the project does not describe these files as separately encrypted by the app.
+The core stores account records and credentials in the app's data directory. It creates private directories and restricts credential-file permissions where the operating system supports POSIX file permissions. OAuth tokens are stored in the local credentials file and are not separately encrypted by the app. A remembered account password is encrypted with AES-256-GCM; however, the encryption key is stored in the same account-data directory (in `secret.key`). This protects the password field from casual inspection of the credentials file, but it does not protect the password from someone who obtains the complete data directory or a backup containing both the encrypted password and its key. Treat the entire app data folder and its backups as sensitive.
 
 ## 3. VPN traffic and DNS
 
@@ -42,7 +43,7 @@ The app stores its Android core data in its private application storage. Removin
 
 ## 5. Android backup
 
-The Android manifest currently allows system backup. The repository's backup rules exclude diagnostic logs, routing-list/cache data, selected runtime files, and the local API token. Account data and settings are not excluded by those rules and may therefore be included in Android cloud backup or device-to-device transfer, subject to the device's Android version and the backup settings/provider you use.
+The Android manifest currently allows system backup. The repository's backup rules exclude diagnostic logs, routing-list/cache data, selected runtime files, and the local API token. Account data, the credentials file, the remembered-password encryption key (`secret.key`), and settings are not excluded by those rules and may therefore be included together in Android cloud backup or device-to-device transfer, subject to the device's Android version and the backup settings/provider you use. Because the password-encryption key is stored beside the encrypted password, a backup containing both should be treated as sensitive.
 
 If you do not want account information included in device backup, review and disable the relevant Android backup options on your device. Backup storage and retention are controlled by Android and your device or cloud-backup provider, not by Vista VPN.
 
