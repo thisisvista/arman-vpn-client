@@ -125,14 +125,15 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
         ? widget.core.lastTest
         : null;
     final failure = failureText(l, status.proxy, test);
-    final failureMessage = failure.code.isNotEmpty ||
-            (test != null && !test.ok)
-        ? failure.text
-        : status.connectFailure.isNotEmpty
-            ? failureCodeText(l, status.connectFailure)
-            : status.noNetwork && on
-                ? l.noNetwork
-                : '';
+    final failureMessage = status.connectPending
+        ? ''
+        : failure.code.isNotEmpty || (test != null && !test.ok)
+            ? failure.text
+            : status.connectFailure.isNotEmpty
+                ? failureCodeText(l, status.connectFailure)
+                : status.noNetwork && on
+                    ? l.noNetwork
+                    : '';
     final pingText = widget.core.testing
         ? l.testingDelay
         : test == null
@@ -147,10 +148,13 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
             : delayColor(test.responseMs);
     final selection = status.selection.trim();
     final selectionLower = selection.toLowerCase();
-    final serverName = status.selectionName.isNotEmpty
-        ? status.selectionName
-        : selection.isEmpty
-            ? l.recommendedLocation
+    final serverName = selection.isEmpty && connected &&
+            status.exit?.countryName.isNotEmpty == true
+        ? status.exit!.countryName
+        : status.selectionName.isNotEmpty
+            ? status.selectionName
+            : selection.isEmpty
+                ? l.recommendedLocation
             : selectionLower == 'fastest'
                 ? l.modeFastest
                 : locationName(l, selection, selection);
