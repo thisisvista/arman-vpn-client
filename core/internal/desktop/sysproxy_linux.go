@@ -30,6 +30,7 @@ var (
 		if err != nil {
 			return "", err
 		}
+		// Keep the legacy directory so an existing proxy backup remains discoverable on upgrade.
 		return filepath.Join(dir, "arman-vpn", "previous-proxy.json"), nil
 	}
 )
