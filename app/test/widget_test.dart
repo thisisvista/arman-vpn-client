@@ -420,7 +420,7 @@ void main() {
     expect(find.text('Connected'), findsOneWidget);
     // Where the traffic goes: the country, under how it was chosen.
     expect(find.text('Netherlands'), findsOneWidget);
-    expect(find.text('Recommend location'), findsOneWidget);
+    expect(find.text('Recommended location'), findsOneWidget);
     expect(find.textContaining('Amsterdam'), findsNothing);
     // The data used rather than the email.
     expect(find.text('Data used'), findsOneWidget);
