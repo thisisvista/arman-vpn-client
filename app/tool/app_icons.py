@@ -166,7 +166,7 @@ def tv_banner(glyph):
         out.paste(tuple(round(a + (b - a) * t) for a, b in zip(top, bottom)) + (255,), (0, y, w, y + 1))
     symbol = art_layer(glyph, 96, 1.0)
     font = ImageFont.truetype(os.path.join(APP, 'assets', 'fonts', 'Vazirmatn-Bold.ttf'), 34)
-    name = 'Arman VPN'
+    name = 'Vista VPN'
     draw = ImageDraw.Draw(out)
     left, top, right, bottom = draw.textbbox((0, 0), name, font=font)
     gap = 14
