@@ -171,26 +171,38 @@ class _ServersPageState extends State<ServersPage> {
           const SizedBox(height: 12),
         ],
         _SectionHeader(title: l.autoSection),
-        _ChoiceCard(
+        Row(
+          // This row is inside a scrolling ListView, so its height is
+          // unbounded. Let the two tiles take their natural height instead
+          // of stretching to an infinite constraint.
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _ChoiceRow(
-              leading: const CountryFlag(code: 'REC', width: 36),
-              title: l.modeRecommended,
-              subtitle: l.modeRecommendedHint,
-              delay: recommended == null
-                  ? null
-                  : _Delay(location: recommended, testing: _testing),
-              selected: chosen == '',
-              busy: _busy == '',
-              onTap: () => _choose(''),
+            Expanded(
+              child: _AutomaticChoiceTile(
+                title: l.modeRecommended,
+                subtitle: l.modeRecommendedHint,
+                icon: Icons.auto_awesome_rounded,
+                tint: const Color(0xFF9B7CF6),
+                delay: recommended == null
+                    ? null
+                    : _Delay(location: recommended, testing: _testing),
+                selected: chosen == '',
+                busy: _busy == '',
+                onTap: () => _choose(''),
+              ),
             ),
-            _ChoiceRow(
-              leading: const _IconTile(icon: Icons.bolt_rounded),
-              title: l.modeFastest,
-              subtitle: l.modeFastestHint,
-              selected: chosen == 'fastest',
-              busy: _busy == 'fastest',
-              onTap: () => _choose('fastest'),
+            const SizedBox(width: 10),
+            Expanded(
+              child: _AutomaticChoiceTile(
+                title: l.modeFastest,
+                subtitle: l.modeFastestHint,
+                icon: Icons.bolt_rounded,
+                tint: const Color(0xFF34C99A),
+                delay: null,
+                selected: chosen == 'fastest',
+                busy: _busy == 'fastest',
+                onTap: () => _choose('fastest'),
+              ),
             ),
           ],
         ),
@@ -297,23 +309,100 @@ class _ChoiceCard extends StatelessWidget {
   );
 }
 
-/// An icon in the size of a flag, for a choice that is not a country.
-class _IconTile extends StatelessWidget {
-  const _IconTile({required this.icon});
+/// Compact side-by-side automatic server choices, matching the Vista mockup.
+class _AutomaticChoiceTile extends StatelessWidget {
+  const _AutomaticChoiceTile({
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.tint,
+    required this.selected,
+    required this.busy,
+    required this.onTap,
+    this.delay,
+  });
 
+  final String title;
+  final String subtitle;
   final IconData icon;
+  final Color tint;
+  final bool selected;
+  final bool busy;
+  final VoidCallback onTap;
+  final Widget? delay;
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    return Container(
-      width: 36,
-      height: 27,
-      decoration: BoxDecoration(
-        color: scheme.tertiaryContainer,
-        borderRadius: BorderRadius.circular(4),
+    final theme = Theme.of(context);
+    return Material(
+      color: tint.withValues(alpha: selected ? 0.22 : 0.12),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(17),
+        side: BorderSide(
+          color: tint.withValues(alpha: selected ? 0.68 : 0.28),
+          width: selected ? 1.4 : 1,
+        ),
       ),
-      child: Icon(icon, size: 20, color: scheme.onTertiaryContainer),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(13),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  color: tint.withValues(alpha: 0.18),
+                  borderRadius: BorderRadius.circular(11),
+                ),
+                child: Icon(icon, color: tint, size: 20),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                subtitle,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                  height: 1.25,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  if (delay != null) Flexible(child: delay!),
+                  const Spacer(),
+                  if (busy)
+                    const SizedBox.square(
+                      dimension: 17,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  else
+                    Icon(
+                      selected
+                          ? Icons.radio_button_checked_rounded
+                          : Icons.radio_button_unchecked_rounded,
+                      color: selected ? tint : theme.colorScheme.outline,
+                      size: 20,
+                    ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

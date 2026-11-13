@@ -1,166 +1,99 @@
 <div align="center">
 
-**🇺🇸 English** &nbsp;/&nbsp; [🇨🇳 简体中文](docs/readme/README_zh.md) &nbsp;/&nbsp; [🇷🇺 Русский](docs/readme/README_ru.md) &nbsp;/&nbsp; [🇮🇷 فارسی](docs/readme/README_fa.md)
+**🇺🇸 English** &nbsp;/&nbsp; [🇮🇷 فارسی](docs/readme/README_fa.md) &nbsp;/&nbsp; [🇨🇳 简体中文](docs/readme/README_zh.md) &nbsp;/&nbsp; [🇷🇺 Русский](docs/readme/README_ru.md)
 
 </div>
-<br>
 
-<p align="center"><img src="docs/images/logo.png" width="128" alt="Vista VPN"></p>
+<p align="center"><img src="docs/images/logo.png" width="128" alt="Vista VPN logo"></p>
 
 <h1 align="center">Vista VPN</h1>
 
-<h2 align="center">⚠️ Unofficial project</h2>
-
-<h3 align="center">Vista VPN is an independent project. It is not made, owned, sponsored, or endorsed by Mozilla, and is not affiliated with Mozilla in any way. See the <a href="#disclaimer">disclaimer</a>.</h3>
-
-<div align="center">
-
-[![Downloads](https://img.shields.io/github/downloads/thisisvista/vista-vpn/total?style=flat-square&logo=github&label=Downloads)](https://github.com/thisisvista/vista-vpn/releases)
-[![Last Version](https://img.shields.io/github/v/release/thisisvista/vista-vpn?style=flat-square&label=Version)](https://github.com/thisisvista/vista-vpn/releases/latest)
-[![License](https://img.shields.io/github/license/thisisvista/vista-vpn?style=flat-square&label=License)](LICENSE)
-
-</div>
-
-## What is Vista VPN?
-
-**Vista VPN** is a free, open-source VPN that works with a Firefox Account. It carries your internet traffic through Mozilla's servers, on **Fastly**'s infrastructure, over secure **HTTP/1.1, HTTP/2, and HTTP/3** tunnels.
-
-For **Android, Windows, macOS, and Linux**; completely free, with no ads.
-
-<p align="center"><a href="https://raw.githubusercontent.com/thisisvista/vista-vpn/main/docs/screenshots/main.webp" target="_blank"><img src="docs/screenshots/main.webp" width="720" alt="Vista VPN"></a></p>
-
-## 🚀 Main features
-
-✈️ Cross-platform: Android, Windows, macOS, and Linux
-
-📺 Android TV: works with the remote control
-
-⭐ Very easy to use, with a simple interface
-
-🆓 Free: 50 GB a month for every Firefox Account
-
-🌐 Mozilla's servers: choose a country with a ping test, or let the app pick the best server
-
-⚡ Fast, stable connections over HTTP/1.1, HTTP/2, and HTTP/3
-
-🦊 Looks like Firefox: connections to Mozilla start with Firefox's own TLS fingerprint (uTLS)
-
-🔀 Smart routing (split tunneling): choose the sites and apps that skip the VPN
-
-🧱 If your network blocks the connection: TLS fragmentation, upstream SOCKS5 proxy, and a [relay server](docs/relay/README.md)
-
-💾 Backup and import: your accounts and settings in one file, for another device or a server
-
-⚙️ Advanced connection options: IPv4, IPv6, or dual-stack, and a custom MTU
-
-🔒 Encrypted DNS (DNS over HTTPS)
-
-🌍 15 languages, including English, Persian, Chinese, and Russian
-
-🌙 Light and dark themes
-
-🛡 Open source, secure, and community-driven
-
-🔄 Automatic updates
-
-## 📸 Screenshots
+<p align="center"><strong>An independent, open-source VPN client.</strong></p>
 
 <p align="center">
-<img src="docs/screenshots/phone_01.webp" width="240" alt="Home">&nbsp;&nbsp;
-<img src="docs/screenshots/phone_02.webp" width="240" alt="Servers">&nbsp;&nbsp;
-<img src="docs/screenshots/phone_03.webp" width="240" alt="Settings">
+  <a href="https://github.com/thisisvista/vista-vpn/releases">GitHub Releases</a> ·
+  <a href="LICENSE">GPL-3.0 license</a> ·
+  <a href="SECURITY.md">Security</a> ·
+  <a href="PRIVACY.md">Privacy</a> ·
+  <a href="SUPPORT.md">Support</a> ·
+  <a href="docs/RELEASE_CHECKLIST.md">Release checklist</a>
 </p>
 
-## 📥 Download
+> **Unofficial project:** Vista VPN is independently developed. It is not made, owned, sponsored, or endorsed by Mozilla and is not affiliated with Mozilla. Mozilla's services, account requirements, availability, and usage limits remain subject to Mozilla's own terms.
+
+## About
+
+Vista VPN is a client for routing device traffic through the VPN service supported by this project. It uses a Mozilla/Firefox account to access the service. Vista VPN is not itself a VPN server provider; service availability and account limits are controlled by the upstream service.
+
+The repository contains an Android app and desktop application code. Release assets will be listed on the [GitHub Releases page](https://github.com/thisisvista/vista-vpn/releases) when published. A successful CI build is not, by itself, a public release.
+
+## Features
+
+- Connect and disconnect the VPN from the app.
+- Choose a server location or use the app's recommended location.
+- Configure routing options supported by the core.
+- Manage the account and connection settings in the app.
+- Android VPN service integration, including a persistent connection notification.
+- Open-source code under the GNU GPL version 3.
+
+Feature availability can differ by operating system and by the upstream VPN service.
+
+## Screenshots
+
+Updated screenshots of the current Vista VPN interface will be added after final on-device validation. The repository should not present older interface images as screenshots of the current release.
+
+## Download
+
+**No public release has been published yet.** The download links below will become active when the first GitHub Release is published.
 
 <table>
-<thead>
-<tr><th>System</th><th>Download</th></tr>
-</thead>
+<thead><tr><th>Platform</th><th>Package</th></tr></thead>
 <tbody>
-<tr><td>Android</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-1a7f37?logo=android&logoColor=white" alt="APK Universal"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-arm64-v8a.apk"><img src="https://img.shields.io/badge/APK-ARMv8-2da44e?logo=android&logoColor=white" alt="APK ARMv8"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-armeabi-v7a.apk"><img src="https://img.shields.io/badge/APK-ARMv7-4ac26b?logo=android&logoColor=white" alt="APK ARMv7"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-x86_64.apk"><img src="https://img.shields.io/badge/APK-x64-6fdd8b?logo=android&logoColor=white" alt="APK x64"></a></td></tr>
-<tr><td>Android TV</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-1a7f37?logo=android&logoColor=white" alt="APK Universal"></a></td></tr>
-<tr><td>Windows</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Windows-Setup-x64.exe"><img src="https://img.shields.io/badge/Setup-x64-0550ae?logo=windows&logoColor=white" alt="Setup x64"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Windows-x64.zip"><img src="https://img.shields.io/badge/Portable-x64-0969da" alt="Portable x64"></a></td></tr>
-<tr><td>macOS</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-macOS.dmg"><img src="https://img.shields.io/badge/DMG-Universal-24292f?logo=apple&logoColor=white" alt="DMG Universal"></a></td></tr>
-<tr><td rowspan="2">Linux</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Linux-amd64.tar.gz"><img src="https://img.shields.io/badge/App-amd64-e36209?logo=linux&logoColor=white" alt="App amd64"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Linux-arm64.tar.gz"><img src="https://img.shields.io/badge/App-ARM64-e36209?logo=linux&logoColor=white" alt="App ARM64"></a></td></tr>
-<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/vista-vpn-core-linux-amd64.tar.gz"><img src="https://img.shields.io/badge/Core-amd64-f0883e?logo=linux&logoColor=white" alt="Core amd64"></a><br><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/vista-vpn-core-linux-arm64.tar.gz"><img src="https://img.shields.io/badge/Core-ARM64-f6a35e?logo=linux&logoColor=white" alt="Core ARM64"></a></td></tr>
+<tr><td rowspan="4">Android</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-universal.apk">Universal APK</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-arm64-v8a.apk">ARM64-v8a APK</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-armeabi-v7a.apk">ARMv7 APK</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-x86_64.apk">x86_64 APK</a></td></tr>
+<tr><td rowspan="2">Windows</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Windows-Setup-x64.exe">Installer (x64)</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Windows-x64.zip">Portable archive (x64)</a></td></tr>
+<tr><td rowspan="2">macOS</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-macOS.dmg">Disk image</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-macOS.tar.gz">Archive</a></td></tr>
+<tr><td rowspan="4">Linux</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Linux-amd64.tar.gz">Desktop app (amd64)</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Linux-arm64.tar.gz">Desktop app (ARM64)</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/vista-vpn-core-linux-amd64.tar.gz">Core (amd64)</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/vista-vpn-core-linux-arm64.tar.gz">Core (ARM64)</a></td></tr>
 </tbody>
 </table>
 
-**Which file should I download?**
+For Android, **Universal APK** is intended for broad compatibility. **ARM64-v8a** is suitable for most modern phones and is usually smaller. Install only APKs published in this repository's official Releases; workflow test artifacts and debug-signed APKs are not production releases.
 
-- **Android:** if you are not sure, take **Universal**; it installs on every phone. **ARMv8** is for most of today's phones and is smaller.
-- **Windows:** **Setup** is a normal installer; **Portable** needs no install and runs from any folder.
-- **Linux:** **App** for a Linux desktop (with a graphical environment); **Core** for a server (without a graphical environment, with a web panel).
+## Install on Android
 
-## 💻 Install and update on Linux and macOS
+1. Open the [GitHub Releases page](https://github.com/thisisvista/vista-vpn/releases).
+2. Download the APK that matches your device.
+3. Open the downloaded file and follow Android's installation prompts. You may need to allow your browser or file manager to install apps from that source.
+4. Open Vista VPN and follow the in-app setup and sign-in instructions.
+5. Android will ask you to approve the VPN connection before the first connection.
 
-> Windows and Android users don't need this section: take the installer from the "Download" table above.
+The app's built-in updater is intended for releases signed with the project's persistent release certificate. A debug or locally signed build may not be able to update an installed official release.
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/thisisvista/vista-vpn/main/install.sh | bash
-```
+## Privacy, troubleshooting, and support
 
-### 🌐 Web panel
+- Read the [Privacy Policy](PRIVACY.md) to understand local storage, account data, VPN traffic handling, backups, logs, and update checks.
+- Read [Support](SUPPORT.md) before opening an issue.
+- For security concerns, follow [SECURITY.md](SECURITY.md); do not post credentials, tokens, private account data, or unredacted logs in public.
+- Review [CHANGELOG.md](CHANGELOG.md) for changes included in each release.
+- Maintainers should follow the [GitHub release checklist](docs/RELEASE_CHECKLIST.md) before tagging a release.
 
-For Linux servers, Vista VPN has a **web panel** that opens in any browser and has everything the app has: managing accounts and data, choosing a server and testing delay, the connection test, the live log, and every setting.
+## Building from source
 
-<p align="center"><img src="docs/screenshots/web.webp" width="720" alt="Web panel"></p>
+The Android application is built with Flutter and includes a Go-based VPN core plus the Android TUN integration. See [app/README.md](app/README.md) and [core/doc/DEVELOPMENT.md](core/doc/DEVELOPMENT.md) for project-specific build requirements and commands.
 
-- **Panel address:** `http://SERVER-IP:10820/app/`, with a username and password. The exact address is shown at the end of the install.
-- **Proxy:** SOCKS5 and HTTP on port `10810`, with a username and password of its own.
+A release build requires the project's release-signing configuration. CI test artifacts may be signed with a debug key and are not interchangeable with release-signed APKs.
 
-### ⌨️ Managing from the terminal
+## License and third-party components
 
-On the server, run `sudo vista-vpn` to open the management menu:
-
-```text
-$ sudo vista-vpn
-
-  Vista VPN
-  ────────────────────────────────────────────────────────────────────────────
-    Service     ● running
-    Autostart   on
-  ────────────────────────────────────────────────────────────────────────────
-   0) Exit
-  ────────────────────────────────────────────────────────────────────────────
-   1) Update                                   vista-vpn update
-   2) Uninstall                                vista-vpn uninstall
-  ────────────────────────────────────────────────────────────────────────────
-   3) Set panel login                          vista-vpn panel
-   4) View panel info                          vista-vpn panel-info
-  ────────────────────────────────────────────────────────────────────────────
-   5) Status                                   vista-vpn status
-   6) Start                                    vista-vpn start
-   7) Stop                                     vista-vpn stop
-   8) Restart                                  vista-vpn restart
-   9) Show the log                             vista-vpn logs
-  ────────────────────────────────────────────────────────────────────────────
-  10) Enable autostart                         vista-vpn enable
-  11) Disable autostart                        vista-vpn disable
-  ────────────────────────────────────────────────────────────────────────────
-  12) Add a Firefox Account                    vista-vpn add-account
-  13) List the accounts                        vista-vpn list-accounts
-  ────────────────────────────────────────────────────────────────────────────
-  Enter a number [0-13]:
-```
-
-## OpenWrt routers
-
-To install on an OpenWrt router, see the [OpenWrt guide](docs/OPENWRT.md).
-
-## Known limitations
-
-<details>
-<summary>What Mozilla's servers do not carry</summary>
-
-- **TCP:** ports 80, 443, 8080, and 8443 only. Other ports, such as mail (25, 465, 587, 993) and SSH (22), are refused. Git over SSH to GitHub is the exception: it goes through port 443 by itself.
-- **UDP:** ports 80, 443, 3478, 8080, 8443, and 49152-65534 only. Calls and games on other ports do not go through. Browsers and most apps work normally.
-
-</details>
+Vista VPN is distributed under the [GNU General Public License v3.0](LICENSE). Third-party components retain their own licenses; see the relevant license files in the source tree.
 
 ## Disclaimer
 
-This app is an independent, unofficial client, made and maintained by its own developer. It is not a Mozilla product: Mozilla did not make it, does not own, sponsor, or endorse it, and has no part in its development or support. Questions and problems about the app belong in this repository, not with Mozilla.
-
-You sign in with your own Mozilla account. The account's terms, data limit, and availability are set by Mozilla. Your password and sign-in tokens stay on your device.
+This is an independent, unofficial client. Mozilla did not develop, operate, sponsor, or endorse Vista VPN. Mozilla account credentials and the upstream service are subject to Mozilla's terms and policies. This repository's maintainers are responsible for this application and its support.

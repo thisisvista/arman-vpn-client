@@ -50,6 +50,7 @@ RES = os.path.join(APP, 'android', 'app', 'src', 'main', 'res')
 # The symbol's height as a share of the 108 dp canvas. Launchers show about
 # the middle 72 dp (67%), so 0.46 makes it about 70% of the tile.
 ART = 0.46
+ANDROID_ART = 0.40
 BLACK = (0, 0, 0, 255)
 DENSITY = {'mdpi': 1, 'hdpi': 1.5, 'xhdpi': 2, 'xxhdpi': 3, 'xxxhdpi': 4}
 WINDOWS_SIZES = [16, 20, 24, 32, 40, 48, 64, 128, 256]
@@ -60,7 +61,7 @@ ADAPTIVE = '''<?xml version="1.0" encoding="utf-8"?>
      tool/app_icons.py. -->
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
     <background android:drawable="@mipmap/ic_launcher_background" />
-    <foreground android:drawable="@mipmap/ic_launcher_foreground" />
+    <foreground android:drawable="@drawable/vista_v_foreground" />
 </adaptive-icon>
 '''
 
@@ -128,7 +129,7 @@ def tile(glyph, size):
     """The visible middle of the adaptive icon, rounded."""
     canvas = round(size * 108 / 72)
     full = Image.new('RGBA', (canvas, canvas), BLACK)
-    full.alpha_composite(art_layer(glyph, canvas, ART))
+    full.alpha_composite(art_layer(glyph, canvas, ANDROID_ART))
     cut = (canvas - size) // 2
     square = full.crop((cut, cut, cut + size, cut + size))
     mask = Image.new('L', (size, size), 0)
@@ -143,7 +144,7 @@ def android(glyph):
         folder = os.path.join(RES, 'mipmap-' + dpi)
         os.makedirs(folder, exist_ok=True)
         px = round(108 * k)
-        art_layer(glyph, px, ART).save(os.path.join(folder, 'ic_launcher_foreground.png'), optimize=True)
+        art_layer(glyph, px, ANDROID_ART).save(os.path.join(folder, 'ic_launcher_foreground.png'), optimize=True)
         Image.new('RGBA', (px, px), BLACK).save(os.path.join(folder, 'ic_launcher_background.png'), optimize=True)
         tile(glyph, round(48 * k)).save(os.path.join(folder, 'ic_launcher.png'), optimize=True)
     folder = os.path.join(RES, 'mipmap-anydpi-v26')

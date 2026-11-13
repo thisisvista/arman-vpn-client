@@ -158,7 +158,12 @@ class FakeApi implements CoreApi {
             'transport': 'HTTP/3',
           },
     if (recommended)
-      'exit': {'ipv4': '192.0.2.7', 'country_code': 'BE', 'city': 'Brussels'},
+      'exit': {
+        'ipv4': '192.0.2.7',
+        'country_code': 'BE',
+        'country_name': 'Belgium',
+        'city': 'Brussels',
+      },
     'active_account': accountsJson.first,
     'last_test': _lastTest,
     if (!systemProxySupported)
@@ -2448,7 +2453,7 @@ void main() {
         tester.widget<NavigationBar>(find.byType(NavigationBar)).selectedIndex,
         0,
       );
-      expect(find.text('Data used'), findsOneWidget);
+      expect(find.text('Vista '), findsOneWidget);
       expect(api.on, wasOn);
       await tester.pumpWidget(const SizedBox());
       core.dispose();
@@ -2533,7 +2538,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(popped, isTrue);
     expect(find.text('Network'), findsNothing);
-    expect(find.text('Data used'), findsOneWidget);
+    expect(find.text('Vista '), findsOneWidget);
 
     // Logs cleared stay cleared when the page opens again.
     await tester.tap(find.text('Settings'));
@@ -2620,19 +2625,17 @@ void main() {
 
     // On, with no system proxy: connected, not "proxy only".
     expect(find.text('Connected'), findsOneWidget);
-    // Connected through the recommended location: the exit's country,
-    // without the city, under "Recommended location".
-    expect(find.text('Recommended location'), findsOneWidget);
+    // Connected through the recommended location: show the exit country,
+    // without the city. The generic recommendation label is used only off.
     expect(find.text('Belgium'), findsOneWidget);
+    expect(find.text('Recommended location'), findsNothing);
     expect(find.textContaining('Brussels'), findsNothing);
     // No public IP on the phone's home.
     expect(find.textContaining('192.0.2.7'), findsNothing);
-    // The data used, in the ring and in large type; the email is not on
-    // the phone's home.
-    expect(find.textContaining('40%'), findsOneWidget);
-    expect(find.text('Data used'), findsOneWidget);
-    expect(find.textContaining('20.0 GB'), findsOneWidget);
-    expect(find.textContaining('@example.com'), findsNothing);
+    // The home identifies the app and masks, rather than fully exposing,
+    // the active account email.
+    expect(find.text('Vista '), findsOneWidget);
+    expect(find.text('alice@example.com'), findsNothing);
     // Apps in the VPN trying refused ports are no news on the phone.
     expect(find.textContaining('5228'), findsNothing);
     // The local address is not shown unless shared with the LAN.
@@ -2643,7 +2646,7 @@ void main() {
     expect(api.on, isFalse);
     expect(find.text('Disconnected'), findsOneWidget);
     // Off: the chosen location, the recommended one by default.
-    expect(find.text('Location'), findsOneWidget);
+    expect(find.text('Recommend location'), findsOneWidget);
     expect(find.text('Recommended location'), findsOneWidget);
 
     await tester.tap(find.byTooltip('Tap to connect'));
