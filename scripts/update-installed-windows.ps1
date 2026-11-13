@@ -53,11 +53,11 @@ $public = & "$PSScriptRoot\signing-key.ps1"
 Push-Location "$root\core"
 try {
     $env:APP_VERSION = $version
-    go generate ./cmd/arman-vpn-core
+    go generate ./cmd/vista-vpn-core
     if ($LASTEXITCODE -ne 0) { throw 'go generate failed' }
     $ldflags = "-s -w -X github.com/thisisvista/vista-vpn/core/internal/version.Current=$version"
     if ($public) { $ldflags += " -X github.com/thisisvista/vista-vpn/core/internal/signing.Key=$public" }
-    go build -trimpath -ldflags $ldflags -o "$coreOut\vista-vpn-core.exe" ./cmd/arman-vpn-core
+    go build -trimpath -ldflags $ldflags -o "$coreOut\vista-vpn-core.exe" ./cmd/vista-vpn-core
     if ($LASTEXITCODE -ne 0) { throw 'go build failed' }
 } finally {
     Remove-Item Env:APP_VERSION -ErrorAction SilentlyContinue
