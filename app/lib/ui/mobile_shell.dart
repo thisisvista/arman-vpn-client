@@ -95,22 +95,6 @@ class _MobileShellState extends State<MobileShell> {
       l.navAccounts,
       () => AccountsPage(core: core, settings: settings),
     );
-    void openConnection() => _push(
-      l.sectionConnection,
-      () => SettingsPage(
-        core: core,
-        settings: settings,
-        section: SettingsSection.connection,
-      ),
-    );
-    void openUpstreamProxy() => _push(
-      l.upstreamProxy,
-      () => SettingsPage(
-        core: core,
-        settings: settings,
-        section: SettingsSection.upstreamProxy,
-      ),
-    );
     final page =
         widget.noCore ??
         (_tab == 0
