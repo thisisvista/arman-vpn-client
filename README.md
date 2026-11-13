@@ -43,16 +43,27 @@ Updated screenshots of the current Vista VPN interface will be added after final
 
 ## Download
 
-**No public release has been published yet.** When the first release is ready, download the appropriate file from:
+**No public release has been published yet.** The download links below will become active when the first GitHub Release is published.
 
-[**Vista VPN — GitHub Releases**](https://github.com/thisisvista/vista-vpn/releases)
+<table>
+<thead><tr><th>Platform</th><th>Package</th></tr></thead>
+<tbody>
+<tr><td rowspan="4">Android</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-universal.apk">Universal APK</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-arm64-v8a.apk">ARM64-v8a APK</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-armeabi-v7a.apk">ARMv7 APK</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Android-x86_64.apk">x86_64 APK</a></td></tr>
+<tr><td rowspan="2">Windows</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Windows-Setup-x64.exe">Installer (x64)</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Windows-x64.zip">Portable archive (x64)</a></td></tr>
+<tr><td rowspan="2">macOS</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-macOS.dmg">Disk image</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-macOS.tar.gz">Archive</a></td></tr>
+<tr><td rowspan="4">Linux</td><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Linux-amd64.tar.gz">Desktop app (amd64)</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/Vista-VPN-Linux-arm64.tar.gz">Desktop app (ARM64)</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/vista-vpn-core-linux-amd64.tar.gz">Core (amd64)</a></td></tr>
+<tr><td><a href="https://github.com/thisisvista/vista-vpn/releases/latest/download/vista-vpn-core-linux-arm64.tar.gz">Core (ARM64)</a></td></tr>
+</tbody>
+</table>
 
-For Android:
-- **Universal APK** is intended for broad device compatibility.
-- **ARM64-v8a APK** is intended for most modern Android phones and is usually smaller.
-- Choose another ABI only if you know your device requires it.
-
-Only install APKs published in this repository's official Releases. Do not treat workflow test artifacts or debug-signed APKs as production releases.
+For Android, **Universal APK** is intended for broad compatibility. **ARM64-v8a** is suitable for most modern phones and is usually smaller. Install only APKs published in this repository's official Releases; workflow test artifacts and debug-signed APKs are not production releases.
 
 ## Install on Android
 
