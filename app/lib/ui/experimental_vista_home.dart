@@ -513,7 +513,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                           ],
                         ),
                       ),
-                      const Icon(
+                      Icon(
                         Icons.chevron_right_rounded,
                         color: muted,
                         size: 24,
@@ -598,7 +598,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                           ],
                         ),
                       ),
-                      const Icon(
+                      Icon(
                         Icons.chevron_right_rounded,
                         color: muted,
                         size: 24,
