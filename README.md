@@ -14,6 +14,7 @@
   <a href="https://github.com/thisisvista/vista-vpn/releases">GitHub Releases</a> ·
   <a href="LICENSE">GPL-3.0 license</a> ·
   <a href="SECURITY.md">Security</a> ·
+  <a href="PRIVACY.md">Privacy</a> ·
   <a href="SUPPORT.md">Support</a>
 </p>
 
@@ -38,15 +39,7 @@ Feature availability can differ by operating system and by the upstream VPN serv
 
 ## Screenshots
 
-<p align="center">
-  <img src="docs/screenshots/phone_01.webp" width="220" alt="Vista VPN home screen">
-  &nbsp;
-  <img src="docs/screenshots/phone_02.webp" width="220" alt="Server selection">
-  &nbsp;
-  <img src="docs/screenshots/phone_03.webp" width="220" alt="Settings">
-</p>
-
-Screenshots should represent the currently published app version. If a screenshot does not match the release, please report it through [Support](SUPPORT.md).
+Updated screenshots of the current Vista VPN interface will be added after final on-device validation. The repository should not present older interface images as screenshots of the current release.
 
 ## Download
 
@@ -71,8 +64,9 @@ Only install APKs published in this repository's official Releases. Do not treat
 
 The app's built-in updater is intended for releases signed with the project's persistent release certificate. A debug or locally signed build may not be able to update an installed official release.
 
-## Troubleshooting and support
+## Privacy, troubleshooting, and support
 
+- Read the [Privacy Policy](PRIVACY.md) to understand local storage, account data, VPN traffic handling, backups, logs, and update checks.
 - Read [Support](SUPPORT.md) before opening an issue.
 - For security concerns, follow [SECURITY.md](SECURITY.md); do not post credentials, tokens, private account data, or unredacted logs in public.
 - Review [CHANGELOG.md](CHANGELOG.md) for changes included in each release.
