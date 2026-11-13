@@ -127,10 +127,10 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
     final failure = failureText(l, status.proxy, test);
     final failureMessage = status.connectPending
         ? ''
-        : failure.code.isNotEmpty || (test != null && !test.ok)
-            ? failure.text
-            : status.connectFailure.isNotEmpty
-                ? failureCodeText(l, status.connectFailure)
+        : status.connectFailure.isNotEmpty
+            ? failureCodeText(l, status.connectFailure)
+            : failure.code.isNotEmpty || (test != null && !test.ok)
+                ? failure.text
                 : status.noNetwork && on
                     ? l.noNetwork
                     : '';
@@ -155,9 +155,9 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
             ? status.selectionName
             : selection.isEmpty
                 ? l.recommendedLocation
-            : selectionLower == 'fastest'
-                ? l.modeFastest
-                : locationName(l, selection, selection);
+                : selectionLower == 'fastest'
+                    ? l.modeFastest
+                    : locationName(l, selection, selection);
     final flagCode = selection.isEmpty || selectionLower == 'fastest'
         ? 'REC'
         : selection.toUpperCase();
