@@ -215,7 +215,7 @@ jobs:
           apksigner="$ANDROID_HOME/build-tools/$build_tools/apksigner"
           for apk in out/*.apk; do
             "$apksigner" verify --verbose --print-certs "$apk"
-            actual="$("$apksigner" verify --print-certs "$apk" | awk -F': ' '/(Signer #1|V2 Signer): certificate SHA-256 digest:/{print tolower($2); exit}' | tr -d ':')"
+            actual="$("$apksigner" verify --print-certs "$apk" | sed -nE 's/.*certificate SHA-256 digest:[[:space:]]*([[:xdigit:]:]+).*/\\1/p' | head -n1 | tr -d ':[:space:]' | tr '[:upper:]' '[:lower:]')"
             if [ "$actual" != "$expected" ]; then
               echo "::error::Unexpected signing certificate for $(basename "$apk")"
               exit 1
