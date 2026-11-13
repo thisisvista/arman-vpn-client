@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -28,12 +29,18 @@ class ExperimentalVistaHome extends StatefulWidget {
   State<ExperimentalVistaHome> createState() => _ExperimentalVistaHomeState();
 }
 
-class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
+class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
+    with SingleTickerProviderStateMixin {
   Timer? _clock;
+  late final AnimationController _floatController;
 
   @override
   void initState() {
     super.initState();
+    _floatController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2600),
+    );
     _clock = Timer.periodic(const Duration(seconds: 1), (_) {
       if (mounted) setState(() {});
     });
@@ -42,6 +49,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
   @override
   void dispose() {
     _clock?.cancel();
+    _floatController.dispose();
     super.dispose();
   }
 
@@ -171,6 +179,12 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
         : connected
             ? l.stateConnected
             : look.label;
+    if (confirming && !_floatController.isAnimating) {
+      _floatController.repeat();
+    } else if (!confirming && _floatController.isAnimating) {
+      _floatController.stop();
+      _floatController.value = 0.5;
+    }
     final stateHint = !on
         ? l.tapToConnectPhone
         : look.hint.isNotEmpty
@@ -276,7 +290,21 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                                   ),
                                 ),
                               ),
-                            AnimatedContainer(
+                            AnimatedBuilder(
+                              animation: _floatController,
+                              builder: (context, child) {
+                                final phase = _floatController.value * math.pi * 2;
+                                final bob = confirming ? math.sin(phase) * 5.0 : 0.0;
+                                final tilt = confirming ? math.sin(phase) * 0.012 : 0.0;
+                                return Transform.translate(
+                                  offset: Offset(0, bob),
+                                  child: Transform.rotate(
+                                    angle: tilt,
+                                    child: child,
+                                  ),
+                                );
+                              },
+                              child: AnimatedContainer(
                               duration: const Duration(milliseconds: 350),
                               width: 154,
                               height: 154,
@@ -337,6 +365,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                                     ),
                                   ),
                                 ),
+                              ),
                               ),
                             ),
                             if (widget.core.switchingProxy)
