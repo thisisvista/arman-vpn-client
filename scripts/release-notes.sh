@@ -13,7 +13,7 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 echo "## Download"
 echo
 # The table alone, from <table> to </table>.
-awk '/^<table>/ { p = 1 } p { print } /^<\\/table>/ && p { exit }' "$root/README.md" |
-  sed -e "s|releases/latest/download/Vista-VPN-|releases/download/$tag/Vista-VPN-$version-|g" \\
-      -e "s|releases/latest/download/vista-vpn-core-|releases/download/$tag/vista-vpn-core-$version-|g" \\
+awk '/^<table>/ { p = 1 } p { print } /^<\/table>/ && p { exit }' "$root/README.md" |
+  sed -e "s|releases/latest/download/Vista-VPN-|releases/download/$tag/Vista-VPN-$version-|g" \
+      -e "s|releases/latest/download/vista-vpn-core-|releases/download/$tag/vista-vpn-core-$version-|g" \
       -e "s|releases/latest/download/|releases/download/$tag/|g"
