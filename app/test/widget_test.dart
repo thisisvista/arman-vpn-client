@@ -2685,7 +2685,7 @@ void main() {
 
     // No internet: the proxy runs, but the VPN does not claim to work.
     expect(find.text('Connecting…'), findsOneWidget);
-    expect(find.textContaining('No internet'), findsOneWidget);
+    expect(find.textContaining("Couldn't connect"), findsOneWidget);
     expect(find.text('Connected'), findsNothing);
 
     // The internet is back: the next test confirms it.
