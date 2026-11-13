@@ -4,7 +4,7 @@
 // Handler. It is the only package that imports sing-tun, so that a sing-tun
 // update changes nothing else; its API speaks only the standard library.
 //
-// The stack needs the build tag with_gvisor (cmd/arman-vpn-tun is built
+// The stack needs the build tag with_gvisor (cmd/vista-vpn-tun is built
 // with it); without the tag Start fails.
 //
 // Open creates the adapter with its addresses and DNS server but no routes;
