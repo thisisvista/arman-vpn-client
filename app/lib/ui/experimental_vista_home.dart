@@ -157,6 +157,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
     final selection = status.selection.trim();
     final selectionLower = selection.toLowerCase();
     final automaticSelection = selection.isEmpty || selectionLower == 'fastest';
+    final recommendedSelection = selection.isEmpty;
     final actualExit = connected ? status.exit : null;
     final hasActualExit = actualExit?.countryName.isNotEmpty == true;
     final serverName = automaticSelection && hasActualExit
@@ -483,7 +484,9 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              l.navServers,
+                              recommendedSelection
+                                  ? 'Recommend location'
+                                  : l.navServers,
                               style: baseText.labelSmall?.copyWith(
                                 color: muted,
                                 fontWeight: FontWeight.w600,
@@ -634,30 +637,6 @@ class _HeaderButton extends StatelessWidget {
             width: 42,
             height: 42,
             child: Icon(icon, color: const Color(0xFFD1D5DB), size: 21),
-          ),
-        ),
-      );
-}
-
-class _ActionCard extends StatelessWidget {
-  const _ActionCard({required this.child, required this.onTap});
-
-  final Widget child;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) => Material(
-        color: const Color(0xFF14171F),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(17),
-          side: const BorderSide(color: Color(0x16FFFFFF)),
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-            child: child,
           ),
         ),
       );
