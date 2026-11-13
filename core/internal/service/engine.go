@@ -426,6 +426,10 @@ func (d *Daemon) runController(engine *proxyEngine, controller *proxy.Controller
 	engine.idle.mu.Unlock()
 	go controller.RunRenewalLoop()
 	go controller.RunQuotaMonitorLoop()
+	// The startup routing update may have run while the engine was asleep,
+	// when GitHub could only be reached directly. Retry now that Mozilla's
+	// controller is ready, so filtered list hosts can use the VPN tunnel.
+	d.wakeRouting()
 	return true
 }
 
