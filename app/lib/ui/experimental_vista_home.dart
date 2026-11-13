@@ -121,17 +121,18 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome> {
                 : connected
                     ? const Color(0xFF10B981)
                     : const Color(0xFFF59E0B);
-    final failure = failureText(l, status.proxy, widget.core.lastTest);
-    final failureMessage = failure.code.isNotEmpty
+    final test = status.isCurrentTest(widget.core.lastTest)
+        ? widget.core.lastTest
+        : null;
+    final failure = failureText(l, status.proxy, test);
+    final failureMessage = failure.code.isNotEmpty ||
+            (test != null && !test.ok)
         ? failure.text
         : status.connectFailure.isNotEmpty
             ? failureCodeText(l, status.connectFailure)
             : status.noNetwork && on
                 ? l.noNetwork
                 : '';
-    final test = status.isCurrentTest(widget.core.lastTest)
-        ? widget.core.lastTest
-        : null;
     final pingText = widget.core.testing
         ? l.testingDelay
         : test == null
