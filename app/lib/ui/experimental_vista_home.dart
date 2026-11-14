@@ -133,11 +133,12 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                 : connected
                     ? const Color(0xFF00FFC8)
                     : const Color(0xFFF59E0B);
-    final powerFill = connected
-        ? const Color(0xFF00FFC8)
-        : isDark
-            ? const Color(0xFF171C2B)
-            : Colors.white;
+    // Keep the circular button/background unchanged in every connection state.
+    // Only the V circuit traces use the connected teal color.
+    final powerFill = isDark ? const Color(0xFF171C2B) : Colors.white;
+    final emblemGlow = isDark
+        ? const Color(0xFF8D7AB8)
+        : const Color(0xFFB8A2F5);
     final powerMark = connected ? const Color(0xFF00FFC8) : accent;
     final test = status.isCurrentTest(widget.core.lastTest)
         ? widget.core.lastTest
@@ -289,8 +290,8 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                 shape: BoxShape.circle,
                                 gradient: RadialGradient(
                                   colors: [
-                                    accent.withValues(alpha: connected ? 0.16 : 0.055),
-                                    accent.withValues(alpha: 0),
+                                    emblemGlow.withValues(alpha: 0.055),
+                                    emblemGlow.withValues(alpha: 0),
                                   ],
                                 ),
                               ),
@@ -343,27 +344,27 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                 gradient: LinearGradient(
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
-                                  colors: connected
-                                      ? [
-                                          Color.lerp(powerFill, Colors.white, 0.10)!,
-                                          powerFill,
-                                          Color.lerp(powerFill, Colors.black, 0.10)!,
-                                        ]
-                                      : [
-                                          powerFill,
-                                          Color.lerp(powerFill, isDark ? const Color(0xFF22263A) : const Color(0xFFF5F2FF), 0.30)!,
-                                        ],
+                                  colors: [
+                                    powerFill,
+                                    Color.lerp(
+                                      powerFill,
+                                      isDark
+                                          ? const Color(0xFF22263A)
+                                          : const Color(0xFFF5F2FF),
+                                      0.30,
+                                    )!,
+                                  ],
                                 ),
                                 border: Border.all(
-                                  color: (isDark ? Colors.white : accent).withValues(
-                                  alpha: connected ? 0.28 : (isDark ? 0.10 : 0.22),
+                                  color: (isDark ? Colors.white : emblemGlow).withValues(
+                                  alpha: isDark ? 0.10 : 0.22,
                                 ),
                                 width: 1.0,
                                 ),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: accent.withValues(
-                                      alpha: connected ? 0.28 : (isDark ? 0.07 : 0.15),
+                                    color: emblemGlow.withValues(
+                                      alpha: isDark ? 0.07 : 0.15,
                                     ),
                                     blurRadius: 38,
                                     spreadRadius: 1,
