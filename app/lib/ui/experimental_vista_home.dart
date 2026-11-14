@@ -133,13 +133,21 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                 : connected
                     ? const Color(0xFF00FFC8)
                     : const Color(0xFFF59E0B);
-    // Keep the circular button/background unchanged in every connection state.
-    // Only the V circuit traces use the connected teal color.
+    // The emblem surface follows the selected theme only. Connection state
+    // changes the V traces, never the circular surface beneath them.
     final powerFill = isDark ? const Color(0xFF171C2B) : Colors.white;
     final emblemGlow = isDark
         ? const Color(0xFF8D7AB8)
         : const Color(0xFFB8A2F5);
-    final powerMark = connected ? const Color(0xFF00FFC8) : accent;
+    final powerMark = connected
+        ? const Color(0xFF00FFC8)
+        : confirming
+            ? const Color(0xFFFFB52E)
+            : !on
+                ? (isDark
+                    ? const Color(0xFF8D7AB8)
+                    : const Color(0xFF8D7AB8))
+                : accent;
     final test = status.isCurrentTest(widget.core.lastTest)
         ? widget.core.lastTest
         : null;
@@ -314,7 +322,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color: (connected ? Colors.white : accent).withValues(
+                                    color: Colors.white.withValues(
                                       alpha: ring.alpha,
                                     ),
                                     width: 1,
@@ -341,20 +349,9 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                               height: 154,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    powerFill,
-                                    Color.lerp(
-                                      powerFill,
-                                      isDark
-                                          ? const Color(0xFF22263A)
-                                          : const Color(0xFFF5F2FF),
-                                      0.30,
-                                    )!,
-                                  ],
-                                ),
+                                // A solid theme surface prevents status colors
+                                // from tinting the circle behind the V traces.
+                                color: powerFill,
                                 border: Border.all(
                                   color: (isDark ? Colors.white : emblemGlow).withValues(
                                   alpha: isDark ? 0.10 : 0.22,
