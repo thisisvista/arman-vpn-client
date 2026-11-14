@@ -408,26 +408,6 @@ class _AutoModeCard extends StatelessWidget {
   }
 }
 
-/// An icon in the size of a flag, for a choice that is not a country.
-class _IconTile extends StatelessWidget {
-  const _IconTile({required this.icon});
-
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    return Container(
-      width: 36,
-      height: 27,
-      decoration: BoxDecoration(
-        color: scheme.tertiaryContainer,
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Icon(icon, size: 20, color: scheme.onTertiaryContainer),
-    );
-  }
-}
 
 /// One choice: what it is, its delay, and a radio mark; a tap chooses it.
 class _ChoiceRow extends StatelessWidget {
