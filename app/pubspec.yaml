@@ -2,7 +2,7 @@ name: vista_vpn
 description: "Cross-platform shell for the Go VPN core"
 publish_to: 'none'
 
-version: 1.0.1+140
+version: 1.0.19+140
 
 environment:
   sdk: ^3.13.5
