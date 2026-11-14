@@ -31,11 +31,11 @@ For **Android, Windows, macOS, and Linux**; completely free, with no ads.
 
 ## 🚀 Main features
 
-✈️ Cross-platform: Android, Windows, macOS, and Linux
+Cross-platform: Android, Windows, macOS, and Linux
 
 📺 Android TV: works with the remote control
 
-⭐ Very easy to use, with a simple interface
+Very easy to use, with a simple interface
 
 🆓 Free: 50 GB a month for every Firefox Account
 
