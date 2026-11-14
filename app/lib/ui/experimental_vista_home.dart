@@ -138,7 +138,7 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
         : isDark
             ? const Color(0xFF171C2B)
             : Colors.white;
-    final powerMark = connected ? Colors.white : accent;
+    final powerMark = connected ? const Color(0xFF00FFC8) : accent;
     final test = status.isCurrentTest(widget.core.lastTest)
         ? widget.core.lastTest
         : null;
@@ -313,8 +313,8 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color: accent.withValues(
-                                      alpha: connected ? ring.alpha * 1.15 : ring.alpha,
+                                    color: (connected ? Colors.white : accent).withValues(
+                                      alpha: ring.alpha,
                                     ),
                                     width: 1,
                                   ),
@@ -758,7 +758,7 @@ class _VistaCircuitPainter extends CustomPainter {
       ..shader = LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: [Colors.white, color, color.withValues(alpha: 0.72)],
+        colors: [color, color, color.withValues(alpha: 0.72)],
       ).createShader(const Rect.fromLTWH(0, 0, 180, 180));
 
     void trace(List<Offset> points, List<Offset> nodes) {
