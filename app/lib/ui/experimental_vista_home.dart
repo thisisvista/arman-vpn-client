@@ -277,14 +277,14 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                     children: [
                       const Spacer(),
                       SizedBox(
-                        width: 270,
-                        height: 224,
+                        width: 300,
+                        height: 260,
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
                             Container(
-                              width: 254,
-                              height: 254,
+                              width: connected ? 296 : 254,
+                              height: connected ? 296 : 254,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 gradient: RadialGradient(
@@ -295,11 +295,18 @@ class _ExperimentalVistaHomeState extends State<ExperimentalVistaHome>
                                 ),
                               ),
                             ),
-                            for (final ring in [
-                              (size: 166.0, alpha: isDark ? 0.15 : 0.27),
-                              (size: 190.0, alpha: isDark ? 0.10 : 0.19),
-                              (size: 214.0, alpha: isDark ? 0.065 : 0.12),
-                            ])
+                            for (final ring in connected
+                                ? [
+                                    (size: 190.0, alpha: isDark ? 0.17 : 0.29),
+                                    (size: 224.0, alpha: isDark ? 0.13 : 0.23),
+                                    (size: 258.0, alpha: isDark ? 0.09 : 0.17),
+                                    (size: 292.0, alpha: isDark ? 0.055 : 0.12),
+                                  ]
+                                : [
+                                    (size: 166.0, alpha: isDark ? 0.15 : 0.27),
+                                    (size: 190.0, alpha: isDark ? 0.10 : 0.19),
+                                    (size: 214.0, alpha: isDark ? 0.065 : 0.12),
+                                  ])
                               Container(
                                 width: ring.size,
                                 height: ring.size,
