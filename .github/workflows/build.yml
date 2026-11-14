@@ -14,7 +14,7 @@ name: Build
 
 on:
   push:
-    branches: [main, 'infra/**']
+    branches: [main, 'infra/**', 'fix/windows-iss-files-section']
     tags: ['v*']
     # A change to Markdown or documentation images alone
     # runs nothing; GitHub does not apply this filter to tags, so a release
@@ -115,7 +115,7 @@ jobs:
     needs: test
     # Built unless the repository variable PLATFORMS (Settings, Secrets and
     # variables, Actions, Variables) is set and leaves it out, e.g. "linux".
-    if: (startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch') && (vars.PLATFORMS == '' || contains(vars.PLATFORMS, 'windows'))
+    if: (startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.head_ref == 'fix/windows-iss-files-section') || (github.event_name == 'push' && github.ref == 'refs/heads/fix/windows-iss-files-section')) && (vars.PLATFORMS == '' || contains(vars.PLATFORMS, 'windows'))
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v7
