@@ -191,6 +191,11 @@ jobs:
           fi
           printf '%s' "$KEYSTORE" | base64 -d > app/android/release.jks
           printf 'storeFile=../release.jks\nstorePassword=%s\nkeyAlias=release\nkeyPassword=%s\n' "$PASSWORD" "$PASSWORD" > app/android/key.properties
+      - name: Generate branded app icons
+        run: |
+          python3 -m pip install --break-system-packages Pillow
+          cd app
+          python3 tool/app_icons.py
       - name: Build
         run: |
           v='${{ needs.test.outputs.version }}'

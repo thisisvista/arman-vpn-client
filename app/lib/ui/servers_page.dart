@@ -171,26 +171,35 @@ class _ServersPageState extends State<ServersPage> {
           const SizedBox(height: 12),
         ],
         _SectionHeader(title: l.autoSection),
-        _ChoiceCard(
+        Row(
           children: [
-            _ChoiceRow(
-              leading: const CountryFlag(code: 'REC', width: 36),
-              title: l.modeRecommended,
-              subtitle: l.modeRecommendedHint,
-              delay: recommended == null
-                  ? null
-                  : _Delay(location: recommended, testing: _testing),
-              selected: chosen == '',
-              busy: _busy == '',
-              onTap: () => _choose(''),
+            Expanded(
+              child: _AutoModeCard(
+                title: l.modeRecommended,
+                subtitle: l.modeRecommendedHint,
+                icon: Icons.auto_awesome_rounded,
+                tint: const Color(0xFFEDE5FF),
+                ink: const Color(0xFF6941A5),
+                selected: chosen == '',
+                busy: _busy == '',
+                delay: recommended == null
+                    ? null
+                    : _Delay(location: recommended, testing: _testing),
+                onTap: () => _choose(''),
+              ),
             ),
-            _ChoiceRow(
-              leading: const _IconTile(icon: Icons.bolt_rounded),
-              title: l.modeFastest,
-              subtitle: l.modeFastestHint,
-              selected: chosen == 'fastest',
-              busy: _busy == 'fastest',
-              onTap: () => _choose('fastest'),
+            const SizedBox(width: 10),
+            Expanded(
+              child: _AutoModeCard(
+                title: l.modeFastest,
+                subtitle: l.modeFastestHint,
+                icon: Icons.bolt_rounded,
+                tint: const Color(0xFFE1F7EA),
+                ink: const Color(0xFF18794E),
+                selected: chosen == 'fastest',
+                busy: _busy == 'fastest',
+                onTap: () => _choose('fastest'),
+              ),
             ),
           ],
         ),
@@ -297,26 +306,108 @@ class _ChoiceCard extends StatelessWidget {
   );
 }
 
-/// An icon in the size of a flag, for a choice that is not a country.
-class _IconTile extends StatelessWidget {
-  const _IconTile({required this.icon});
+/// Compact side-by-side automatic choices with the agreed Vista colors.
+class _AutoModeCard extends StatelessWidget {
+  const _AutoModeCard({
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.tint,
+    required this.ink,
+    required this.selected,
+    required this.busy,
+    required this.onTap,
+    this.delay,
+  });
 
+  final String title;
+  final String subtitle;
   final IconData icon;
+  final Color tint;
+  final Color ink;
+  final bool selected;
+  final bool busy;
+  final VoidCallback onTap;
+  final Widget? delay;
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    return Container(
-      width: 36,
-      height: 27,
-      decoration: BoxDecoration(
-        color: scheme.tertiaryContainer,
-        borderRadius: BorderRadius.circular(4),
+    final theme = Theme.of(context);
+    return Material(
+      color: tint,
+      borderRadius: BorderRadius.circular(16),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16),
+        onTap: onTap,
+        child: Container(
+          constraints: const BoxConstraints(minHeight: 132),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: selected ? ink : ink.withValues(alpha: 0.12),
+              width: selected ? 2 : 1,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(icon, color: ink, size: 20),
+                  const Spacer(),
+                  if (busy)
+                    SizedBox.square(
+                      dimension: 16,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: ink,
+                      ),
+                    )
+                  else
+                    Icon(
+                      selected
+                          ? Icons.radio_button_checked_rounded
+                          : Icons.radio_button_unchecked_rounded,
+                      color: ink,
+                      size: 19,
+                    ),
+                ],
+              ),
+              const SizedBox(height: 9),
+              Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.titleSmall?.copyWith(
+                  color: ink,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 3),
+              Text(
+                subtitle,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: ink.withValues(alpha: 0.82),
+                ),
+              ),
+              if (delay != null) ...[
+                const SizedBox(height: 7),
+                DefaultTextStyle.merge(
+                  style: TextStyle(color: ink),
+                  child: delay!,
+                ),
+              ],
+            ],
+          ),
+        ),
       ),
-      child: Icon(icon, size: 20, color: scheme.onTertiaryContainer),
     );
   }
 }
+
 
 /// One choice: what it is, its delay, and a radio mark; a tap chooses it.
 class _ChoiceRow extends StatelessWidget {

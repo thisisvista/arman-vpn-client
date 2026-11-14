@@ -39,6 +39,7 @@ Run from app/ after changing the symbol or the colors (needs Pillow):
     python tool/app_icons.py
 """
 import os
+import json
 
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
 
@@ -49,7 +50,7 @@ RES = os.path.join(APP, 'android', 'app', 'src', 'main', 'res')
 
 # The symbol's height as a share of the 108 dp canvas. Launchers show about
 # the middle 72 dp (67%), so 0.46 makes it about 70% of the tile.
-ART = 0.46
+ART = 0.60
 BLACK = (0, 0, 0, 255)
 DENSITY = {'mdpi': 1, 'hdpi': 1.5, 'xhdpi': 2, 'xxhdpi': 3, 'xxxhdpi': 4}
 WINDOWS_SIZES = [16, 20, 24, 32, 40, 48, 64, 128, 256]
@@ -101,15 +102,18 @@ def symbol(size, filled=None):
     return img.resize((size, size), Image.LANCZOS)
 
 
-def tile_art():
+def tile_art(glyph=None):
     """The tile (512 px): a black rounded square of 412 px, the symbol 300
     px wide in its middle."""
     size, body = 512, 412
     out = Image.new('RGBA', (size, size), (0, 0, 0, 0))
     off = (size - body) // 2
     ImageDraw.Draw(out).rounded_rectangle([off, off, off + body - 1, off + body - 1], radius=round(body * 0.2), fill=BLACK)
-    span = (NODES[3][0] + RING) - (NODES[0][0] - RING)
-    art = symbol(round(300 * 24 / span))
+    if glyph is None:
+        span = (NODES[3][0] + RING) - (NODES[0][0] - RING)
+        art = symbol(round(300 * 24 / span))
+    else:
+        art = art_layer(glyph, size, 0.78)
     out.alpha_composite(art, ((size - art.width) // 2, (size - art.height) // 2))
     return out
 
@@ -166,7 +170,7 @@ def tv_banner(glyph):
         out.paste(tuple(round(a + (b - a) * t) for a, b in zip(top, bottom)) + (255,), (0, y, w, y + 1))
     symbol = art_layer(glyph, 96, 1.0)
     font = ImageFont.truetype(os.path.join(APP, 'assets', 'fonts', 'Vazirmatn-Bold.ttf'), 34)
-    name = 'Arman VPN'
+    name = 'Vista VPN'
     draw = ImageDraw.Draw(out)
     left, top, right, bottom = draw.textbbox((0, 0), name, font=font)
     gap = 14
@@ -314,8 +318,15 @@ def tray():
 
 
 def main():
-    square = tile_art()
-    glyph = symbol(1024)
+    with open(os.path.join(APP, 'assets', 'vista_mark.json'), encoding='utf-8') as f:
+        paths = json.load(f)
+    scale = 4
+    glyph_hi = Image.new('RGBA', (1024 * scale, 1024 * scale), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(glyph_hi)
+    for path in paths:
+        draw.polygon([(round(x * scale), round(y * scale)) for x, y in path], fill=WHITE)
+    glyph = glyph_hi.resize((1024, 1024), Image.LANCZOS)
+    square = tile_art(glyph)
     android(glyph)
     tv_banner(glyph)
     macos(glyph)

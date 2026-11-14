@@ -10,6 +10,8 @@
         <exclude domain="file" path="core/local-api.token" />
         <exclude domain="file" path="core/tun2socks.yml" />
         <exclude domain="file" path="core/update/" />
+        <!-- Account credentials and their encryption key must never be copied to another device. -->
+        <exclude domain="file" path="core/accounts/" />
     </cloud-backup>
     <device-transfer>
         <exclude domain="file" path="core/logs/" />
@@ -19,5 +21,7 @@
         <exclude domain="file" path="core/local-api.token" />
         <exclude domain="file" path="core/tun2socks.yml" />
         <exclude domain="file" path="core/update/" />
+        <!-- Account credentials and their encryption key must never be copied to another device. -->
+        <exclude domain="file" path="core/accounts/" />
     </device-transfer>
 </data-extraction-rules>

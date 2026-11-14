@@ -158,7 +158,12 @@ class FakeApi implements CoreApi {
             'transport': 'HTTP/3',
           },
     if (recommended)
-      'exit': {'ipv4': '192.0.2.7', 'country_code': 'BE', 'city': 'Brussels'},
+      'exit': {
+        'ipv4': '192.0.2.7',
+        'country_code': 'BE',
+        'country_name': 'Belgium',
+        'city': 'Brussels',
+      },
     'active_account': accountsJson.first,
     'last_test': _lastTest,
     if (!systemProxySupported)
@@ -2621,7 +2626,7 @@ void main() {
     // On, with no system proxy: connected, not "proxy only".
     expect(find.text('Connected'), findsOneWidget);
     // Connected through the recommended location: the exit's country,
-    // without the city, under "Recommended location".
+    // without the city, under "Recommend location".
     expect(find.text('Recommended location'), findsOneWidget);
     expect(find.text('Belgium'), findsOneWidget);
     expect(find.textContaining('Brussels'), findsNothing);
@@ -2629,7 +2634,10 @@ void main() {
     expect(find.textContaining('192.0.2.7'), findsNothing);
     // The data used, in the ring and in large type; the email is not on
     // the phone's home.
-    expect(find.textContaining('40%'), findsOneWidget);
+    final quotaBar = tester.widget<LinearProgressIndicator>(
+      find.byType(LinearProgressIndicator),
+    );
+    expect(quotaBar.value, closeTo(0.4, 0.001));
     expect(find.text('Data used'), findsOneWidget);
     expect(find.textContaining('20.0 GB'), findsOneWidget);
     expect(find.textContaining('@example.com'), findsNothing);
@@ -2642,9 +2650,8 @@ void main() {
     await tester.pumpAndSettle();
     expect(api.on, isFalse);
     expect(find.text('Disconnected'), findsOneWidget);
-    // Off: the chosen location, the recommended one by default.
-    expect(find.text('Location'), findsOneWidget);
-    expect(find.text('Recommended location'), findsOneWidget);
+    // Off: the location label appears in both the badge and the card title.
+    expect(find.text('Recommended location'), findsNWidgets(2));
 
     await tester.tap(find.byTooltip('Tap to connect'));
     await tester.pumpAndSettle();
