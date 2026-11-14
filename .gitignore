@@ -7,13 +7,13 @@
 *.ipa
 *.dmg
 *.msix
-/core/cmd/arman-vpn-core/arman-vpn-core
-/core/arman-vpn-core*
+/core/cmd/vista-vpn-core/vista-vpn-core
+/core/vista-vpn-core*
 # The Windows resources (icon, version) of the core and the TUN service,
-# made by the build: go generate ./cmd/arman-vpn-core ./cmd/arman-vpn-tun
-/core/cmd/arman-vpn-core/rsrc_windows_*.syso
-/core/cmd/arman-vpn-tun/rsrc_windows_*.syso
-/core/cmd/arman-vpn-tun/arman-vpn-tun
+# made by the build: go generate ./cmd/vista-vpn-core ./cmd/vista-vpn-tun
+/core/cmd/vista-vpn-core/rsrc_windows_*.syso
+/core/cmd/vista-vpn-tun/rsrc_windows_*.syso
+/core/cmd/vista-vpn-tun/vista-vpn-tun
 # Update signing keys (tools/sign) never go into the repository.
 *.signing-key
 # gomobile's output for the Android app (core.aar, core-sources.jar),
