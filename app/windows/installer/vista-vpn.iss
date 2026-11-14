@@ -158,7 +158,7 @@ bn.DirNotWritable=Vista VPN এই ফোল্ডারে লিখতে প�
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
-[Files]]
+[Files]
 ; Never an existing data folder, if one was in the source.
 Source: "{#SourceDir}\*"; DestDir: "{app}"; Excludes: "user-data,portable"; Flags: ignoreversion recursesubdirs createallsubdirs
 
