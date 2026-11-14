@@ -232,8 +232,20 @@ jobs:
         run: rm -f app/android/release.jks app/android/key.properties
       - uses: actions/upload-artifact@v7
         with:
-          name: android
-          path: out/*
+          name: android-arm64-v8a
+          path: out/Vista-VPN-Android-arm64-v8a.apk
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v7
+        with:
+          name: android-armeabi-v7a
+          path: out/Vista-VPN-Android-armeabi-v7a.apk
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v7
+        with:
+          name: android-other
+          path: |
+            out/Vista-VPN-Android-universal.apk
+            out/Vista-VPN-Android-x86_64.apk
           if-no-files-found: error
 
   linux:
