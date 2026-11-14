@@ -10,4 +10,6 @@
     <exclude domain="file" path="core/local-api.token" />
     <exclude domain="file" path="core/tun2socks.yml" />
     <exclude domain="file" path="core/update/" />
+    <!-- Account credentials must never be copied to another device. -->
+    <exclude domain="file" path="core/accounts/" />
 </full-backup-content>
